@@ -5,7 +5,7 @@ class App extends Component {
   render () {
     return (
       <div>
-        I found this type and I really like it!
+        I found this type and I really do not like it!
       </div>
     )
   }
