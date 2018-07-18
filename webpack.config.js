@@ -4,9 +4,9 @@ const webpack = require('webpack');
 
 const config = {
   mode: 'development',
-  entry: './app/index.js',
+  entry: ['babel-polyfill','./app/index.js'],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public', 'dist'),
     filename: 'index_bundle.js',
     publicPath: '/'
   },
