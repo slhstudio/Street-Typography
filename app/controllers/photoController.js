@@ -22,14 +22,11 @@ const multerOptions = {
     }
   }
 }
-photoController.first = (req, res, next) => {
-  console.log('first', req.body);
-  return next();
-}
 
 photoController.upload = multer(multerOptions).single('photo');
 
 photoController.resize = async (req, res, next) => {
+  //console.log('req', req);
   //check if there is no new file to resize
   if (!req.file) {
     next();// skip to the next middleware;

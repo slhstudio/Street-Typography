@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Add extends Component {
   state = {
     selectedFile : null
   }
-
-  // handleChange = (event) => {
-  //   this.setState(() => {photo: event.target.value})
-  // }
 
   fileSelectedHandler = (event) => {
     const file = event.target.files[0];
@@ -15,59 +12,34 @@ class Add extends Component {
       selectedFile : file
     })
   }
+  //, this.state.selectedFile.name
   
   fileUploadHandler = (event) => {
       event.preventDefault();
       const data = new FormData();
-      data.append = ('image', this.state.selectedFile, this.state.selectedFile.name);
+      data.append = ('photo', this.state.selectedFile, this.state.selectedFile.name);
       console.log(data);
       // const pic = this.state.selectedFile;
       // console.log(pic);
-      fetch('/addPhoto', {
-        method: 'post',
-        body: data
-      }).then(response => {
-        console.log(response);
-      });
-    }
-      // (async () => {
-      //   const rawResponse = await fetch('https://httpbin.org/post', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Accept': 'application/json',
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify({a: 1, b: 'Textual content'})
-      //   });
-      //   const content = await rawResponse.json();
-      
-      //   console.log(content);
-      // })();
-  
 
-   //EXAMPLE:
-  //  export async function battle (players) {
-  //   const results = await Promise.all(players.map(getUserData))
-  //     .catch(handleError);
+      
+  //let data = { Fred: 'Flintstone' };
+    const boundary = '--- WebKit193844043-h'
+    return axios.post('/addPhoto', data)
+      // {headers: {
+      //   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+      //   'Content-Type': `multipart/form-data; boundary=${boundary}`,
+      // }}
+    
+     .then(response => console.log(response));
+    }
+    // return fetch('/add', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type' : 'multipart/form-data; boundary=--- WebKit193844043-h' },
+    //   body: data
+    // }).then(response => response.json()).then(data => console.log(data));
   
-  //   return results === null
-  //     ? results
-  //     : sortPlayers(results);
-  // }
-  
-  
-  // export async function fetchPopularRepos (language) {
-  //   const encodedURI = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`);
-  
-  
-  //   const response = await fetch(encodedURI)
-  //     .catch(handleError);
-  
-  //   const repos = await response.json();
-  
-  //   return repos.items;
-  
-  // }
+   
   
   //<!–– and the comment closes with ––>
   // <label htmlFor='photo'>Add a photo!</label>
@@ -76,7 +48,7 @@ class Add extends Component {
    // if (this.state.selectedFile === null) {
     return (
       <div>
-       
+      
           <input 
             id='photo' 
             name='photo'
