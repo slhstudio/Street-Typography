@@ -24,7 +24,7 @@ app.listen(3000, () => {
 //   res.sendFile(__dirname + '/dist/index.html');
 // })
 
-app.post('/add', photoController.upload, photoController.resize, photoController.savePhoto);
+app.post('/addPhoto', photoController.first, photoController.upload, photoController.resize, photoController.savePhoto);
 
 //photoController.savePhoto);
 

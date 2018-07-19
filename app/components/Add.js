@@ -2,21 +2,48 @@ import React, { Component } from 'react';
 
 class Add extends Component {
   state = {
-    justSubmitted: false
+    selectedFile : null
   }
 
   // handleChange = (event) => {
   //   this.setState(() => {photo: event.target.value})
   // }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.setState(() => {justSubmitted: true});
+  fileSelectedHandler = (event) => {
+    const file = event.target.files[0];
+    this.setState({
+      selectedFile : file
+    })
+  }
   
-    
-    // console.log(event.target.value);
-   // this.setState(() => ({justSubmitted: true}))
-     
+  fileUploadHandler = (event) => {
+      event.preventDefault();
+      const data = new FormData();
+      data.append = ('image', this.state.selectedFile, this.state.selectedFile.name);
+      console.log(data);
+      // const pic = this.state.selectedFile;
+      // console.log(pic);
+      fetch('/addPhoto', {
+        method: 'post',
+        body: data
+      }).then(response => {
+        console.log(response);
+      });
+    }
+      // (async () => {
+      //   const rawResponse = await fetch('https://httpbin.org/post', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify({a: 1, b: 'Textual content'})
+      //   });
+      //   const content = await rawResponse.json();
+      
+      //   console.log(content);
+      // })();
+  
 
    //EXAMPLE:
   //  export async function battle (players) {
@@ -41,28 +68,31 @@ class Add extends Component {
   //   return repos.items;
   
   // }
-  }
-
+  
+  //<!–– and the comment closes with ––>
+  // <label htmlFor='photo'>Add a photo!</label>
+  //<form action='/add' method='POST' encType='multipart/form-data'>
   render () {
+   // if (this.state.selectedFile === null) {
     return (
       <div>
-        <form action='/add' method='POST' onSubmit={this.handleSubmit}  encType='multipart/form-data'>
-          <label htmlFor='photo'>Add a photo!</label>
+       
           <input 
             id='photo' 
             name='photo'
             accept='image/gif, image/png, image/jpeg'
-            placeholder='upload here' 
             type='file' 
-            autoComplete='off' 
-           // onChange = {this.handleChange}
+            onChange={this.fileSelectedHandler}
           />
-          <button type='submit'>
-            UPLOAD
-          </button>
-        </form>
+          <button onClick={this.fileUploadHandler}>UPLOAD</button>
+       
       </div>
     )
+  // } else {
+  //     return (
+  //       <div>Success!</div>
+  //     )
+  //   }
   }
 }
 

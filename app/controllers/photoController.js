@@ -22,6 +22,10 @@ const multerOptions = {
     }
   }
 }
+photoController.first = (req, res, next) => {
+  console.log('first', req.body);
+  return next();
+}
 
 photoController.upload = multer(multerOptions).single('photo');
 
@@ -49,7 +53,7 @@ photoController.savePhoto = async (req, res) => {
     .save()
     .catch(handleError);
   
-  return;
+  res.json(photo);
 };
 
 
