@@ -4,67 +4,57 @@ import axios from 'axios';
 class Add extends Component {
   state = {
     selectedFile : null
-  }
+  };
 
-  fileSelectedHandler = (event) => {
+  onChange = (event) => {
     const file = event.target.files[0];
     this.setState({
       selectedFile : file
     })
   }
-  //, this.state.selectedFile.name
   
-  fileUploadHandler = (event) => {
-      event.preventDefault();
-      const data = new FormData();
-      data.append = ('photo', this.state.selectedFile, this.state.selectedFile.name);
-      console.log(data);
-      // const pic = this.state.selectedFile;
-      // console.log(pic);
+  onSubmit = (event) => {
+    event.preventDefault();
+    let data = new FormData();
+    data.append = ('image', this.state.selectedFile);
+    console.log(data);
 
-      
-  //let data = { Fred: 'Flintstone' };
-    const boundary = '--- WebKit193844043-h'
-    return axios.post('/addPhoto', data)
-      // {headers: {
-      //   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-      //   'Content-Type': `multipart/form-data; boundary=${boundary}`,
-      // }}
-    
-     .then(response => console.log(response));
-    }
-    // return fetch('/add', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type' : 'multipart/form-data; boundary=--- WebKit193844043-h' },
-    //   body: data
-    // }).then(response => response.json()).then(data => console.log(data));
-  
+// let options = {
+//     method: 'POST',
+//     url: '/addPhoto',
+//     headers: {
+//       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+//       'cache-control': 'max-age=0',
+//       'upgrade-insecure-requests': '1'
+//     },
+//     data
+// };
+
+    axios.post('/addPhoto', data, {
+      headers: {
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+      }
+    }).then((response) => {
+        console.log(response);
+      }).catch(err => {
+        console.log(err);
+      })
+     }
    
-  
-  //<!–– and the comment closes with ––>
-  // <label htmlFor='photo'>Add a photo!</label>
-  //<form action='/add' method='POST' encType='multipart/form-data'>
   render () {
-   // if (this.state.selectedFile === null) {
+  
     return (
-      <div>
-      
+        <form action='/addPhoto' method='POST' encType='multipart/form-data'>
           <input 
-            id='photo' 
-            name='photo'
-            accept='image/gif, image/png, image/jpeg'
             type='file' 
-            onChange={this.fileSelectedHandler}
+            name='image'
+            accept='image/gif, image/png, image/jpeg'
+            onChange={this.onChange}
           />
-          <button onClick={this.fileUploadHandler}>UPLOAD</button>
-       
-      </div>
+          <button type='submit'>UPLOAD</button>
+       </form>
+      
     )
-  // } else {
-  //     return (
-  //       <div>Success!</div>
-  //     )
-  //   }
   }
 }
 

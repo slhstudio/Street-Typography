@@ -12,7 +12,7 @@ mongoose.connection.once('open', () => {
 })
 
 const photoSchema = new Schema({
-  photo: {
+   photo: {
     type: String,
     required: 'Please select a photo!'
   }

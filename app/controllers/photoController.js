@@ -21,12 +21,13 @@ const multerOptions = {
         next({message: 'Please choose a jpeg, png or gif'}, false);
     }
   }
-}
+};
 
-photoController.upload = multer(multerOptions).single('photo');
+photoController.upload = multer(multerOptions).single('image');
+
 
 photoController.resize = async (req, res, next) => {
-  //console.log('req', req);
+
   //check if there is no new file to resize
   if (!req.file) {
     next();// skip to the next middleware;
@@ -44,13 +45,13 @@ photoController.resize = async (req, res, next) => {
 
 photoController.savePhoto = async (req, res) => {
   console.log('file', req.file);
-  console.log('body', req.body)
+  console.log('body', req.body);
   
   const photo = await (new Photo(req.body))
     .save()
     .catch(handleError);
   
-  res.json(photo);
+  res.redirect('/add');
 };
 
 

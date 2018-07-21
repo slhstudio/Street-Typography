@@ -16,14 +16,14 @@ app.listen(3000, () => {
   console.log('listening on 3000')
 })
 
-// app.get('/*', (req, res) => {
-//   console.log('here');
-//   res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
-// })
+app.get('/*', (req, res) => {
+  console.log('here');
+  res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
+})
 //test
 // app.get('/add', (req, res) => {
 //   console.log('add route');
-//   res.sendFile(__dirname + '/dist/index.html');
+//   res.sendFile(__dirname + '/public/dist/index.html');
 // })
 
 app.post('/addPhoto', photoController.upload, photoController.resize, photoController.savePhoto);
