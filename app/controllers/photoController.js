@@ -51,8 +51,14 @@ photoController.savePhoto = async (req, res) => {
     .save()
     .catch(handleError);
   
-  res.redirect('/add');
+  res.redirect(`/myphoto/${req.body.photo}`);
 };
+
+photoController.findPhoto = async (req, res) => {
+  console.log('photo', req.params.photo)
+  const pic = await Photo.findOne({ photo: req.params.photo })
+  res.send(pic);
+}
 
 
 module.exports = photoController;

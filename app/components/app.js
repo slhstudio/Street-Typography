@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './Nav';
 import Home from './Home';
 import Add from './Add';
-import Success from './Success';
+import Photo from './Photo';
 
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route path ='/add' component={Add}/>
-             
+              <Route path='/myphoto/:photo' component={Photo} />
             </Switch>
         </div>
       </Router>
