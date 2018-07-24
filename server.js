@@ -27,7 +27,7 @@ app.get('/*', (req, res) => {
 // })
 
 app.post('/addPhoto', photoController.upload, photoController.resize, photoController.savePhoto);
-app.get('/myphoto/:photo', photoController.findPhoto)
+app.get('/findphoto/:photo', photoController.findPhoto)
 
 
 module.exports = app;
