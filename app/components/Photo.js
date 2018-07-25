@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Loading from './Loading';
 
 class Photo extends Component {
   state = {
-    justSubmitted : true
+    loading : true,
+    image: '',
+    notes: ''
   }
 
   componentDidMount = async () =>  {
     //get photo name from url
-     const photo = this.props.match.params.photo;
-     console.log('photo', photo)
-    //call to  db
-    const result = await this.findPhoto(photo);
-    console.log('result', result)
+    const photo = this.props.match.params.photo;
+    //call to api function
+    const pic = await this.findPhoto(photo);
+    this.setState(() => ({
+      loading: false,
+      image: pic.photo,
+      notes: pic.notes
+    }))
   }
 
   findPhoto = async (photo, error) => {
-    const data = await axios.get(`/findphoto/${photo}`)
+    const result = await axios.get(`/findphoto/${photo}`)
       .catch(error);
-    return data;
+    return result.data;
   }
 
   render () {
-    
+    const { loading, image, notes } = this.state;
+
+    if (loading) {
+      return (
+        <Loading/>
+      )
+    }
     return (
-      <div> Success </div>
+      <div>  
+        <img src={`/uploads/${image}`}/>
+        <div>
+          <p>{notes}</p>
+        </div>
+      </div>
     )
   }
 }

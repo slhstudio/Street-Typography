@@ -4,7 +4,7 @@ import axios from 'axios';
 class Add extends Component {
   state = {
     selectedFile : null,
-    description: ''
+    notes: ''
   };
 
   onChange = (event) => {
@@ -15,7 +15,6 @@ class Add extends Component {
       default:
         this.setState({ [event.target.name]: event.target.value });
     }
-   
   }
   
   // onSubmit = (event) => {
@@ -47,8 +46,8 @@ class Add extends Component {
         />
         <input
           type='textarea'
-          name='description'
-          value={this.state.description}
+          name='notes'
+          value={this.state.notes}
           onChange={this.onChange}
         />
         <button type='submit'>

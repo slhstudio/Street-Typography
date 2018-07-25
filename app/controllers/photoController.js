@@ -27,19 +27,18 @@ photoController.upload = multer(multerOptions).single('image');
 
 
 photoController.resize = async (req, res, next) => {
-
   //check if there is no new file to resize
   if (!req.file) {
-    next();// skip to the next middleware;
+    next();
     return; //same as return next();
   }
   const extension = req.file.mimetype.split('/')[1];
   req.body.photo = `${uuid.v4()}.${extension}`;
-  // now we resize
+  //resize
   const photo = await jimp.read(req.file.buffer);
   await photo.resize(800, jimp.AUTO);
+  //write to filesystem
   await photo.write(`./public/uploads/${req.body.photo}`);
-  // once we have written the photo to our filesystem, keep going!
   next();
 }
 
@@ -55,10 +54,8 @@ photoController.savePhoto = async (req, res) => {
 };
 
 photoController.findPhoto = async (req, res) => {
-  console.log('photo', req.params.photo)
   const pic = await Photo.findOne({ photo: req.params.photo })
   res.send(pic);
 }
-
 
 module.exports = photoController;

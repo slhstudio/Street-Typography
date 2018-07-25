@@ -15,10 +15,8 @@ const photoSchema = new Schema({
    photo: {
     type: String,
     required: 'Please select a photo!'
-  }
-  // notes: {
-  //   type: String
-  // }
+  },
+  notes: String
 });
 
 
