@@ -58,4 +58,8 @@ photoController.findPhoto = async (req, res) => {
   res.send(pic);
 }
 
+photoController.getAll = async (req, res) => {
+  const all = await Photo.find();
+  res.send(all);
+}
 module.exports = photoController;

@@ -44,9 +44,9 @@ class Add extends Component {
           accept='image/gif, image/png, image/jpeg'
           onChange={this.onChange}
         />
-        <input
-          type='textarea'
+        <textarea
           name='notes'
+          placeholder='Add some notes'
           value={this.state.notes}
           onChange={this.onChange}
         />

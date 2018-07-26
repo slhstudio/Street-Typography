@@ -5,6 +5,7 @@ body {
 
 .container {
   max-width: 1200px;
+  height: 100vh;
   margin: 0 auto;
 }
 
@@ -32,9 +33,23 @@ a {
   margin-right: 15px;
 }
 
-label {
-  padding: 10px 0;
-  display: block;
+/* Home Component: photo grid */
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 8px;
+  align-items: stretch;
+}
+
+.photoItem {
+  max-width: 100%;
+}
+
+/* Add Component */
+form {
+  display: flex;
+  flex-direction: row;
 }
 
 input {
@@ -43,6 +58,13 @@ input {
   margin-right: 20px;
 }
 
+textarea {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  padding: 20px;
+  margin-right: 20px;
+}
 button {
   font-size: 1rem;
   background: none;

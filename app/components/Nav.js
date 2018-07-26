@@ -6,7 +6,7 @@ function Nav () {
     <ul className='nav'>
       <li>
         <NavLink exact activeClassName='active' to='/'>
-          All Photos
+          Explore Photos
         </NavLink>
       </li>
 

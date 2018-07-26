@@ -19,6 +19,7 @@ app.listen(3000, () => {
 app.post('/addPhoto', photoController.upload, photoController.resize, photoController.savePhoto);
 
 app.get('/findphoto/:photo', photoController.findPhoto)
+app.get('/findAllPhotos', photoController.getAll)
 
 app.get('/*', (req, res) => {
   console.log('here');
