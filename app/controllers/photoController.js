@@ -43,13 +43,9 @@ photoController.resize = async (req, res, next) => {
 }
 
 photoController.savePhoto = async (req, res) => {
-  console.log('file', req.file);
-  console.log('body', req.body);
-  
   const photo = await (new Photo(req.body))
     .save()
     .catch(handleError);
-  
   res.redirect(`/photo/${req.body.photo}`);
 };
 
@@ -61,5 +57,11 @@ photoController.findPhoto = async (req, res) => {
 photoController.getAll = async (req, res) => {
   const all = await Photo.find();
   res.send(all);
+}
+
+photoController.update = async (req, res) => {
+  const done = await Photo.findOneAndUpdate({ photo: req.params.photo }, req.body)
+    .catch(handleError);
+  res.send('success');
 }
 module.exports = photoController;

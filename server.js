@@ -14,12 +14,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(3000, () => {
   console.log('listening on 3000')
-})
+});
 
 app.post('/addPhoto', photoController.upload, photoController.resize, photoController.savePhoto);
 
-app.get('/findphoto/:photo', photoController.findPhoto)
-app.get('/findAllPhotos', photoController.getAll)
+app.get('/findphoto/:photo', photoController.findPhoto);
+app.get('/findAllPhotos', photoController.getAll);
+
+app.post('/uploadChange/:photo', photoController.update);
 
 app.get('/*', (req, res) => {
   console.log('here');

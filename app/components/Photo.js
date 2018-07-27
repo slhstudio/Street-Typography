@@ -12,9 +12,7 @@ class Photo extends Component {
   }
 
   componentDidMount = async () =>  {
-    //get photo name from url
     const photo = this.props.match.params.photo;
-    //call to api function
     const pic = await this.findPhoto(photo);
     this.setState(() => ({
       loading: false,
@@ -40,7 +38,9 @@ class Photo extends Component {
     return (
       <div className='photoSoloBox'>  
         <img className= 'photoSolo' src={`/uploads/${image}`}/>
-        <Edit info={notes}/>
+        <Edit 
+          info={notes}
+          photo={image}/>
       </div>
     )
   }

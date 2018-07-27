@@ -5,36 +5,44 @@ import axios from 'axios';
 class Edit extends Component {
   state = {
     update : this.props.info,
+    image: this.props.photo,
     editing: false
   }
 
   handleChange = (event) => {
-    this.setState ({update : event.target.value });
+    const value = event.target.value;
+    this.setState (() => ({update : value }));
   }
 
   handleClick = () => {
     this.setState (() => ({ editing : true }));
   }
 
-  saveChanges = () => {
+  saveChanges = async () => {
     const { update } = this.state;
-    //start here
-    //make this async
-    //write uploadChanges api function to post to db
+    const change = await this.uploadChanges(update);
+    this.setState(() => ({ editing : false }));
+    
     //on success, add :)
   }
 
-  render () {
-    const { info } = this.props;
-    const { editing } = this.state;
+  uploadChanges = async(update, error) => {
+    const { image } = this.state
+    const newNotes = await axios.post(`/uploadChange/${image}`, { 'notes' : update })
+      .catch(error);
+    return newNotes.data;
+  }
 
+  render () {
+    const { update, editing } = this.state;
+    
     return (
       //notes field
       //edit button
       <div className='row'> 
         {!editing 
         ? <div> 
-            {info}
+            {update}
             <button 
             onClick={this.handleClick}>
               EDIT
@@ -43,7 +51,7 @@ class Edit extends Component {
         : <div >
             <input type='text' value={this.state.update} onChange={this.handleChange}/>
             <button
-            onClick={() => this.saveChanges}>
+            onClick={this.saveChanges}>
               SAVE
             </button>
           </div>}
