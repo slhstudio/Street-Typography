@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Loading from './Loading';
+import Edit from './Edit';
 
 class Photo extends Component {
   state = {
-    loading : true,
+    user: true,
+    loading: true,
     image: '',
     notes: ''
   }
@@ -28,7 +30,7 @@ class Photo extends Component {
   }
 
   render () {
-    const { loading, image, notes } = this.state;
+    const { user, loading, image, notes } = this.state;
 
     if (loading) {
       return (
@@ -36,11 +38,9 @@ class Photo extends Component {
       )
     }
     return (
-      <div>  
-        <img src={`/uploads/${image}`}/>
-        <div>
-          <p>{notes}</p>
-        </div>
+      <div className='photoSoloBox'>  
+        <img className= 'photoSolo' src={`/uploads/${image}`}/>
+        <Edit info={notes}/>
       </div>
     )
   }

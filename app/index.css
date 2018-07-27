@@ -1,3 +1,8 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   background: lightblue;
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
@@ -34,16 +39,66 @@ a {
 }
 
 /* Home Component: photo grid */
+
+/*  Here is the fallback layout. It works in every browser,
+even those that don't understand `@supports`. */
 .photoGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 8px;
-  align-items: stretch;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.photoItem {
+  margin: .2rem 0;
+  max-width: 100%;
 }
 
-.photoItem {
-  max-width: 100%;
+/*@supports (display: grid) {
+   Undo the fallback layout. 
+  .photoGrid { 
+    max-width: none;
+    margin: 0;
+  }  
+  .photoItem {
+    margin: 0;
+  }
+   Create the Grid-based layout.  
+  .photoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+  }
+  .photoItem {
+    max-width: 100%;
+  }
+} 
+*/
+@supports (display: grid) {
+
+  /* Undo the fallback layout.  */
+  .photoGrid { 
+    max-width: none;
+    margin: 0;
+  }  
+  .photoItem {
+    margin: 0;
+  }
+
+  /* Create the Grid-based layout.   */
+  .photoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+    grid-gap: 1em;
+    margin: 1em;
+  }
+  .photoItem {
+    display: block;
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    -webkit-box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+  }
 }
 
 /* Add Component */
@@ -70,4 +125,23 @@ button {
   background: none;
   border: 2px solid black;
   padding: 20px;
+}
+
+/*Photo Component*/
+/*put in sass variable to apply always to images:*/
+
+.photoSoloBox {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+.photoSolo {
+  max-width: 100%;
+  -webkit-box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/*Edit Component*/
+.row {
+  display: flex;
+  flex-direction: row;
 }

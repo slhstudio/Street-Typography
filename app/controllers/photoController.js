@@ -50,7 +50,7 @@ photoController.savePhoto = async (req, res) => {
     .save()
     .catch(handleError);
   
-  res.redirect(`/myphoto/${req.body.photo}`);
+  res.redirect(`/photo/${req.body.photo}`);
 };
 
 photoController.findPhoto = async (req, res) => {

@@ -2,8 +2,9 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 
-class Home extends Component {
+class Mine extends Component {
   state = {
+    user: true,
     loading : true,
     photos : [],
     notes : [],
@@ -63,4 +64,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Mine

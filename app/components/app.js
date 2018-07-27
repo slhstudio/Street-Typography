@@ -5,6 +5,7 @@ import Nav from './Nav';
 import Home from './Home';
 import Add from './Add';
 import Photo from './Photo';
+import Mine from './Mine'
 
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route path ='/add' component={Add}/>
-              <Route path='/myphoto/:photo' component={Photo} />
+              <Route path = '/mine' component={Mine} />
+              <Route path='/photo/:photo' component={Photo} />
             </Switch>
         </div>
       </Router>
