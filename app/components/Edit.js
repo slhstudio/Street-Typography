@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 
 class Edit extends Component {
   state = {
     update : this.props.info,
     image: this.props.photo,
-    editing: false
+    editing: false,
+    deleted: false
   }
 
   handleChange = (event) => {
     const value = event.target.value;
-    this.setState (() => ({update : value }));
+    this.setState (() => ({ update : value }));
   }
 
   handleClick = () => {
@@ -22,8 +24,6 @@ class Edit extends Component {
     const { update } = this.state;
     const change = await this.uploadChanges(update);
     this.setState(() => ({ editing : false }));
-    
-    //on success, add :)
   }
 
   uploadChanges = async(update, error) => {
@@ -33,28 +33,46 @@ class Edit extends Component {
     return newNotes.data;
   }
 
+  removePhoto = async (error) => {
+    const { image } = this.state;
+    const remove = await this.deletePhoto(image);
+    this.setState(() => ({ deleted : true }));
+  }
+
+  deletePhoto = async (image, error) => {
+    const trash = await axios.delete(`/delete/${image}`)
+      .catch(error);
+    return trash.data;
+  }
+
   render () {
-    const { update, editing } = this.state;
+    const { update, editing, deleted } = this.state;
     
+    if (deleted === true) {
+      return <Redirect to='/mine'/>
+    }
+
     return (
-      //notes field
-      //edit button
       <div className='row'> 
         {!editing 
-        ? <div> 
-            {update}
-            <button 
-            onClick={this.handleClick}>
-              EDIT
-            </button>
-          </div>
-        : <div >
-            <input type='text' value={this.state.update} onChange={this.handleChange}/>
-            <button
-            onClick={this.saveChanges}>
-              SAVE
-            </button>
-          </div>}
+          ? <div> 
+              {update}
+              <button onClick={this.handleClick}>
+                EDIT
+              </button>
+            </div>
+          : <div >
+              <input type='text' value={this.state.update} onChange={this.handleChange}/>
+              <button onClick={this.saveChanges}>
+                SAVE
+              </button>
+            </div>
+        }
+        <div>
+          <button onClick={this.removePhoto}>
+            DELETE
+          </button> 
+        </div>
       </div>
     )
   }

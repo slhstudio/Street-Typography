@@ -125,6 +125,8 @@ button {
   background: none;
   border: 2px solid black;
   padding: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 /*Photo Component*/
@@ -145,3 +147,4 @@ button {
   display: flex;
   flex-direction: row;
 }
+

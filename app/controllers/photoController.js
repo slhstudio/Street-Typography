@@ -4,7 +4,7 @@ const multer = require('multer');
 const uuid = require('uuid');
 const jimp = require('jimp');
 
-const handleError =  (error) => {
+const handleError = (error) => {
   console.warn(error);
   return null;
 }
@@ -62,6 +62,14 @@ photoController.getAll = async (req, res) => {
 photoController.update = async (req, res) => {
   const done = await Photo.findOneAndUpdate({ photo: req.params.photo }, req.body)
     .catch(handleError);
-  res.send('success');
+  res.send('updated');
 }
+
+photoController.deletePhoto = async (req, res) => {
+  console.log('param', req.params.image)
+  const nix = await Photo.findOneAndDelete({photo: req.params.image})
+    .catch(handleError);
+  res.send('success')
+};
+
 module.exports = photoController;

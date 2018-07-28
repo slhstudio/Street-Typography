@@ -42,12 +42,13 @@ class Home extends Component {
       )
     }
 
+    //refactor into photoGrid component?
     return (
       <ul className='photoGrid'>
         {photos.map((photo, index) => {
           return (
             <li key={index}>
-              <a href={`/photo/${photo}`}>
+              <a href={`/photo/${photo}/false`}>
                 <img 
                   className='photoItem'
                   src={`/uploads/${photo}`}

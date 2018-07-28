@@ -16,20 +16,23 @@ app.listen(3000, () => {
   console.log('listening on 3000')
 });
 
+//create
 app.post('/addPhoto', photoController.upload, photoController.resize, photoController.savePhoto);
 
+//read
 app.get('/findphoto/:photo', photoController.findPhoto);
 app.get('/findAllPhotos', photoController.getAll);
 
+//update
 app.post('/uploadChange/:photo', photoController.update);
+
+//delete
+app.delete('/delete/:image', photoController.deletePhoto);
 
 app.get('/*', (req, res) => {
   console.log('here');
   res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
 })
-
-
-
 
 
 module.exports = app;

@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
+import Photo from './Photo';
 
 class Mine extends Component {
   state = {
@@ -8,7 +9,7 @@ class Mine extends Component {
     loading : true,
     photos : [],
     notes : [],
-    page : 0
+    page : 0,
   }
 
   componentDidMount = async () => {
@@ -35,7 +36,7 @@ class Mine extends Component {
   }
 
   render () {
-    const { loading, photos, notes } = this.state;
+    const { loading, photos, notes, photo } = this.state;
 
     if (loading) {
       return (
@@ -43,23 +44,25 @@ class Mine extends Component {
       )
     }
 
+    //refactor into photoGrid component?
     return (
-      <ul className='photoGrid'>
-        {photos.map((photo, index) => {
-          return (
-            <li key={index}>
-              <a href={`/photo/${photo}`}>
-                <img 
-                  className='photoItem'
-                  src={`/uploads/${photo}`}
-                  alt={`street typography image: ${notes[index]}`}
-                />
-              </a>
-            </li>
-          )
-        })}
-      </ul>  
-      
+      <div>
+        <ul className='photoGrid'>
+          {photos.map((photo, index) => {
+            return (
+              <li key={index}>
+                <a href={`/photo/${photo}/true`}>
+                  <img 
+                    className='photoItem'
+                    src={`/uploads/${photo}`}
+                    alt={`street typography image: ${notes[index]}`}
+                  />
+                </a>
+              </li>
+            )
+          })}
+        </ul> 
+      </div> 
     )
   }
 }
