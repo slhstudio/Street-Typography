@@ -16,7 +16,25 @@ const photoSchema = new Schema({
     type: String,
     required: 'Please select a photo!'
   },
-  notes: String
+  notes: String,
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  location: {
+    type: {
+      type: String,
+      default: 'Point'
+    },
+    coordinates: [{
+      type: Number,
+      required: 'I need coordinates!'
+    }],
+    address: {
+      type: String,
+      required: 'Please supply an address.'
+    }
+  }
 });
 
 

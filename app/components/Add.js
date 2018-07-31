@@ -43,12 +43,20 @@ class Add extends Component {
           name='image'
           accept='image/gif, image/png, image/jpeg'
           onChange={this.onChange}
+          required
         />
         <textarea
           name='notes'
           placeholder='Add some notes'
           value={this.state.notes}
           onChange={this.onChange}
+        />
+        <input 
+          name='address'
+          placeholder='Address (or closest guess)'
+          value={this.state.address}
+          onChange={this.onChange}
+          required
         />
         <button type='submit'>
           UPLOAD
