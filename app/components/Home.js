@@ -48,7 +48,7 @@ class Home extends Component {
         {photos.map((photo, index) => {
           return (
             <li key={index}>
-              <a href={`/photo/${photo}/false`}>
+              <a href={`/photo/${photo}/true`}>
                 <img 
                   className='photoItem'
                   src={`/uploads/${photo}`}

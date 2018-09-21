@@ -13,7 +13,7 @@ class Photo extends Component {
 
   componentDidMount = async () =>  {
     //temporary simulation of whether user is logged in. Obviously highly insecure.
-    const loggedIn = this.props.history.location.pathname.split('/');
+    const loggedIn = this.props.location.pathname.split('/');
     const user = loggedIn[loggedIn.length - 1];
     console.log('user', user);
     const photo = this.props.match.params.photo;

@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
-import Photo from './Photo';
+//import Photo from './Photo';
 
 class Mine extends Component {
   state = {
@@ -28,6 +28,7 @@ class Mine extends Component {
     }))
   }
 
+  //this api function will eventually become findMyPhotos once I build login feature
   findAllPhotos = async (error) => {
     const result = await axios.get('/findAllPhotos')
       .catch(error);
