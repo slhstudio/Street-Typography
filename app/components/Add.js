@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import autocomplete from '../utilities/autocomplete';
 import axios from 'axios';
 
 class Add extends Component {
   state = {
     selectedFile : null,
-    notes: ''
+    notes: '',
+    
+      address: '',
+    
+    longitude: '',
+    latitude:''
   };
 
   onChange = (event) => {
@@ -15,6 +21,8 @@ class Add extends Component {
       default:
         this.setState({ [event.target.name]: event.target.value });
     }
+
+    //autocomplete(this.state.address);
   }
   
   // onSubmit = (event) => {
@@ -58,6 +66,21 @@ class Add extends Component {
           onChange={this.onChange}
           required
         />
+        <input 
+          name='longitude'
+          placeholder='Longitude'
+          value={this.state.longitude}
+          onChange={this.onChange}
+          required
+        />
+        <input 
+          name='latitude'
+          placeholder='Latitude'
+          value={this.state.latitude}
+          onChange={this.onChange}
+          required
+        />
+
         <button type='submit'>
           UPLOAD
         </button>

@@ -43,6 +43,9 @@ photoController.resize = async (req, res, next) => {
 }
 
 photoController.savePhoto = async (req, res) => {
+  console.log('first', req.body);
+  req.body.location.address = req.body.address;
+  console.log('second', req.body);
   const photo = await (new Photo(req.body))
     .save()
     .catch(handleError);
