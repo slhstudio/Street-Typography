@@ -4,14 +4,14 @@ import axios from 'axios';
 
 class Add extends Component {
   state = {
-    selectedFile : null,
+    selectedFile : '',
     notes: '',
-    
+    location: {
       address: '',
-    
-    longitude: '',
-    latitude:''
-  };
+      longitude: '',
+      latitude:'',
+    }
+  }
 
   onChange = (event) => {
     switch (event.target.name) {
@@ -21,17 +21,24 @@ class Add extends Component {
       default:
         this.setState({ [event.target.name]: event.target.value });
     }
+  }
 
-    //autocomplete(this.state.address);
+  onGeoChange = (event) => {
+    let value = event.target.value;
+    let property = event.target.name.split('[')[1].split(']')[0];
+    this.setState({
+      location: Object.assign({}, this.state.location, {[property]: value})
+    });
+    autocomplete(this.state.location.address);
   }
   
   // onSubmit = (event) => {
   //   event.preventDefault();
-  //   let data = new FormData();
-  //   data.append = ('image', this.state.selectedFile);
-  //   console.log(data);
+  //   let formData = new FormData();
+  //   formData.append = ('image', this.state.selectedFile);
+  //   console.log(formData);
 
-  //   axios.post('/addPhoto', data
+  //   axios.post('/addPhoto', formData
   //     // headers: {
   //     //  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
   //     // }
@@ -46,6 +53,7 @@ class Add extends Component {
   
     return (
       <form action='/addPhoto' method='POST' encType='multipart/form-data'>
+      {/* <form onSubmit={this.onSubmit}> */}
         <input 
           type='file'
           name='image'
@@ -60,25 +68,28 @@ class Add extends Component {
           onChange={this.onChange}
         />
         <input 
-          name='address'
+          type='text'
+          name='location[address]'
           placeholder='Address (or closest guess)'
-          value={this.state.address}
-          onChange={this.onChange}
-          required
+          value={this.state.location.address}
+          onChange={this.onGeoChange}
+          //required
         />
         <input 
-          name='longitude'
+          type='text'
+          name='location[longitude]'
           placeholder='Longitude'
-          value={this.state.longitude}
-          onChange={this.onChange}
-          required
+          value={this.state.location.longitude}
+          onChange={this.onGeoChange}
+         // required
         />
         <input 
-          name='latitude'
+          type='text'
+          name='location[latitude]'
           placeholder='Latitude'
-          value={this.state.latitude}
-          onChange={this.onChange}
-          required
+          value={this.state.location.latitude}
+          onChange={this.onGeoChange}
+         // required
         />
 
         <button type='submit'>
