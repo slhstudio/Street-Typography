@@ -1,4 +1,6 @@
 const path = require('path');
+require('dotenv').config({ path: 'variables.env' });
+const MAP_KEY = process.env.MAP_KEY;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
@@ -21,7 +23,9 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'app/index.html'
+      inject: false,
+      template: 'app/index.html', 
+      apiUrl: `https://maps.googleapis.com/maps/api/js?key=${MAP_KEY}&libraries=places`
     })
   ]
 };

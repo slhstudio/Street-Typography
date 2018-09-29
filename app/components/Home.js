@@ -29,7 +29,6 @@ class Home extends Component {
   findAllPhotos = async (error) => {
     const result = await axios.get('/findAllPhotos')
       .catch(error);
-    console.log('result', result);
     return result;
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import autocomplete from '../utilities/autocomplete';
 import axios from 'axios';
+import { setTimeout } from 'timers';
 
 class Add extends Component {
   state = {
@@ -25,35 +26,52 @@ class Add extends Component {
 
   onGeoChange = (event) => {
     let value = event.target.value;
-    let property = event.target.name.split('[')[1].split(']')[0];
-    this.setState({
-      location: Object.assign({}, this.state.location, {[property]: value})
-    });
-    autocomplete(this.state.location.address);
+    let name = event.target.name;
+    let direction = '', nested = '';
+    let property = name.split('[')[1].split(']')[0];
+    if (property !== 'address') {
+      direction = name.charAt(name.length - 2);
+      direction === '0' ? direction = 'longitude' : direction = 'latitude';
+    }
+    direction ? nested = direction : nested = property;
+    this.setState( prevState => {
+      return { 
+         location : {...prevState.location, [nested]: value}
+      }
+   })
+    // this.setState({
+    //   location: Object.assign({}, this.state.location, {[nested]: value})
+    // });
+    setTimeout (() => {
+      const { address, latitude, longitude } = this.state.location;
+      autocomplete(address, latitude, longitude);
+    }, 50);
   }
   
-  // onSubmit = (event) => {
+  // onSubmit = async (event, error) => {
   //   event.preventDefault();
   //   let formData = new FormData();
   //   formData.append = ('image', this.state.selectedFile);
   //   console.log(formData);
 
-  //   axios.post('/addPhoto', formData
-  //     // headers: {
-  //     //  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-  //     // }
-  //   ).then((response) => {
-  //       console.log('res', response.data);
-  //     }).catch(err => {
-  //       console.log(err);
-  //     })
-  //    }
+  //   const done = await axios.post('/addPhoto', formData)
+  //     .catch(error);
+    
+      // headers: {
+      //  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+      // }
+    // ).then((response) => {
+    //     console.log('res', response.data);
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
+    // }
    
   render () {
   
     return (
       <form action='/addPhoto' method='POST' encType='multipart/form-data'>
-      {/* <form onSubmit={this.onSubmit}> */}
+      {/* <form onSubmit={this.onSubmit}>  */}
         <input 
           type='file'
           name='image'
@@ -61,7 +79,7 @@ class Add extends Component {
           onChange={this.onChange}
           required
         />
-        <textarea
+        <input
           name='notes'
           placeholder='Add some notes'
           value={this.state.notes}
@@ -73,23 +91,23 @@ class Add extends Component {
           placeholder='Address (or closest guess)'
           value={this.state.location.address}
           onChange={this.onGeoChange}
-          //required
+          required
         />
         <input 
           type='text'
-          name='location[longitude]'
+          name='location[coordinates][0]'
           placeholder='Longitude'
           value={this.state.location.longitude}
           onChange={this.onGeoChange}
-         // required
+          required
         />
         <input 
           type='text'
-          name='location[latitude]'
+          name='location[coordinates][1]'
           placeholder='Latitude'
           value={this.state.location.latitude}
           onChange={this.onGeoChange}
-         // required
+           required
         />
 
         <button type='submit'>

@@ -30,7 +30,6 @@ app.post('/uploadChange/:photo', photoController.update);
 app.delete('/delete/:image', photoController.deletePhoto);
 
 app.get('/*', (req, res) => {
-  console.log('here');
   res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
 })
 

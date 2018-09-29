@@ -11,20 +11,19 @@ const handleError = (error) => {
 
 const photoController = {};
 
-const multerOptions = {
+const storage = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
     const isPhoto = file.mimetype.startsWith('image/');
     if (isPhoto) {
       next(null, true);
     } else {
-        next({message: 'Please choose a jpeg, png or gif'}, false);
+        next(null, false);
     }
   }
 };
 
-photoController.upload = multer(multerOptions).single('image');
-
+photoController.upload = multer(storage).single('image');
 
 photoController.resize = async (req, res, next) => {
   //check if there is no new file to resize
@@ -43,7 +42,6 @@ photoController.resize = async (req, res, next) => {
 }
 
 photoController.savePhoto = async (req, res) => {
-  console.log('first', req.body);
   const photo = await (new Photo(req.body))
     .save()
     .catch(handleError);
@@ -67,7 +65,6 @@ photoController.update = async (req, res) => {
 }
 
 photoController.deletePhoto = async (req, res) => {
-  console.log('param', req.params.image)
   const nix = await Photo.findOneAndDelete({photo: req.params.image})
     .catch(handleError);
   res.send('success')
