@@ -26,7 +26,7 @@ const photoSchema = new Schema({
     },
     coordinates: [{
       type: Number,
-      required: 'I need coordinates!'
+      required: 'Wait, I need coordinates!'
     }],
     address: {
       type: String,
