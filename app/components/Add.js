@@ -1,17 +1,63 @@
 import React, { Component } from 'react';
-import autocomplete from '../utilities/autocomplete';
-import axios from 'axios';
-import { setTimeout } from 'timers';
+//import autocomplete from '../utilities/autocomplete';
+//import axios from 'axios';
+//import { setTimeout } from 'timers';
+
+class Place extends Component {
+  state = {
+    address:'',
+    longitude:'',
+    latitude:''
+  }
+
+  componentDidMount () {
+    this.handleAddress();
+  }
+
+  handleAddress () {
+    const dropdown = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+    dropdown.addListener('place_changed', this.handleGetPlace(dropdown));
+  }
+    
+  handleGetPlace (dropdown) {
+    
+      const place = dropdown.getPlace();
+      console.log(place);
+      const address = place.formatted_address;
+
+      if (address) {
+        this.setState(() => ({
+          address : address
+        }))
+      }
+  }
+
+  render () {
+    return (
+      <div>
+        <input
+        id='autocomplete'
+        type='text'
+        name='location[address]'
+        placeholder=''
+        hintText='Enter Address'
+        value={this.state.address}
+        
+        />
+      </div>
+    )
+  }
+}
 
 class Add extends Component {
   state = {
     selectedFile : '',
     notes: '',
-    location: {
-      address: '',
-      longitude: '',
-      latitude:'',
-    }
+    // location: {
+    //   address: '',
+    //   longitude: '',
+    //   latitude:'',
+    // }
   }
 
   onChange = (event) => {
@@ -24,29 +70,29 @@ class Add extends Component {
     }
   }
 
-  onGeoChange = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-    let direction = '', nested = '';
-    let property = name.split('[')[1].split(']')[0];
-    if (property !== 'address') {
-      direction = name.charAt(name.length - 2);
-      direction === '0' ? direction = 'longitude' : direction = 'latitude';
-    }
-    direction ? nested = direction : nested = property;
-    this.setState( prevState => {
-      return { 
-         location : {...prevState.location, [nested]: value}
-      }
-   })
+  // onGeoChange = (event) => {
+  //   let value = event.target.value;
+  //   let name = event.target.name;
+  //   let direction = '', nested = '';
+  //   let property = name.split('[')[1].split(']')[0];
+  //   if (property !== 'address') {
+  //     direction = name.charAt(name.length - 2);
+  //     direction === '0' ? direction = 'longitude' : direction = 'latitude';
+  //   }
+  //   direction ? nested = direction : nested = property;
+  //   this.setState( prevState => {
+  //     return { 
+  //        location : {...prevState.location, [nested]: value}
+  //     }
+  //  })
     // this.setState({
     //   location: Object.assign({}, this.state.location, {[nested]: value})
     // });
-    setTimeout (() => {
-      const { address, latitude, longitude } = this.state.location;
-      autocomplete(address, latitude, longitude);
-    }, 50);
-  }
+  //   setTimeout (() => {
+  //     const { address, latitude, longitude } = this.state.location;
+  //     autocomplete(address, latitude, longitude);
+  //   }, 50);
+  // }
   
   // onSubmit = async (event, error) => {
   //   event.preventDefault();
@@ -85,7 +131,8 @@ class Add extends Component {
           value={this.state.notes}
           onChange={this.onChange}
         />
-        <input 
+        <Place/>
+        {/* <input 
           type='text'
           name='location[address]'
           placeholder='Address (or closest guess)'
@@ -108,7 +155,7 @@ class Add extends Component {
           value={this.state.location.latitude}
           onChange={this.onGeoChange}
            required
-        />
+        /> */}
 
         <button type='submit'>
           UPLOAD

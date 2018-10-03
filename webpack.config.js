@@ -23,7 +23,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      inject: false,
+      inject: true,
       template: 'app/index.html', 
       apiUrl: `https://maps.googleapis.com/maps/api/js?key=${MAP_KEY}&libraries=places`
     })
