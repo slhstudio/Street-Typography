@@ -5,32 +5,35 @@ import React, { Component } from 'react';
 
 class Place extends Component {
   state = {
+    query:'',
     address:'',
     longitude:'',
     latitude:''
   }
 
-  componentDidMount () {
-    this.handleAddress();
-  }
-
-  handleAddress () {
+  componentDidMount = () => {
     const dropdown = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
-    dropdown.addListener('place_changed', this.handleGetPlace(dropdown));
-  }
-    
-  handleGetPlace (dropdown) {
-    
+    dropdown.addListener('place_changed', () => {;
       const place = dropdown.getPlace();
       console.log(place);
-      const address = place.formatted_address;
-
-      if (address) {
+     
+      if (place) {
         this.setState(() => ({
-          address : address
+          address : place.formatted_address,
+          query: place.formatted_address
         }))
       }
+    })
   }
+
+  handleAddress = (event) => {
+    console.log('value', event.target.value)
+    const value = event.target.value;
+    this.setState(() => ({
+      query : value
+    }))
+  }
+  
 
   render () {
     return (
@@ -39,10 +42,9 @@ class Place extends Component {
         id='autocomplete'
         type='text'
         name='location[address]'
-        placeholder=''
-        hintText='Enter Address'
-        value={this.state.address}
-        
+        placeholder='Enter Address'
+        value={this.state.query}
+        onChange={this.handleAddress}
         />
       </div>
     )

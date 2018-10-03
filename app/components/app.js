@@ -5,8 +5,7 @@ import Nav from './Nav';
 import Home from './Home';
 import Add from './Add';
 import Photo from './Photo';
-import Mine from './Mine'
-
+import Mine from './Mine';
 
 class App extends Component {
   render () {
