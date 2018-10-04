@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-//import autocomplete from '../utilities/autocomplete';
-//import axios from 'axios';
-//import { setTimeout } from 'timers';
 
-class Place extends Component {
+
+class Add extends Component {
   state = {
-    query:'',
-    address:'',
-    longitude:'',
-    latitude:''
+    photo : null,
+    notes: '',
+    location: {
+      address: '',
+      longitude: '',
+      latitude:'',
+    }
   }
 
   componentDidMount = () => {
@@ -18,58 +19,36 @@ class Place extends Component {
       console.log(place);
      
       if (place) {
-        this.setState(() => ({
-          address : place.formatted_address,
-          query: place.formatted_address
-        }))
+        this.setState( prevState => {
+          return { 
+            location : {...prevState.location, address: place.formatted_address}
+          }
+        })   
       }
     })
   }
 
-  handleAddress = (event) => {
-    console.log('value', event.target.value)
-    const value = event.target.value;
-    this.setState(() => ({
-      query : value
-    }))
-  }
-  
-
-  render () {
-    return (
-      <div>
-        <input
-        id='autocomplete'
-        type='text'
-        name='location[address]'
-        placeholder='Enter Address'
-        value={this.state.query}
-        onChange={this.handleAddress}
-        />
-      </div>
-    )
-  }
-}
-
-class Add extends Component {
-  state = {
-    selectedFile : '',
-    notes: '',
-    // location: {
-    //   address: '',
-    //   longitude: '',
-    //   latitude:'',
-    // }
-  }
-
   onChange = (event) => {
-    switch (event.target.name) {
-      case 'image':
-        this.setState({ selectedFile: event.target.files[0] });
-        break;
-      default:
-        this.setState({ [event.target.name]: event.target.value });
+    let file;
+    if (event.target.files && event.target.files[0]) {
+      file = event.target.files[0]
     }
+    const name = event.target.name;
+    const value = event.target.value;
+  
+    switch (name) {
+      case 'image':
+        this.setState(() => ({
+           photo: file
+        }));
+        break;
+      case 'location[address]':
+        this.setState( prevState => ({location : {...prevState.location, address: value}}));
+        break;   
+      default:
+        this.setState(() => ({ [name]: value }));
+    }
+    
   }
 
   // onGeoChange = (event) => {
@@ -95,25 +74,6 @@ class Add extends Component {
   //     autocomplete(address, latitude, longitude);
   //   }, 50);
   // }
-  
-  // onSubmit = async (event, error) => {
-  //   event.preventDefault();
-  //   let formData = new FormData();
-  //   formData.append = ('image', this.state.selectedFile);
-  //   console.log(formData);
-
-  //   const done = await axios.post('/addPhoto', formData)
-  //     .catch(error);
-    
-      // headers: {
-      //  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-      // }
-    // ).then((response) => {
-    //     console.log('res', response.data);
-    //   }).catch(err => {
-    //     console.log(err);
-    //   })
-    // }
    
   render () {
   
@@ -133,31 +93,31 @@ class Add extends Component {
           value={this.state.notes}
           onChange={this.onChange}
         />
-        <Place/>
-        {/* <input 
+         <input 
+          id='autocomplete'
           type='text'
           name='location[address]'
           placeholder='Address (or closest guess)'
           value={this.state.location.address}
-          onChange={this.onGeoChange}
+          onChange={this.onChange}
           required
         />
-        <input 
-          type='text'
-          name='location[coordinates][0]'
-          placeholder='Longitude'
-          value={this.state.location.longitude}
-          onChange={this.onGeoChange}
-          required
-        />
-        <input 
-          type='text'
-          name='location[coordinates][1]'
-          placeholder='Latitude'
-          value={this.state.location.latitude}
-          onChange={this.onGeoChange}
-           required
-        /> */}
+        {/* // <input 
+        //   type='text'
+        //   name='location[coordinates][0]'
+        //   placeholder='Longitude'
+        //   value={this.state.location.longitude}
+        //   onChange={this.onGeoChange}
+        //   required
+        // />
+        // <input 
+        //   type='text'
+        //   name='location[coordinates][1]'
+        //   placeholder='Latitude'
+        //   value={this.state.location.latitude}
+        //   onChange={this.onGeoChange}
+        //    required
+        // /> */} 
 
         <button type='submit'>
           UPLOAD
