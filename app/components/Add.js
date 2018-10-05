@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Input from './Input';
 
 class Add extends Component {
   state = {
@@ -74,6 +74,13 @@ class Add extends Component {
         this.setState(() => ({ [name]: value }));
     }
   }
+
+  handleInput = (event) => {
+    let value = event.target.value;
+    let name = event.target.name;
+
+    this.setState(() => ({ [name]: value }));
+  }
    
   render () {
   
@@ -87,36 +94,40 @@ class Add extends Component {
           onChange={this.onChange}
           required
         />
-        <input
-          name='notes'
-          placeholder='Add some notes'
+       <Input
+          id={'notes'}
+          type={'text'}
+          name={'notes'}
+          placeholder={'Add some notes here'}
           value={this.state.notes}
-          onChange={this.onChange}
-        />
-         <input 
-          id='autocomplete'
-          type='text'
-          name='location[address]'
-          placeholder='Address (or closest guess)'
+          handleChange={this.handleInput}
+       />
+        <Input 
+          id={'autocomplete'}
+          type={'text'}
+          name={'location[address]'}
+          placeholder={'Address (or closest guess)'}
           value={this.state.location.address}
-          onChange={this.onChange}
+          handleChange={this.onChange}
           required
         />
-          <input 
-          type='hidden'
-          name='location[coordinates][0]'
-          placeholder='Longitude'
+        <Input 
+          id={'longitude'}
+          type={'hidden'}
+          name={'location[coordinates][0]'}
+          placeholder={'Longitude'}
           value={this.state.location.longitude}
-          onChange={this.onChange}
+          handleChange={this.onChange}
           required
         />
-        <input 
-          type='hidden'
-          name='location[coordinates][1]'
-          placeholder='Latitude'
+        <Input 
+          id={'latitude'}
+          type={'hidden'}
+          name={'location[coordinates][1]'}
+          placeholder={'Latitude'}
           value={this.state.location.latitude}
-          onChange={this.onChange}
-           required
+          handleChange={this.onChange}
+          required
         /> 
         <button type='submit'>
           UPLOAD
