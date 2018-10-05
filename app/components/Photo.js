@@ -3,6 +3,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import Edit from './Edit';
 
+
 class Photo extends Component {
   state = {
     user: false,
@@ -21,9 +22,15 @@ class Photo extends Component {
       user: user,
       loading: false,
       image: pic.photo,
-      notes: pic.notes
+      notes: pic.notes,
+      lat: pic.location.coordinates[1],
+      lng: pic.location.coordinates[0]
     }))
+
   }
+
+  staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x200&key=${MAP_KEY}&markers=${lat},${lng}&scale=2`;
+
 
   findPhoto = async (photo, error) => {
     const result = await axios.get(`/findphoto/${photo}`)
@@ -32,7 +39,7 @@ class Photo extends Component {
   }
 
   render () {
-    const { user, loading, image, notes } = this.state;
+    const { user, loading, image, notes, lat, lng } = this.state;
 
     if (loading) {
       return (
@@ -42,6 +49,7 @@ class Photo extends Component {
     return (
       <div className='photoSoloBox'>  
         <img className= 'photoSolo' src={`/uploads/${image}`}/>
+        <img className= 'map' src={this.staticMap([lng, lat])}/>
         { user === 'true'
           ? <div>
               <Edit 

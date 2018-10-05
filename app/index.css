@@ -142,6 +142,12 @@ button {
   box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
 }
 
+.map {
+  max-width: 100%;
+  -webkit-box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
 /*Edit Component*/
 .row {
   display: flex;

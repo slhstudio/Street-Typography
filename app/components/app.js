@@ -7,7 +7,9 @@ import Add from './Add';
 import Photo from './Photo';
 import Mine from './Mine';
 
+
 class App extends Component {
+
   render () {
     return (
       <Router>

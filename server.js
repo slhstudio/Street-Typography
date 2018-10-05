@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require ('body-parser');
 const path = require('path');
 const mongoose = require ('mongoose');
-const photoController = require ('./app/controllers/photoController')
+const photoController = require ('./app/controllers/photoController');
+
 
 app.use(express.static(path.resolve(__dirname, 'public', 'dist')));
 app.use(express.static(__dirname + '/public'));

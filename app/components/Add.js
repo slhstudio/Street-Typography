@@ -13,7 +13,10 @@ class Add extends Component {
   }
 
   componentDidMount = () => {
-    const dropdown = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+    const addressInput = document.getElementById('autocomplete');
+    const dropdown = new google.maps.places.Autocomplete(addressInput);
+
+    //this fires when place is selected in dropdown
     dropdown.addListener('place_changed', () => {;
       const place = dropdown.getPlace();
       console.log(place);
@@ -21,20 +24,42 @@ class Add extends Component {
       if (place) {
         this.setState( prevState => {
           return { 
-            location : {...prevState.location, address: place.formatted_address}
+            location : {
+              ...prevState.location, 
+              address: place.formatted_address, 
+              longitude: place.geometry.location.lng(),
+              latitude: place.geometry.location.lat()
+            }
           }
         })   
       }
+    });
+    //prevents the form from being submitted if someone hits enter on the dropdown
+    addressInput.addEventListener('keydown', (e) => {
+      if (e.keyCode === 13) e.preventDefault();
     })
+
   }
 
   onChange = (event) => {
-    let file;
+    let file, direction, nested, property;
+    // gets file input
     if (event.target.files && event.target.files[0]) {
       file = event.target.files[0]
     }
     const name = event.target.name;
     const value = event.target.value;
+    
+    //get property out of brackets in name (N.B. need input names in this format for MongoDB geo features)
+    if (name.charAt(8) === '[') {
+      property = name.split('[')[1].split(']')[0];
+      if (property !== 'address') {
+        direction = name.charAt(name.length - 2);
+        direction === '0' ? direction = 'longitude' : direction = 'latitude';
+      }
+    }
+    //sets nested equal to direction if either lat or lng exists or sets it to address
+    direction ? nested = direction : nested = property;
   
     switch (name) {
       case 'image':
@@ -42,44 +67,19 @@ class Add extends Component {
            photo: file
         }));
         break;
-      case 'location[address]':
-        this.setState( prevState => ({location : {...prevState.location, address: value}}));
+      case `location[${nested}]`:
+        this.setState(prevState => ({location : {...prevState.location, [nested]: value}}));
         break;   
       default:
         this.setState(() => ({ [name]: value }));
     }
-    
   }
-
-  // onGeoChange = (event) => {
-  //   let value = event.target.value;
-  //   let name = event.target.name;
-  //   let direction = '', nested = '';
-  //   let property = name.split('[')[1].split(']')[0];
-  //   if (property !== 'address') {
-  //     direction = name.charAt(name.length - 2);
-  //     direction === '0' ? direction = 'longitude' : direction = 'latitude';
-  //   }
-  //   direction ? nested = direction : nested = property;
-  //   this.setState( prevState => {
-  //     return { 
-  //        location : {...prevState.location, [nested]: value}
-  //     }
-  //  })
-    // this.setState({
-    //   location: Object.assign({}, this.state.location, {[nested]: value})
-    // });
-  //   setTimeout (() => {
-  //     const { address, latitude, longitude } = this.state.location;
-  //     autocomplete(address, latitude, longitude);
-  //   }, 50);
-  // }
    
   render () {
   
     return (
       <form action='/addPhoto' method='POST' encType='multipart/form-data'>
-      {/* <form onSubmit={this.onSubmit}>  */}
+    
         <input 
           type='file'
           name='image'
@@ -102,23 +102,22 @@ class Add extends Component {
           onChange={this.onChange}
           required
         />
-        {/* // <input 
-        //   type='text'
-        //   name='location[coordinates][0]'
-        //   placeholder='Longitude'
-        //   value={this.state.location.longitude}
-        //   onChange={this.onGeoChange}
-        //   required
-        // />
-        // <input 
-        //   type='text'
-        //   name='location[coordinates][1]'
-        //   placeholder='Latitude'
-        //   value={this.state.location.latitude}
-        //   onChange={this.onGeoChange}
-        //    required
-        // /> */} 
-
+          <input 
+          type='hidden'
+          name='location[coordinates][0]'
+          placeholder='Longitude'
+          value={this.state.location.longitude}
+          onChange={this.onChange}
+          required
+        />
+        <input 
+          type='hidden'
+          name='location[coordinates][1]'
+          placeholder='Latitude'
+          value={this.state.location.latitude}
+          onChange={this.onChange}
+           required
+        /> 
         <button type='submit'>
           UPLOAD
         </button>
