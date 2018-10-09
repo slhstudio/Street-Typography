@@ -10,10 +10,7 @@ mongoose.connection.once('open', () => {
 })
 
 const photoSchema = new Schema({
-   photo: {
-    type: String,
-    required: 'Please select a photo!'
-  },
+  photo: String,
   notes: String,
   created: {
     type: Date,

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import Input from './Input';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class Add extends Component {
   state = {
     photo : null,
+    photoName:'',
     notes: '',
     location: {
       address: '',
@@ -42,51 +45,54 @@ class Add extends Component {
   }
 
   onChange = (event) => {
-    let file, direction, nested, property;
-    // gets file input
+    let file;
     if (event.target.files && event.target.files[0]) {
       file = event.target.files[0]
     }
     const name = event.target.name;
     const value = event.target.value;
     
-    //get property out of brackets in name (N.B. need input names in this format for MongoDB geo features)
-    if (name.charAt(8) === '[') {
-      property = name.split('[')[1].split(']')[0];
-      if (property !== 'address') {
-        direction = name.charAt(name.length - 2);
-        direction === '0' ? direction = 'longitude' : direction = 'latitude';
-      }
-    }
-    //sets nested equal to direction if either lat or lng exists or sets it to address
-    direction ? nested = direction : nested = property;
-  
     switch (name) {
       case 'image':
-        this.setState(() => ({
-           photo: file
-        }));
+        this.setState(() => ({ photo: file }));
         break;
-      case `location[${nested}]`:
-        this.setState(prevState => ({location : {...prevState.location, [nested]: value}}));
+      case 'address' || 'longitude' || 'latitude':
+        this.setState(prevState => ({ location : {...prevState.location, [name]: value }}));
         break;   
       default:
         this.setState(() => ({ [name]: value }));
     }
   }
 
-  handleInput = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
+  handleSubmit = async(e, error) => {
+    e.preventDefault();
 
-    this.setState(() => ({ [name]: value }));
+    const { photo, notes } = this.state;
+    const { address, longitude, latitude } = this.state.location;
+
+    let formData = new FormData();
+    
+    formData.append('image', photo);
+    formData.append('notes', notes);
+    formData.append('location[address]', address);
+    formData.append('location[coordinates][0]', longitude);
+    formData.append('location[coordinates][1]', latitude);
+
+    const result = await axios.post('/addPhoto', formData)
+      .catch(error);
+      
+    this.setState(() => ({ photoName: result.data }));
+      
   }
    
   render () {
-  
+    const { photoName } = this.state;
+    if (photoName) {
+      return <Redirect to= {`photo/${photoName}`} />
+    }
     return (
-      <form action='/addPhoto' method='POST' encType='multipart/form-data'>
-    
+
+      <form onSubmit={this.handleSubmit}>
         <input 
           type='file'
           name='image'
@@ -100,12 +106,12 @@ class Add extends Component {
           name={'notes'}
           placeholder={'Add some notes here'}
           value={this.state.notes}
-          handleChange={this.handleInput}
+          handleChange={this.onChange}
        />
         <Input 
           id={'autocomplete'}
           type={'text'}
-          name={'location[address]'}
+          name={'address'}
           placeholder={'Address (or closest guess)'}
           value={this.state.location.address}
           handleChange={this.onChange}
@@ -114,7 +120,7 @@ class Add extends Component {
         <Input 
           id={'longitude'}
           type={'hidden'}
-          name={'location[coordinates][0]'}
+          name={'longitude'}
           placeholder={'Longitude'}
           value={this.state.location.longitude}
           handleChange={this.onChange}
@@ -123,7 +129,7 @@ class Add extends Component {
         <Input 
           id={'latitude'}
           type={'hidden'}
-          name={'location[coordinates][1]'}
+          name={'latitude'}
           placeholder={'Latitude'}
           value={this.state.location.latitude}
           handleChange={this.onChange}
