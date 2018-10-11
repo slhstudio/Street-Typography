@@ -16,7 +16,7 @@ class Add extends Component {
   }
 
   componentDidMount = () => {
-    const addressInput = document.getElementById('autocomplete');
+    const addressInput = document.getElementById('address');
     const dropdown = new google.maps.places.Autocomplete(addressInput);
 
     //this fires when place is selected in dropdown
@@ -92,16 +92,15 @@ class Add extends Component {
     }
     return (
 
-      <form onSubmit={this.handleSubmit}>
-        <input 
-          type='file'
-          name='image'
-          accept='image/gif, image/png, image/jpeg'
-          onChange={this.onChange}
+    <form onSubmit={this.handleSubmit}>
+        <Input 
+          type={'file'}
+          name={'image'}
+          accept={'image/gif, image/png, image/jpeg'}
+          handleChange={this.onChange}
           required
         />
        <Input
-          id={'notes'}
           type={'text'}
           name={'notes'}
           placeholder={'Add some notes here'}
@@ -109,7 +108,6 @@ class Add extends Component {
           handleChange={this.onChange}
        />
         <Input 
-          id={'autocomplete'}
           type={'text'}
           name={'address'}
           placeholder={'Address (or closest guess)'}
@@ -118,7 +116,6 @@ class Add extends Component {
           required
         />
         <Input 
-          id={'longitude'}
           type={'hidden'}
           name={'longitude'}
           placeholder={'Longitude'}
@@ -127,7 +124,6 @@ class Add extends Component {
           required
         />
         <Input 
-          id={'latitude'}
           type={'hidden'}
           name={'latitude'}
           placeholder={'Latitude'}

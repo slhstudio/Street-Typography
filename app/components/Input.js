@@ -5,9 +5,10 @@ const Input = (props) => {
     return (
       <div>
         <input
-          id={props.id}
+          id={props.name}
           type={props.type}
           name={props.name}
+          accept={props.accept}
           placeholder={props.placeholder}
           value={props.value}
           onChange={props.handleChange}
