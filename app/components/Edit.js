@@ -26,6 +26,7 @@ class Edit extends Component {
     this.setState(() => ({ editing : false }));
   }
 
+  //factor out this api function
   uploadChanges = async(update, error) => {
     const { image } = this.state
     const newNotes = await axios.post(`/uploadChange/${image}`, { 'notes' : update })
@@ -39,6 +40,7 @@ class Edit extends Component {
     this.setState(() => ({ deleted : true }));
   }
 
+  //factor out this api function
   deletePhoto = async (image, error) => {
     const trash = await axios.delete(`/delete/${image}`)
       .catch(error);

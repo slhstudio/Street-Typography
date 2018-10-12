@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function Nav () {
+const Nav = () => {
   return (
     <ul className='nav'>
       <li>
@@ -19,6 +19,11 @@ function Nav () {
       <li>
         <NavLink activeClassName='active' to='/mine'>
           My Photos
+        </NavLink>
+      </li>
+      <li>
+        <NavLink activeClassName='active' to='/logIn'>
+          Log In
         </NavLink>
       </li>
     </ul>

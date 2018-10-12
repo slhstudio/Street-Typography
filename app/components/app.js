@@ -6,6 +6,7 @@ import Home from './Home';
 import Add from './Add';
 import Photo from './Photo';
 import Mine from './Mine';
+import LogIn from './Login';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
               <Route path ='/add' component={Add}/>
               <Route path = '/mine' component={Mine} />
               <Route path='/photo/:photo' component={Photo} />
+              <Route path='/logIn' component={LogIn} />
             </Switch>
         </div>
       </Router>

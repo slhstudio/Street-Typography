@@ -38,6 +38,32 @@ a {
   margin-right: 15px;
 }
 
+.nav li:last-child {
+  margin-left: auto;
+  
+}
+/*nest this one with sass*/
+.nav li:last-child a{
+  color:white;
+}
+
+/*LogIn Component*/
+
+.loginbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button {
+  max-width: 20em;
+  font-size: 1rem;
+  background: none;
+  border: 2px solid black;
+  padding: 20px;
+  margin-top: 50px;
+  text-align: center;
+}
+
 /* Home Component: photo grid */
 
 /*  Here is the fallback layout. It works in every browser,
