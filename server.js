@@ -4,13 +4,17 @@ const bodyParser = require ('body-parser');
 const path = require('path');
 const photoController = require ('./app/controllers/photoController');
 const authRoutes = require ('./app/routes/auth-routes');  
+const passportSetup = require('./app/services/passport-setup');
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.static(path.resolve(__dirname, 'public', 'dist')));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/app'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
 
 app.use('/auth', authRoutes);
 

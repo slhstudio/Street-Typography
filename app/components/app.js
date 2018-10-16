@@ -10,18 +10,21 @@ import LogIn from './Login';
 
 
 class App extends Component {
-
+ state = {
+   allow: 'Log In'
+ }
   render () {
     return (
       <Router>
         <div className='container'>
-          <Nav />
+          <Nav logged={this.state.allow}/>
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route path ='/add' component={Add}/>
               <Route path = '/mine' component={Mine} />
               <Route path='/photo/:photo' component={Photo} />
               <Route path='/logIn' component={LogIn} />
+            
             </Switch>
         </div>
       </Router>

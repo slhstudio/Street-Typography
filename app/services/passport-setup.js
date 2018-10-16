@@ -5,9 +5,11 @@ require('dotenv').config({ path: 'variables.env' });
 passport.use(
   new GoogleStrategy({
     //options for the google strategy
-    clientID: `${CLIENT_ID}`,
-    clientSecret: `${CLIENT_SECRET}`
-  }), () => {
-    //passport callback function
-  }
+    callbackURL:'/auth/google/callback',
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET
+  }, (accessToken, refreshToken, profile, done) => {
+    console.log('passport callback fired');
+    console.log(profile)
+  })
 )
