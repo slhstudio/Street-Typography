@@ -17,13 +17,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
+  maxAge: 24 * 60 * 60 * 1000, //a day
   keys: [process.env.COOKIE_KEY]
 }))
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.use('/auth', authRoutes);
 
