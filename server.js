@@ -5,15 +5,24 @@ const path = require('path');
 const photoController = require ('./app/controllers/photoController');
 const authRoutes = require ('./app/routes/auth-routes');  
 const passportSetup = require('./app/services/passport-setup');
-const cors = require('cors');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+require('dotenv').config({ path: 'variables.env' });
 
-app.use(cors());
 app.use(express.static(path.resolve(__dirname, 'public', 'dist')));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/app'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [process.env.COOKIE_KEY]
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use('/auth', authRoutes);
@@ -38,6 +47,5 @@ app.delete('/delete/:image', photoController.deletePhoto);
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
 })
-
 
 module.exports = app;

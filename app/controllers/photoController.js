@@ -45,7 +45,6 @@ photoController.savePhoto = async (req, res) => {
   const photo = await (new Photo(req.body))
     .save()
     .catch(handleError);
-    console.log(req.body);
   res.send(req.body.photo);
 };
 
