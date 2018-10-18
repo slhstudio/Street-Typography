@@ -20,12 +20,12 @@ passport.use(
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET
   }, async (accessToken, refreshToken, email, done) => {
-  //check if user already exists
+    //check if user already exists
     const currUser = await User.findOne({googleId: email.id});
     if (currUser) {
       //already have user
       console.log('user is' + currUser);
-      done(null, currentUser);
+      done(null, currUser);
     } else {
         const newUser = await (new User({
           username: email.displayName,
@@ -34,9 +34,6 @@ passport.use(
         })).save();
         console.log(user);
         done(null, newUser);
-    // .then(newUser => {
-    //   console.log('new user created' + newUser)
-    // });
       }
   })
 )

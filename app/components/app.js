@@ -11,7 +11,12 @@ import LogIn from './Login';
 
 class App extends Component {
  state = {
-   allow: 'Log In'
+   allow: 'Log In',
+   user:''
+ }
+
+ componentDidMount () {
+   if (this.state.user) console.log(user);
  }
   render () {
     return (
