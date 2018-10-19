@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Input from './Input';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import api from '../utilities/api'
 
 class Add extends Component {
   state = {

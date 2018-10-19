@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require ('body-parser');
 const path = require('path');
 const photoController = require ('./app/controllers/photoController');
+const userController = require ('./app/controllers/userController');
 const authRoutes = require ('./app/routes/auth-routes');  
 const passportSetup = require('./app/services/passport-setup');
 const passport = require('passport');
@@ -26,6 +27,7 @@ app.use(passport.session());
 
 app.use('/auth', authRoutes);
 
+
 app.listen(3000, () => {
   console.log('listening on 3000')
 });
@@ -43,8 +45,13 @@ app.post('/uploadChange/:photo', photoController.update);
 //delete
 app.delete('/delete/:image', photoController.deletePhoto);
 
+//sign in
+app.get('/user', userController.isSignedIn)
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
 })
+
+
 
 module.exports = app;

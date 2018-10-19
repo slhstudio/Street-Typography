@@ -11,7 +11,7 @@ import LogIn from './Login';
 
 class App extends Component {
  state = {
-   allow: 'Log In',
+   access: 'Log In',
    user:''
  }
 
@@ -19,10 +19,11 @@ class App extends Component {
    if (this.state.user) console.log(user);
  }
   render () {
+    const { access } = this.state;
     return (
       <Router>
         <div className='container'>
-          <Nav logged={this.state.allow}/>
+          <Nav logged={access}/>
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route path ='/add' component={Add}/>

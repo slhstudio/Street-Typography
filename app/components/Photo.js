@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 import Edit from './Edit';
+import api from '../utilities/api'
 
 
 class Photo extends Component {
@@ -15,18 +16,19 @@ class Photo extends Component {
   componentDidMount = async () =>  {
     //temporary simulation of whether user is logged in. Obviously highly insecure.
     const loggedIn = this.props.location.pathname.split('/');
-    const user = loggedIn[loggedIn.length - 1];
+    const fakeUser = loggedIn[loggedIn.length - 1];
     const photo = this.props.match.params.photo;
     const pic = await this.findPhoto(photo);
     this.setState(() => ({
-      user: user,
+      user: fakeUser,
       loading: false,
       image: pic.photo,
       notes: pic.notes,
       lat: pic.location.coordinates[1],
       lng: pic.location.coordinates[0]
     }))
-
+    const user = await api.isSignedIn();
+    console.log(user);
   }
 
   staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x200&key=${MAP_KEY}&markers=${lat},${lng}&scale=2`;

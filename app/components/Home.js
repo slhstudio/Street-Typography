@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
+import api from '../utilities/api'
 
 class Home extends Component {
   state = {
@@ -24,8 +25,12 @@ class Home extends Component {
       photos : this.state.photos.concat(photoArray),
       notes : this.state.notes.concat(notesArray)
     }))
+
+    const user = await api.isSignedIn();
+    console.log(user);
   }
 
+  //factor into api file
   findAllPhotos = async (error) => {
     const result = await axios.get('/findAllPhotos')
       .catch(error);

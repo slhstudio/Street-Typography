@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 //import Photo from './Photo';
+import api from '../utilities/api'
+
 
 class Mine extends Component {
   state = {
@@ -26,6 +28,8 @@ class Mine extends Component {
       photos : this.state.photos.concat(photoArray),
       notes : this.state.notes.concat(notesArray)
     }))
+    const user = await api.isSignedIn();
+    console.log(user);
   }
 
   //this api function will eventually become findMyPhotos once I build login feature
