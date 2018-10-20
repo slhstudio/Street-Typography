@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 import Edit from './Edit';
-import api from '../utilities/api'
+import { isSignedIn } from '../utilities/api'
 
 
 class Photo extends Component {
@@ -27,7 +27,7 @@ class Photo extends Component {
       lat: pic.location.coordinates[1],
       lng: pic.location.coordinates[0]
     }))
-    const user = await api.isSignedIn();
+    const user = await isSignedIn();
     console.log(user);
   }
 

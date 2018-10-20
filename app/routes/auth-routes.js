@@ -7,7 +7,6 @@ router.get('/logout', (req, res) => {
   res.send('logging out');
 })
 
-
 //auth with google
 router.get('/google', passport.authenticate('google', {
   scope: ['email']
@@ -16,8 +15,6 @@ router.get('/google', passport.authenticate('google', {
 
 //callbback route for google to redirect to
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-  console.log('name', req.user.username)
-  const user = req.user;
   res.redirect('/');
 });
 

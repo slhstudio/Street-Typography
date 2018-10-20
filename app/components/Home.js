@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
-import api from '../utilities/api'
+import { isSignedIn } from '../utilities/api'
 
 class Home extends Component {
   state = {
@@ -20,16 +20,20 @@ class Home extends Component {
       notesArray.push(item.notes);
     });
 
+    //returns username if user exists...
+    const user = await isSignedIn();
+    if (user) {
+      this.props.handleLogIn(user);
+    }
+
     this.setState(() => ({
       loading : false,
       photos : this.state.photos.concat(photoArray),
       notes : this.state.notes.concat(notesArray)
     }))
-
-    const user = await api.isSignedIn();
-    console.log(user);
   }
 
+  
   //factor into api file
   findAllPhotos = async (error) => {
     const result = await axios.get('/findAllPhotos')

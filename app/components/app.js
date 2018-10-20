@@ -12,20 +12,32 @@ import LogIn from './Login';
 class App extends Component {
  state = {
    access: 'Log In',
-   user:''
+   username:'',
+   isAuthed: false
  }
 
- componentDidMount () {
-   if (this.state.user) console.log(user);
+ setLogIn = (user) => {
+   this.setState(() => ({
+     access: 'Log Out',
+     isAuthed: true,
+     username: user
+   }))
  }
+
   render () {
-    const { access } = this.state;
+    const { access, username } = this.state;
     return (
       <Router>
         <div className='container'>
-          <Nav logged={access}/>
+          <Nav 
+            logged={access} 
+            name={username}
+          />
             <Switch>
-              <Route exact path='/' component={Home}/>
+              <Route 
+                exact path='/' 
+                render={() => <Home  handleLogIn={this.setLogIn} />}
+              />
               <Route path ='/add' component={Add}/>
               <Route path = '/mine' component={Mine} />
               <Route path='/photo/:photo' component={Photo} />

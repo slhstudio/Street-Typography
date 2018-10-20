@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from './Input';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import api from '../utilities/api'
+import { isSignedIn } from '../utilities/api'
 
 class Add extends Component {
   state = {
@@ -16,7 +16,7 @@ class Add extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const addressInput = document.getElementById('address');
     const dropdown = new google.maps.places.Autocomplete(addressInput);
 
@@ -42,7 +42,8 @@ class Add extends Component {
     addressInput.addEventListener('keydown', (e) => {
       if (e.keyCode === 13) e.preventDefault();
     })
-
+    const user = await isSignedIn();
+    console.log(user);
   }
 
   onChange = (event) => {

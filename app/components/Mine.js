@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 //import Photo from './Photo';
-import api from '../utilities/api'
+import { isSignedIn } from '../utilities/api'
 
 
 class Mine extends Component {
@@ -28,7 +28,7 @@ class Mine extends Component {
       photos : this.state.photos.concat(photoArray),
       notes : this.state.notes.concat(notesArray)
     }))
-    const user = await api.isSignedIn();
+    const user = await isSignedIn();
     console.log(user);
   }
 

@@ -21,6 +21,7 @@ ul {
 li {
   list-style-type: none;
 }
+
 a {
   text-decoration: none;
   color: rgba(10, 196, 50, 0.952);
@@ -39,8 +40,13 @@ a {
 }
 
 .nav li:last-child {
-  margin-left: auto;
-  
+  margin-left: 1em;
+}
+
+.nav .greeting {
+  color: darkcyan;
+  margin-left
+  : auto;
 }
 /*nest this one with sass*/
 .nav li:last-child a{

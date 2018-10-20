@@ -24,7 +24,6 @@ passport.use(
     const currUser = await User.findOne({googleId: email.id});
     if (currUser) {
       //already have user
-      console.log('user is' + currUser);
       done(null, currUser);
     } else {
         const newUser = await (new User({
@@ -32,7 +31,6 @@ passport.use(
           googleId: email.id,
           email: email.emails[0].value
         })).save();
-        console.log(user);
         done(null, newUser);
       }
   })
