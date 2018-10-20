@@ -17,33 +17,37 @@ class Add extends Component {
   }
 
   componentDidMount = async () => {
-    const addressInput = document.getElementById('address');
-    const dropdown = new google.maps.places.Autocomplete(addressInput);
-
-    //this fires when place is selected in dropdown
-    dropdown.addListener('place_changed', () => {;
-      const place = dropdown.getPlace();
-      console.log(place);
-     
-      if (place) {
-        this.setState( prevState => {
-          return { 
-            location : {
-              ...prevState.location, 
-              address: place.formatted_address, 
-              longitude: place.geometry.location.lng(),
-              latitude: place.geometry.location.lat()
-            }
-          }
-        })   
-      }
-    });
-    //prevents the form from being submitted if someone hits enter on the dropdown
-    addressInput.addEventListener('keydown', (e) => {
-      if (e.keyCode === 13) e.preventDefault();
-    })
+    //checks to see if user is logged in and returns username if user exists...
     const user = await isSignedIn();
-    console.log(user);
+    if (user) {
+      this.props.handleLogIn(user);
+    
+      const addressInput = document.getElementById('address');
+      const dropdown = new google.maps.places.Autocomplete(addressInput);
+
+      //this fires when place is selected in dropdown
+      dropdown.addListener('place_changed', () => {;
+        const place = dropdown.getPlace();
+        console.log(place);
+      
+        if (place) {
+          this.setState( prevState => {
+            return { 
+              location : {
+                ...prevState.location, 
+                address: place.formatted_address, 
+                longitude: place.geometry.location.lng(),
+                latitude: place.geometry.location.lat()
+              }
+            }
+          })   
+        }
+      });
+      //prevents the form from being submitted if someone hits enter on the dropdown
+      addressInput.addEventListener('keydown', (e) => {
+        if (e.keyCode === 13) e.preventDefault();
+      })
+    }
   }
 
   onChange = (event) => {
@@ -84,59 +88,62 @@ class Add extends Component {
       .catch(error);
       
     this.setState(() => ({ photoName: result.data }));
-      
   }
    
   render () {
     const { photoName } = this.state;
     if (photoName) {
-      return <Redirect to= {`photo/${photoName}`} />
+      return <Redirect to= {`photo/${photoName}/true`} />
     }
     return (
-
-    <form onSubmit={this.handleSubmit}>
-        <Input 
-          type={'file'}
-          name={'image'}
-          accept={'image/gif, image/png, image/jpeg'}
-          handleChange={this.onChange}
-          required
-        />
-       <Input
-          type={'text'}
-          name={'notes'}
-          placeholder={'Add some notes here'}
-          value={this.state.notes}
-          handleChange={this.onChange}
-       />
-        <Input 
-          type={'text'}
-          name={'address'}
-          placeholder={'Address (or closest guess)'}
-          value={this.state.location.address}
-          handleChange={this.onChange}
-          required
-        />
-        <Input 
-          type={'hidden'}
-          name={'longitude'}
-          placeholder={'Longitude'}
-          value={this.state.location.longitude}
-          handleChange={this.onChange}
-          required
-        />
-        <Input 
-          type={'hidden'}
-          name={'latitude'}
-          placeholder={'Latitude'}
-          value={this.state.location.latitude}
-          handleChange={this.onChange}
-          required
-        /> 
-        <button type='submit'>
-          UPLOAD
-        </button>
-      </form>
+      <div>
+        { !this.props.isUser
+          ? <p>If you would like to add photos, please log in.</p>
+          : <form onSubmit={this.handleSubmit}>
+            <Input 
+              type={'file'}
+              name={'image'}
+              accept={'image/gif, image/png, image/jpeg'}
+              handleChange={this.onChange}
+              required
+            />
+            <Input
+              type={'text'}
+              name={'notes'}
+              placeholder={'Add some notes here'}
+              value={this.state.notes}
+              handleChange={this.onChange}
+            />
+            <Input 
+              type={'text'}
+              name={'address'}
+              placeholder={'Address (or closest guess)'}
+              value={this.state.location.address}
+              handleChange={this.onChange}
+              required
+            />
+            <Input 
+              type={'hidden'}
+              name={'longitude'}
+              placeholder={'Longitude'}
+              value={this.state.location.longitude}
+              handleChange={this.onChange}
+              required
+            />
+            <Input 
+              type={'hidden'}
+              name={'latitude'}
+              placeholder={'Latitude'}
+              value={this.state.location.latitude}
+              handleChange={this.onChange}
+              required
+            /> 
+            <button type='submit'>
+              UPLOAD
+            </button>
+          </form>
+        }
+        </div>
     )
   }
 }

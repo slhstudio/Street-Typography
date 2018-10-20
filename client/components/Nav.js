@@ -27,13 +27,12 @@ const Nav = (props) => {
           ? <NavLink activeClassName='active' to='/logIn'>
               {props.logged}
             </NavLink>
-          : 
-              <li className='greeting'>
-                Hi, {props.name}!
-                <a href='/auth/logout'>
-                  {props.logged}
-                </a>
-                </li>
+          : <div className='greeting'>
+              Hi, {props.name}!
+              <a href='/auth/logout'>
+                {props.logged}
+              </a>
+            </div>
             
           }
         </li>

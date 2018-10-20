@@ -20,7 +20,7 @@ class Home extends Component {
       notesArray.push(item.notes);
     });
 
-    //returns username if user exists...
+    //checks to see if user is logged in and returns username if user exists...
     const user = await isSignedIn();
     if (user) {
       this.props.handleLogIn(user);
