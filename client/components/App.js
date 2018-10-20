@@ -25,13 +25,14 @@ class App extends Component {
  }
 
   render () {
-    const { access, username } = this.state;
+    const { access, username, isAuthed } = this.state;
     return (
       <Router>
         <div className='container'>
           <Nav 
             logged={access} 
             name={username}
+            isUser={isAuthed}
           />
             <Switch>
               <Route 

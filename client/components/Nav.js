@@ -21,11 +21,21 @@ const Nav = (props) => {
             My Photos
           </NavLink>
         </li>
-        <li className='greeting'>Hi, {props.name}!</li>
+       
         <li>
-          <NavLink activeClassName='active' to='/logIn'>
-            {props.logged}
-          </NavLink>
+          { !props.isUser
+          ? <NavLink activeClassName='active' to='/logIn'>
+              {props.logged}
+            </NavLink>
+          : 
+              <li className='greeting'>
+                Hi, {props.name}!
+                <a href='/auth/logout'>
+                  {props.logged}
+                </a>
+                </li>
+            
+          }
         </li>
       </ul>
     )

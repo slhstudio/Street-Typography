@@ -36,21 +36,21 @@ a {
 }
 
 .nav li {
-  margin-right: 15px;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .nav li:last-child {
-  margin-left: 1em;
+  margin-left: auto
 }
 
 .nav .greeting {
   color: darkcyan;
-  margin-left
-  : auto;
 }
 /*nest this one with sass*/
 .nav li:last-child a{
   color:white;
+  margin-left: 2em;
 }
 
 /*LogIn Component*/

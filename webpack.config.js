@@ -8,7 +8,7 @@ const webpack = require('webpack');
 
 const config = {
   mode: 'development',
-  entry: ['babel-polyfill','./app/index.js'],
+  entry: ['babel-polyfill','./client/index.js'],
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
     filename: 'index_bundle.js',
@@ -27,7 +27,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: 'app/index.html', 
+      template: 'client/index.html', 
       apiUrl: `https://maps.googleapis.com/maps/api/js?key=${MAP_KEY}&libraries=places`,
       mapKey: JSON.stringify(`${MAP_KEY}`)
     }),

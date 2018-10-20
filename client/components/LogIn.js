@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 
 class LogIn extends Component {
-
   
   render () {
     return (
       <div className='loginbox'>
-      <a href='/auth/google'><button>Log in with Google</button></a>
+        <p> Log in or Sign in with</p>
+        <a href='/auth/google'><button>Google</button></a>
       </div>
     )
   }
@@ -16,4 +16,3 @@ class LogIn extends Component {
 
 export default LogIn;
 
-//
