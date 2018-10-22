@@ -38,6 +38,7 @@ app.post('/addPhoto', photoController.upload, photoController.resize, photoContr
 //read
 app.get('/findphoto/:photo', photoController.findPhoto);
 app.get('/findAllPhotos', photoController.getAll);
+app.get('/findMine', photoController.getMine);
 
 //update
 app.post('/uploadChange/:photo', photoController.update);

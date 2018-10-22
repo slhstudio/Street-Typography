@@ -7,32 +7,34 @@ import { isSignedIn } from '../utilities/api'
 
 class Photo extends Component {
   state = {
-    user: false,
     loading: true,
     image: '',
     notes: ''
   }
 
   componentDidMount = async () =>  {
-    //temporary simulation of whether user is logged in. Obviously highly insecure.
-    const loggedIn = this.props.location.pathname.split('/');
-    const fakeUser = loggedIn[loggedIn.length - 1];
+    if (!this.props.isUser) {
+      //checks to see if user is logged in and returns username if user exists...
+      const user = await isSignedIn();
+        if (user) {
+          this.props.handleLogIn(user);
+      }
+    }
     const photo = this.props.match.params.photo;
     const pic = await this.findPhoto(photo);
+
     this.setState(() => ({
-      user: fakeUser,
       loading: false,
       image: pic.photo,
       notes: pic.notes,
+      author: pic.author,
       lat: pic.location.coordinates[1],
       lng: pic.location.coordinates[0]
     }))
-    const user = await isSignedIn();
-    console.log(user);
+    
   }
 
   staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x200&key=${MAP_KEY}&markers=${lat},${lng}&scale=2`;
-
 
   findPhoto = async (photo, error) => {
     const result = await axios.get(`/findphoto/${photo}`)
@@ -41,7 +43,7 @@ class Photo extends Component {
   }
 
   render () {
-    const { user, loading, image, notes, lat, lng } = this.state;
+    const { loading, image, notes, author, lat, lng } = this.state;
 
     if (loading) {
       return (
@@ -52,7 +54,7 @@ class Photo extends Component {
       <div className='photoSoloBox'>  
         <img className= 'photoSolo' src={`/uploads/${image}`}/>
         <img className= 'map' src={this.staticMap([lng, lat])}/>
-        { user === 'true'
+        { this.props.name === author
           ? <div>
               <Edit 
                 info={notes}

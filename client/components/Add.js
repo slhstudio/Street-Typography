@@ -17,36 +17,38 @@ class Add extends Component {
   }
 
   componentDidMount = async () => {
+    if (!this.props.isUser) {
     //checks to see if user is logged in and returns username if user exists...
-    const user = await isSignedIn();
-    if (user) {
-      this.props.handleLogIn(user);
-    
-      const addressInput = document.getElementById('address');
-      const dropdown = new google.maps.places.Autocomplete(addressInput);
+      const user = await isSignedIn();
+      if (user) {
+        this.props.handleLogIn(user);
+      }
+    } else {
+        const addressInput = document.getElementById('address');
+        const dropdown = new google.maps.places.Autocomplete(addressInput);
 
-      //this fires when place is selected in dropdown
-      dropdown.addListener('place_changed', () => {;
-        const place = dropdown.getPlace();
-        console.log(place);
-      
-        if (place) {
-          this.setState( prevState => {
-            return { 
-              location : {
-                ...prevState.location, 
-                address: place.formatted_address, 
-                longitude: place.geometry.location.lng(),
-                latitude: place.geometry.location.lat()
+        //this fires when place is selected in dropdown
+        dropdown.addListener('place_changed', () => {;
+          const place = dropdown.getPlace();
+          console.log(place);
+        
+          if (place) {
+            this.setState( prevState => {
+              return { 
+                location : {
+                  ...prevState.location, 
+                  address: place.formatted_address, 
+                  longitude: place.geometry.location.lng(),
+                  latitude: place.geometry.location.lat()
+                }
               }
-            }
-          })   
-        }
-      });
-      //prevents the form from being submitted if someone hits enter on the dropdown
-      addressInput.addEventListener('keydown', (e) => {
-        if (e.keyCode === 13) e.preventDefault();
-      })
+            })   
+          }
+        });
+        //prevents the form from being submitted if someone hits enter on the dropdown
+        addressInput.addEventListener('keydown', (e) => {
+          if (e.keyCode === 13) e.preventDefault();
+        })
     }
   }
 

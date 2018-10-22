@@ -2,39 +2,47 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 //import Photo from './Photo';
-import { isSignedIn } from '../utilities/api'
+import { isSignedIn } from '../utilities/api';
+import { Link } from 'react-router-dom';
 
 
 class Mine extends Component {
   state = {
-    user: true,
-    loading : true,
+    loading : false,
     photos : [],
     notes : [],
     page : 0,
   }
 
   componentDidMount = async () => {
-    //call api
-    const photos = await this.findAllPhotos();
-    const notesArray = [], photoArray = [];
-    photos.data.forEach(item => {
-      photoArray.push(item.photo);
-      notesArray.push(item.notes);
-    });
+    if (!this.props.isUser) {
+      //checks to see if user is logged in and returns username if user exists...
+      const user = await isSignedIn();
+      if (user) {
+        this.props.handleLogIn(user);
+      }
+    } 
 
-    this.setState(() => ({
-      loading : false,
-      photos : this.state.photos.concat(photoArray),
-      notes : this.state.notes.concat(notesArray)
-    }))
-    const user = await isSignedIn();
-    console.log(user);
+    if (this.props.isUser) {
+      this.setState(() => ({ loading: true }));
+      //call api
+      const photos = await this.findMine();
+      const notesArray = [], photoArray = [];
+        photos.data.forEach(item => {
+          photoArray.push(item.photo);
+          notesArray.push(item.notes);
+        });
+
+      this.setState(() => ({
+        loading : false,
+        photos : this.state.photos.concat(photoArray),
+        notes : this.state.notes.concat(notesArray)
+      })) 
+    }
   }
 
-  //this api function will eventually become findMyPhotos once I build login feature
-  findAllPhotos = async (error) => {
-    const result = await axios.get('/findAllPhotos')
+  findMine = async (error) => {
+    const result = await axios.get('/findMine')
       .catch(error);
     return result;
   }
@@ -47,25 +55,29 @@ class Mine extends Component {
         <Loading/>
       )
     }
-
     //refactor into photoGrid component?
     return (
       <div>
-        <ul className='photoGrid'>
-          {photos.map((photo, index) => {
-            return (
-              <li key={index}>
-                <a href={`/photo/${photo}/true`}>
-                  <img 
-                    className='photoItem'
-                    src={`/uploads/${photo}`}
-                    alt={`street typography image: ${notes[index]}`}
-                  />
-                </a>
-              </li>
-            )
-          })}
-        </ul> 
+        { !this.props.isUser
+          ? <p> You must be logged in to see your photos. </p>
+          : !photos.length
+          ? <p> You haven't added any photos yet. Get going!</p>
+          : <ul className='photoGrid'>
+              {photos.map((photo, index) => {
+                return (
+                  <li key={index}>
+                    <Link to={`/photo/${photo}`}>
+                      <img 
+                        className='photoItem'
+                        src={`/uploads/${photo}`}
+                        alt={`street typography image: ${notes[index]}`}
+                      />
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul> 
+        }
       </div> 
     )
   }

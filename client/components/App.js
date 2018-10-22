@@ -17,11 +17,12 @@ class App extends Component {
  }
 
  setLogIn = (user) => {
+   console.log('changing auth')
    this.setState(() => ({
      access: 'Log Out',
      isAuthed: true,
      username: user
-   }))
+   }));
  }
 
   render () {
@@ -37,16 +38,24 @@ class App extends Component {
             <Switch>
               <Route 
                 exact path='/' 
-                render={() => <Home handleLogIn={this.setLogIn} />}
+                render={() => <Home isUser={isAuthed} handleLogIn={this.setLogIn} />}
               />
               <Route 
                 path ='/add' 
                 render={() => <Add isUser={isAuthed} handleLogIn={this.setLogIn}/>}
               />
-              <Route path = '/mine' component={Mine} />
-              <Route path='/photo/:photo' component={Photo} />
-              <Route path='/logIn' component={LogIn} />
-            
+              <Route 
+                path = '/mine' 
+                render={() => <Mine isUser={isAuthed} handleLogIn={this.setLogIn}/>}
+              />
+              <Route 
+                path='/photo/:photo' 
+                render={(props) => <Photo {...props} isUser={isAuthed} name={username} handleLogIn={this.setLogIn}/>}
+              />
+              <Route 
+                path='/logIn' 
+                render={() => <LogIn isUser={isAuthed} handleLogIn={this.setLogIn}/>}
+              />
             </Switch>
         </div>
       </Router>

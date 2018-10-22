@@ -1,7 +1,8 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
-import { isSignedIn } from '../utilities/api'
+import { isSignedIn } from '../utilities/api';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   state = {
@@ -20,20 +21,22 @@ class Home extends Component {
       notesArray.push(item.notes);
     });
 
-    //checks to see if user is logged in and returns username if user exists...
-    const user = await isSignedIn();
-    if (user) {
-      this.props.handleLogIn(user);
-    }
-
     this.setState(() => ({
-      loading : false,
-      photos : this.state.photos.concat(photoArray),
-      notes : this.state.notes.concat(notesArray)
-    }))
+          loading : false,
+          photos : this.state.photos.concat(photoArray),
+          notes : this.state.notes.concat(notesArray)
+        }))
+
+    //if parent does not indicate user is authorized...(i.e if route is entered directly, this prop will not be set)
+    if (!this.props.isUser) {
+    //checks to see if user is logged in and returns username if user exists...
+      const user = await isSignedIn();
+      if (user) {
+        this.props.handleLogIn(user);
+      }
+    }
   }
 
-  
   //factor into api file
   findAllPhotos = async (error) => {
     const result = await axios.get('/findAllPhotos')
@@ -56,13 +59,13 @@ class Home extends Component {
         {photos.map((photo, index) => {
           return (
             <li key={index}>
-              <a href={`/photo/${photo}/true`}>
+              <Link to={`/photo/${photo}`}>
                 <img 
                   className='photoItem'
                   src={`/uploads/${photo}`}
                   alt={`street typography image: ${notes[index]}`}
                 />
-              </a>
+              </Link>
             </li>
           )
         })}

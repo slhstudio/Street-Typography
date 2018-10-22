@@ -47,6 +47,7 @@ photoController.savePhoto = async (req, res) => {
   const photoPromise = new Photo(req.body)
     .save()
     .catch(handleError);
+  //is this useful?? could make user object big if list of photos is long...
   const addToUserPromise = User
     .findByIdAndUpdate(req.user.id, { $addToSet: { photos: req.body.photo }});
   const result = await Promise.all([photoPromise, addToUserPromise]);
@@ -61,6 +62,12 @@ photoController.findPhoto = async (req, res) => {
 photoController.getAll = async (req, res) => {
   const all = await Photo.find();
   res.send(all);
+}
+
+photoController.getMine = async (req, res) => {
+  //or could just say: res.send(req.user.photos) --> but that would not get me notes which I'm using for alt tag
+  const mine = await Photo.find({ author : req.user.username }, 'photo notes')
+  res.send(mine);
 }
 
 photoController.update = async (req, res) => {

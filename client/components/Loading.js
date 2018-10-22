@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const styles = {
   content: {
     textAlign: 'center',
-    fontSize: '35px'
+    fontSize: '1.25em'
   }
 };
 
@@ -28,11 +28,11 @@ class Loading extends Component {
   componentDidMount () {
     const { text, speed } = this.props;
 
-    const stopper = text + '...';
+    const stopper = '.......' + text + '.......';
     this.interval = window.setInterval(() => {
       this.state.text === stopper 
         ? this.setState(() => ({ text: this.props.text })) 
-        : this.setState((prevState) => ({ text: prevState.text + '.'}))
+        : this.setState((prevState) => ({ text: '.' + prevState.text + '.'}))
     }, speed);
   }
 
