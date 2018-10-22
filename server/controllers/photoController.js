@@ -1,5 +1,6 @@
 const mongoose = require ('mongoose');
 const Photo = require ('../models/photoModel');
+const User = require('../models/userModel');
 const multer = require('multer');
 const uuid = require('uuid');
 const jimp = require('jimp');
@@ -42,9 +43,13 @@ photoController.resize = async (req, res, next) => {
 }
 
 photoController.savePhoto = async (req, res) => {
-  const photo = await (new Photo(req.body))
+  req.body.author = req.user.username;
+  const photoPromise = new Photo(req.body)
     .save()
     .catch(handleError);
+  const addToUserPromise = User
+    .findByIdAndUpdate(req.user.id, { $addToSet: { photos: req.body.photo }});
+  const result = await Promise.all([photoPromise, addToUserPromise]);
   res.send(req.body.photo);
 };
 

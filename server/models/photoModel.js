@@ -29,7 +29,8 @@ const photoSchema = new Schema({
       type: String,
       required: 'Please supply an address.'
     }
-  }
+  },
+  author: String
 });
 
 
