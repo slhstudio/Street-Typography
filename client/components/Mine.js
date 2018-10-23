@@ -3,12 +3,12 @@ import axios from 'axios';
 import Loading from './Loading';
 //import Photo from './Photo';
 import { isSignedIn } from '../utilities/api';
-import { Link } from 'react-router-dom';
+import PhotoGrid from './PhotoGrid';
 
 
 class Mine extends Component {
   state = {
-    loading : false,
+    loading : true,
     photos : [],
     notes : [],
     page : 0,
@@ -24,9 +24,9 @@ class Mine extends Component {
     } 
 
     if (this.props.isUser) {
-      this.setState(() => ({ loading: true }));
       //call api
       const photos = await this.findMine();
+      console.log('photos', photos);
       const notesArray = [], photoArray = [];
         photos.data.forEach(item => {
           photoArray.push(item.photo);
@@ -48,38 +48,32 @@ class Mine extends Component {
   }
 
   render () {
-    const { loading, photos, notes, photo } = this.state;
+    const { loading, photos, notes } = this.state;
 
-    if (loading) {
+    if (!this.props.isUser) {
+      return (
+        <div>
+          <p> You must be logged in to see your photos. </p>
+        </div>
+      )
+    } else if (loading && this.props.isUser) {
       return (
         <Loading/>
       )
+    } else if (this.props.isUser && !photos.length) {
+      return (
+        <div>
+          <p> You haven't added any photos yet. Get going!</p>
+        </div>
+      )
+    } else {
+        return (
+          <PhotoGrid 
+              photos={photos}
+              notes={notes}
+          />
+        )
     }
-    //refactor into photoGrid component?
-    return (
-      <div>
-        { !this.props.isUser
-          ? <p> You must be logged in to see your photos. </p>
-          : !photos.length
-          ? <p> You haven't added any photos yet. Get going!</p>
-          : <ul className='photoGrid'>
-              {photos.map((photo, index) => {
-                return (
-                  <li key={index}>
-                    <Link to={`/photo/${photo}`}>
-                      <img 
-                        className='photoItem'
-                        src={`/uploads/${photo}`}
-                        alt={`street typography image: ${notes[index]}`}
-                      />
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul> 
-        }
-      </div> 
-    )
   }
 }
 

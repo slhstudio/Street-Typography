@@ -102,48 +102,48 @@ class Add extends Component {
         { !this.props.isUser
           ? <p>If you would like to add photos, please log in.</p>
           : <form onSubmit={this.handleSubmit}>
-            <Input 
-              type={'file'}
-              name={'image'}
-              accept={'image/gif, image/png, image/jpeg'}
-              handleChange={this.onChange}
-              required
-            />
-            <Input
-              type={'text'}
-              name={'notes'}
-              placeholder={'Add some notes here'}
-              value={this.state.notes}
-              handleChange={this.onChange}
-            />
-            <Input 
-              type={'text'}
-              name={'address'}
-              placeholder={'Address (or closest guess)'}
-              value={this.state.location.address}
-              handleChange={this.onChange}
-              required
-            />
-            <Input 
-              type={'hidden'}
-              name={'longitude'}
-              placeholder={'Longitude'}
-              value={this.state.location.longitude}
-              handleChange={this.onChange}
-              required
-            />
-            <Input 
-              type={'hidden'}
-              name={'latitude'}
-              placeholder={'Latitude'}
-              value={this.state.location.latitude}
-              handleChange={this.onChange}
-              required
-            /> 
-            <button type='submit'>
-              UPLOAD
-            </button>
-          </form>
+              <Input 
+                type={'file'}
+                name={'image'}
+                accept={'image/gif, image/png, image/jpeg'}
+                handleChange={this.onChange}
+                required
+              />
+              <Input
+                type={'text'}
+                name={'notes'}
+                placeholder={'Add some notes here'}
+                value={this.state.notes}
+                handleChange={this.onChange}
+              />
+              <Input 
+                type={'text'}
+                name={'address'}
+                placeholder={'Address (or closest guess)'}
+                value={this.state.location.address}
+                handleChange={this.onChange}
+                required
+              />
+              <Input 
+                type={'hidden'}
+                name={'longitude'}
+                placeholder={'Longitude'}
+                value={this.state.location.longitude}
+                handleChange={this.onChange}
+                required
+              />
+              <Input 
+                type={'hidden'}
+                name={'latitude'}
+                placeholder={'Latitude'}
+                value={this.state.location.latitude}
+                handleChange={this.onChange}
+                required
+              /> 
+              <button type='submit'>
+                UPLOAD
+              </button>
+            </form>
         }
         </div>
     )

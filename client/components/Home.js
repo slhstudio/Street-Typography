@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 import { isSignedIn } from '../utilities/api';
-import { Link } from 'react-router-dom';
+import PhotoGrid from './PhotoGrid';
 
 class Home extends Component {
   state = {
@@ -46,31 +46,17 @@ class Home extends Component {
 
   render () {
     const { loading, photos, notes } = this.state;
-
+    
     if (loading) {
       return (
         <Loading/>
       )
     }
-
-    //refactor into photoGrid component?
     return (
-      <ul className='photoGrid'>
-        {photos.map((photo, index) => {
-          return (
-            <li key={index}>
-              <Link to={`/photo/${photo}`}>
-                <img 
-                  className='photoItem'
-                  src={`/uploads/${photo}`}
-                  alt={`street typography image: ${notes[index]}`}
-                />
-              </Link>
-            </li>
-          )
-        })}
-      </ul>  
-      
+      <PhotoGrid 
+        photos={photos}
+        notes={notes}
+      />
     )
   }
 }
