@@ -26,7 +26,6 @@ class Mine extends Component {
     if (this.props.isUser) {
       //call api
       const photos = await this.findMine();
-      console.log('photos', photos);
       const notesArray = [], photoArray = [];
         photos.data.forEach(item => {
           photoArray.push(item.photo);
@@ -49,31 +48,22 @@ class Mine extends Component {
 
   render () {
     const { loading, photos, notes } = this.state;
-
-    if (!this.props.isUser) {
-      return (
-        <div>
-          <p> You must be logged in to see your photos. </p>
-        </div>
-      )
-    } else if (loading && this.props.isUser) {
-      return (
-        <Loading/>
-      )
-    } else if (this.props.isUser && !photos.length) {
-      return (
-        <div>
-          <p> You haven't added any photos yet. Get going!</p>
-        </div>
-      )
-    } else {
-        return (
-          <PhotoGrid 
+    
+    return (
+      <div>
+        {!this.props.isUser
+         ? <p> You must be logged in to see your photos. </p>
+         : loading
+         ? <Loading/>
+         : !photos.length
+         ? <p> You haven't added any photos yet. Get Going!</p>
+         : <PhotoGrid
               photos={photos}
               notes={notes}
           />
-        )
-    }
+        }
+      </div>
+    )
   }
 }
 
