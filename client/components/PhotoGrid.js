@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 
 const PhotoGrid = (props) => {
-  const { photos, notes } = props;
+  const { photos, notes, referrer } = props;
+
   return (
     <ul className='photoGrid'>
       {photos.map((photo, index) => {
         return (
           <li key={index}>
-            <Link to={`/photo/${photo}`}>
+            <Link to={`/photo/${photo}`} >
               <img 
                 className='photoItem'
                 src={`/uploads/${photo}`}

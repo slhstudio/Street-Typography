@@ -60,7 +60,7 @@ class Mine extends Component {
          : <PhotoGrid
               photos={photos}
               notes={notes}
-          />
+           />
         }
       </div>
     )

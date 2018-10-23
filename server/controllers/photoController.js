@@ -42,11 +42,11 @@ photoController.resize = async (req, res, next) => {
   next();
 }
 
-photoController.savePhoto = async (req, res) => {
+photoController.savePhoto = async (req, res, error) => {
   req.body.author = req.user.username;
   const photoPromise = new Photo(req.body)
     .save()
-    .catch(handleError);
+    .catch(error);
   //is this useful?? could make user object big if list of photos is long...
   const addToUserPromise = User
     .findByIdAndUpdate(req.user.id, { $addToSet: { photos: req.body.photo }});
@@ -76,9 +76,12 @@ photoController.update = async (req, res) => {
   res.send('updated');
 }
 
-photoController.deletePhoto = async (req, res) => {
-  const nix = await Photo.findOneAndDelete({photo: req.params.image})
-    .catch(handleError);
+photoController.deletePhoto = async (req, res, error) => {
+  const nixPromise = await Photo.findOneAndDelete({photo: req.params.image})
+    .catch(error);
+  const removeFromUserPromise = User
+    .findByIdAndUpdate(req.user.id, { $pull: { photos: req.params.image }});
+  const result = await Promise.all([nixPromise, removeFromUserPromise]); 
   res.send('success')
 };
 

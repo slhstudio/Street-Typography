@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Loading from './Loading';
-import Edit from './Edit';
-import { isSignedIn } from '../utilities/api'
+import { isSignedIn } from '../utilities/api';
+import PhotoSolo from './PhotoSolo';
 
 
 class Photo extends Component {
   state = {
     loading: true,
     image: '',
-    notes: ''
+    notes: '',
+    author:'',
+    lat: null,
+    lng: null
   }
 
   componentDidMount = async () =>  {
@@ -44,24 +47,19 @@ class Photo extends Component {
 
   render () {
     const { loading, image, notes, author, lat, lng } = this.state;
+    const { name } = this.props;
 
-    if (loading) {
-      return (
-        <Loading/>
-      )
-    }
     return (
-      <div className='photoSoloBox'>  
-        <img className= 'photoSolo' src={`/uploads/${image}`}/>
-        <img className= 'map' src={this.staticMap([lng, lat])}/>
-        { this.props.name === author
-          ? <div>
-              <Edit 
-                info={notes}
-                photo={image}
-              />
-            </div>
-          : notes 
+      <div>
+        { loading
+          ? <Loading/>
+          : <PhotoSolo
+              name={name}
+              author={author}
+              map={this.staticMap([lng, lat])}
+              notes={notes}
+              photo={image}
+            />
         }
       </div>
     )

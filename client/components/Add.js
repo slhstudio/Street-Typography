@@ -95,7 +95,7 @@ class Add extends Component {
   render () {
     const { photoName } = this.state;
     if (photoName) {
-      return <Redirect to= {`photo/${photoName}/true`} />
+      return <Redirect to= {`photo/${photoName}`} />
     }
     return (
       <div>

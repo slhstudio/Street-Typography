@@ -38,7 +38,7 @@ class App extends Component {
             <Switch>
               <Route 
                 exact path='/' 
-                render={() => <Home isUser={isAuthed} handleLogIn={this.setLogIn} />}
+                render={(props) => <Home {...props} isUser={isAuthed} handleLogIn={this.setLogIn} />}
               />
               <Route 
                 path ='/add' 

@@ -50,31 +50,30 @@ class Edit extends Component {
   render () {
     const { update, editing, deleted } = this.state;
     
-    if (deleted === true) {
-      return <Redirect to='/mine'/>
-    }
-
     return (
-      <div className='row'> 
-        {!editing 
-          ? <div> 
-              {update}
-              <button onClick={this.handleClick}>
-                EDIT
-              </button>
-            </div>
-          : <div >
-              <input type='text' value={this.state.update} onChange={this.handleChange}/>
-              <button onClick={this.saveChanges}>
-                SAVE
-              </button>
+      <div>
+        { deleted
+          ? <Redirect to='/mine'/>
+          : <div className='row'> 
+              {!editing 
+                ? <div> 
+                    {update}
+                    <button onClick={this.handleClick}>
+                      EDIT
+                    </button>
+                  </div>
+                : <div >
+                    <input type='text' value={this.state.update} onChange={this.handleChange}/>
+                    <button onClick={this.saveChanges}>
+                      SAVE
+                    </button>
+                  </div>
+              }
+              <button onClick={this.removePhoto}>
+                DELETE
+              </button> 
             </div>
         }
-        <div>
-          <button onClick={this.removePhoto}>
-            DELETE
-          </button> 
-        </div>
       </div>
     )
   }

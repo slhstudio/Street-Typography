@@ -46,17 +46,17 @@ class Home extends Component {
 
   render () {
     const { loading, photos, notes } = this.state;
-    
-    if (loading) {
-      return (
-        <Loading/>
-      )
-    }
+
     return (
-      <PhotoGrid 
-        photos={photos}
-        notes={notes}
-      />
+      <div>
+        { loading
+          ? <Loading/>
+          : <PhotoGrid 
+              photos={photos}
+              notes={notes}
+            />
+        }
+      </div>
     )
   }
 }
