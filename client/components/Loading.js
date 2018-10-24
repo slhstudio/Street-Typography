@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const styles = {
   content: {
     textAlign: 'center',
-    fontSize: '1.25em'
+    fontSize: '1em'
   }
 };
 
@@ -16,7 +16,7 @@ class Loading extends Component {
   
   //reusable component so give defaultProps in case someone doesn't specify props when they use it
   static defaultProps = {
-    text: 'Loading',
+    text: 'LOADING',
     speed: 300
   };
   //lets user specify what they want their text to be by making it a prop when they invoke the component

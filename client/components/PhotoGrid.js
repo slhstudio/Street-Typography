@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 const PhotoGrid = (props) => {
-  const { photos, notes, referrer } = props;
+  const { photos, notes } = props;
 
   return (
     <ul className='photoGrid'>
