@@ -57,7 +57,7 @@ class Edit extends Component {
           : <div className='row'> 
               {!editing 
                 ? <div> 
-                    {update}
+                    <p>{update}</p>
                     <button onClick={this.handleClick}>
                       EDIT
                     </button>
@@ -69,9 +69,11 @@ class Edit extends Component {
                     </button>
                   </div>
               }
-              <button onClick={this.removePhoto}>
-                DELETE
-              </button> 
+              <div>
+                <button onClick={this.removePhoto}>
+                  DELETE
+                </button> 
+              </div>
             </div>
         }
       </div>

@@ -10,8 +10,9 @@ describe('<PhotoGrid/>', () => {
     const wrapper = shallow(<PhotoGridComponent photos={photos} notes={notes}/>);
     expect(wrapper.find('ul').children()).toHaveLength(photos.length);
     expect(wrapper.find('Link').children()).toHaveLength(photos.length);
-    const img = wrapper.find('ul').childAt(0).find('img');
-    expect(img.props().src).toBe(`/uploads/${photos[0]}`);
-    expect(img.props().alt).toBe(`street typography image: ${notes[0]}`)
+    const pics = wrapper.find('Link').children().map(node => node.props().src);
+    expect(pics).toEqual([ '/uploads/photo1.png', '/uploads/photo2.png', '/uploads/photo3.png' ]);
+    const info = wrapper.find('Link').children().map(node => node.props().alt);
+    expect(info).toEqual([ 'street typography image: notes1','street typography image: notes2','street typography image: notes3' ]);
   });
 });
