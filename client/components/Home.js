@@ -31,9 +31,9 @@ class Home extends Component {
     if (!this.props.isUser) {
     //checks to see if user is logged in and returns username if user exists...
       const user = await isSignedIn();
-      if (user) {
-        this.props.handleLogIn(user);
-      }
+      // if (user) {
+      //   this.props.handleLogIn(user);
+      // }
     }
   }
 

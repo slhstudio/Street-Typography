@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home/> finds all photos 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <div>
+    <Home
+      isUser={true}
+    />
+    );
+  </div>
+</Router>
+`;
+
+exports[`<Home/> renders and displays properly 1`] = `
+<div>
+  <Loading
+    speed={300}
+    text="LOADING"
+  />
+</div>
+`;
+
+exports[`<Home/> renders and displays properly 2`] = `
+<div>
+  <PhotoGrid
+    notes={Array []}
+    photos={Array []}
+  />
+</div>
+`;
