@@ -25,12 +25,12 @@ const Nav = (props) => {
         <li>
           { !props.isUser
           ? <NavLink activeClassName='active' to='/logIn'>
-              <p>{props.logged}</p>
+              {props.logged}
             </NavLink>
           : <div className='row greeting'>
-              <p>Hi, {props.name}!</p>
+              Hi, {props.name}!
               <a href='/auth/logout'>
-               <p>{props.logged}</p>
+                {props.logged}
               </a>
             </div>
             

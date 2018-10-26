@@ -19,17 +19,16 @@ passport.use(
     callbackURL:'/auth/google/callback',
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET
-  }, async (accessToken, refreshToken, email, done) => {
-    //check if user already exists
-    const currUser = await User.findOne({googleId: email.id});
+  }, async (accessToken, refreshToken, profile, done) => {
+    const currUser = await User.findOne({googleId: profile.id});
     if (currUser) {
       //already have user
       done(null, currUser);
     } else {
         const newUser = await (new User({
-          username: email.displayName,
-          googleId: email.id,
-          email: email.emails[0].value
+          username: profile.displayName,
+          googleId: profile.id,
+          email: profile.emails[0].value
         })).save();
         done(null, newUser);
       }

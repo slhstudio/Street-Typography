@@ -6,3 +6,9 @@ export async function isSignedIn (error) {
   return result.data;
 }
 
+export async function findAllPhotos (error) {
+  const result = await axios.get('/findAllPhotos')
+    .catch(error);
+  return result;
+}
+

@@ -36,17 +36,13 @@ exports[`<Nav/> renders and displays properly if there IS a user 1`] = `
     <div
       className="row greeting"
     >
-      <p>
-        Hi, 
-        Sarah
-        !
-      </p>
+      Hi, 
+      Sarah
+      !
       <a
         href="/auth/logout"
       >
-        <p>
-          Log Out
-        </p>
+        Log Out
       </a>
     </div>
   </li>
@@ -91,9 +87,7 @@ exports[`<Nav/> renders and displays properly if there is no a user 1`] = `
       aria-current="page"
       to="/logIn"
     >
-      <p>
-        Log In
-      </p>
+      Log In
     </NavLink>
   </li>
 </ul>

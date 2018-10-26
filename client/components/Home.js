@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
-import { isSignedIn } from '../utilities/api';
+import { findAllPhotos, isSignedIn } from '../utilities/api';
 import PhotoGrid from './PhotoGrid';
 
 class Home extends Component {
@@ -14,20 +14,20 @@ class Home extends Component {
 
   componentDidMount = async () => {
     //call api
-    const photos = await this.findAllPhotos();
+    const photos = await findAllPhotos();
     const notesArray = [], photoArray = [];
     photos.data.forEach(item => {
       photoArray.push(item.photo);
       notesArray.push(item.notes);
     });
-
+  
     this.setState(() => ({
           loading : false,
           photos : this.state.photos.concat(photoArray),
           notes : this.state.notes.concat(notesArray)
         }))
-
-    //if parent does not indicate user is authorized...(i.e if route is entered directly, this prop will not be set)
+    
+   // if parent does not indicate user is authorized...(i.e if route is entered directly, this prop will not be set)
     if (!this.props.isUser) {
     //checks to see if user is logged in and returns username if user exists...
       const user = await isSignedIn();
@@ -35,13 +35,6 @@ class Home extends Component {
         this.props.handleLogIn(user);
       }
     }
-  }
-
-  //factor into api file
-  findAllPhotos = async (error) => {
-    const result = await axios.get('/findAllPhotos')
-      .catch(error);
-    return result;
   }
 
   render () {

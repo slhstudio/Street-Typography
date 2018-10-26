@@ -18,6 +18,7 @@ class App extends Component {
 
  setLogIn = (user) => {
    console.log('changing auth')
+   console.log('user',user)
    this.setState(() => ({
      access: 'Log Out',
      isAuthed: true,
