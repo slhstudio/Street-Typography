@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Edit/> conditional render of edit vs. save works properly 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="row"
+    >
+      <p>
+        nice typeface
+      </p>
+      <button
+        onClick={[Function]}
+      >
+        EDIT
+      </button>
+    </div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        DELETE
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Edit/> conditional render of edit vs. save works properly 2`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="row"
+    >
+      <input
+        onChange={[Function]}
+        type="text"
+        value="nice typeface"
+      />
+      <button
+        onClick={[Function]}
+      >
+        SAVE
+      </button>
+    </div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        DELETE
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Edit/> conditional render of editing form vs. redirect works properly 1`] = `
+<div>
+  <Redirect
+    push={false}
+    to="/mine"
+  />
+</div>
+`;
+
+exports[`<Edit/> conditional render of editing form vs. redirect works properly 2`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="row"
+    >
+      <p>
+        nice typeface
+      </p>
+      <button
+        onClick={[Function]}
+      >
+        EDIT
+      </button>
+    </div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        DELETE
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Edit/> matches the snapshot 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="row"
+    >
+      <p>
+        nice typeface
+      </p>
+      <button
+        onClick={[Function]}
+      >
+        EDIT
+      </button>
+    </div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        DELETE
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Edit/> shows controlled input value correctly 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="row"
+    >
+      <input
+        onChange={[Function]}
+        type="text"
+        value="weird lettering"
+      />
+      <button
+        onClick={[Function]}
+      >
+        SAVE
+      </button>
+    </div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        DELETE
+      </button>
+    </div>
+  </div>
+</div>
+`;

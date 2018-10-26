@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Add/> handles conditional rendering correctly 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <Input
+      accept="image/gif, image/png, image/jpeg"
+      handleChange={[Function]}
+      name="image"
+      required={true}
+      type="file"
+    />
+    <Input
+      handleChange={[Function]}
+      name="notes"
+      placeholder="Add some notes here"
+      type="text"
+      value=""
+    />
+    <Input
+      handleChange={[Function]}
+      name="address"
+      placeholder="Address (or closest guess)"
+      required={true}
+      type="text"
+      value=""
+    />
+    <Input
+      handleChange={[Function]}
+      name="longitude"
+      placeholder="Longitude"
+      required={true}
+      type="hidden"
+      value=""
+    />
+    <Input
+      handleChange={[Function]}
+      name="latitude"
+      placeholder="Latitude"
+      required={true}
+      type="hidden"
+      value=""
+    />
+    <button
+      type="submit"
+    >
+      UPLOAD
+    </button>
+  </form>
+</div>
+`;
+
+exports[`<Add/> handles conditional rendering correctly 2`] = `
+<Redirect
+  push={false}
+  to="photo/xyz"
+/>
+`;
+
+exports[`<Add/> renders and displays properly if there IS a user 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <Input
+      accept="image/gif, image/png, image/jpeg"
+      handleChange={[Function]}
+      name="image"
+      required={true}
+      type="file"
+    />
+    <Input
+      handleChange={[Function]}
+      name="notes"
+      placeholder="Add some notes here"
+      type="text"
+      value=""
+    />
+    <Input
+      handleChange={[Function]}
+      name="address"
+      placeholder="Address (or closest guess)"
+      required={true}
+      type="text"
+      value=""
+    />
+    <Input
+      handleChange={[Function]}
+      name="longitude"
+      placeholder="Longitude"
+      required={true}
+      type="hidden"
+      value=""
+    />
+    <Input
+      handleChange={[Function]}
+      name="latitude"
+      placeholder="Latitude"
+      required={true}
+      type="hidden"
+      value=""
+    />
+    <button
+      type="submit"
+    >
+      UPLOAD
+    </button>
+  </form>
+</div>
+`;
+
+exports[`<Add/> renders and displays properly if there is no user 1`] = `
+<div>
+  <p>
+    If you would like to add photos, please log in.
+  </p>
+</div>
+`;
+
+exports[`<Add/> shows controlled form values correctly 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <Input
+      accept="image/gif, image/png, image/jpeg"
+      handleChange={[Function]}
+      name="image"
+      required={true}
+      type="file"
+    />
+    <Input
+      handleChange={[Function]}
+      name="notes"
+      placeholder="Add some notes here"
+      type="text"
+      value="description goes here"
+    />
+    <Input
+      handleChange={[Function]}
+      name="address"
+      placeholder="Address (or closest guess)"
+      required={true}
+      type="text"
+      value="New York, NY USA"
+    />
+    <Input
+      handleChange={[Function]}
+      name="longitude"
+      placeholder="Longitude"
+      required={true}
+      type="hidden"
+      value={-74.0059728}
+    />
+    <Input
+      handleChange={[Function]}
+      name="latitude"
+      placeholder="Latitude"
+      required={true}
+      type="hidden"
+      value={40.7127753}
+    />
+    <button
+      type="submit"
+    >
+      UPLOAD
+    </button>
+  </form>
+</div>
+`;

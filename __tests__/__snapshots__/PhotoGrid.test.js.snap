@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PhotoGrid/> renders and displays properly 1`] = `
+<ul
+  className="photoGrid"
+>
+  <li
+    key="0"
+  >
+    <Link
+      replace={false}
+      to="/photo/photo1.png"
+    >
+      <img
+        alt="street typography image: notes1"
+        className="photoItem"
+        src="/uploads/photo1.png"
+      />
+    </Link>
+  </li>
+  <li
+    key="1"
+  >
+    <Link
+      replace={false}
+      to="/photo/photo2.png"
+    >
+      <img
+        alt="street typography image: notes2"
+        className="photoItem"
+        src="/uploads/photo2.png"
+      />
+    </Link>
+  </li>
+  <li
+    key="2"
+  >
+    <Link
+      replace={false}
+      to="/photo/photo3.png"
+    >
+      <img
+        alt="street typography image: notes3"
+        className="photoItem"
+        src="/uploads/photo3.png"
+      />
+    </Link>
+  </li>
+</ul>
+`;

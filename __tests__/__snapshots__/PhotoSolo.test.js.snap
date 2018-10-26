@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PhotoSolo/> else only the notes render 1`] = `
+<div
+  className="photoSoloBox"
+>
+  <img
+    className="photoSolo"
+    src="/uploads/undefined"
+  />
+  <img
+    className="map"
+  />
+  <p>
+    xyz
+  </p>
+</div>
+`;
+
+exports[`<PhotoSolo/> if author is same as user, edit form renders 1`] = `
+<div
+  className="photoSoloBox"
+>
+  <img
+    className="photoSolo"
+    src="/uploads/undefined"
+  />
+  <img
+    className="map"
+  />
+  <div>
+    <Edit
+      info="xyz"
+    />
+  </div>
+</div>
+`;
+
+exports[`<PhotoSolo/> renders and displays properly 1`] = `
+<div
+  className="photoSoloBox"
+>
+  <img
+    className="photoSolo"
+    src="/uploads/photo1"
+  />
+  <img
+    className="map"
+    src="Paris, Texas"
+  />
+  <div>
+    <Edit
+      photo="photo1"
+    />
+  </div>
+</div>
+`;

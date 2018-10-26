@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { isSignedIn } from '../utilities/api'
 
 
-class LogIn extends Component {
+class LogIn extends PureComponent {
   componentDidMount = async () => {
     if (!this.props.isUser) {
-      console.log(this.props.isUser)
       //checks to see if user is logged in and returns username if user exists...
       const user = await isSignedIn();
         if (user) {

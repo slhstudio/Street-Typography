@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Nav/> renders and displays properly if there IS a user 1`] = `
+<ul
+  className="nav"
+>
+  <li>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      exact={true}
+      to="/"
+    >
+      Explore Photos
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/add"
+    >
+      Add Photos
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/mine"
+    >
+      My Photos
+    </NavLink>
+  </li>
+  <li>
+    <div
+      className="row greeting"
+    >
+      <p>
+        Hi, 
+        Sarah
+        !
+      </p>
+      <a
+        href="/auth/logout"
+      >
+        <p>
+          Log Out
+        </p>
+      </a>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`<Nav/> renders and displays properly if there is no a user 1`] = `
+<ul
+  className="nav"
+>
+  <li>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      exact={true}
+      to="/"
+    >
+      Explore Photos
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/add"
+    >
+      Add Photos
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/mine"
+    >
+      My Photos
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/logIn"
+    >
+      <p>
+        Log In
+      </p>
+    </NavLink>
+  </li>
+</ul>
+`;

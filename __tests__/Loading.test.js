@@ -9,6 +9,7 @@ const defaultProps = {
 describe('<Loading/>', () => {
   it ('renders and displays properly', () => {
     const wrapper = shallow(<LoadingComponent text={defaultProps.text}/>);
+    expect(wrapper.find('p').exists()).toBe(true);
     expect(wrapper.find('p').text()).toBe(defaultProps.text);
   });
 });

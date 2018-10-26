@@ -52,11 +52,11 @@ class Mine extends Component {
     return (
       <div>
         {!this.props.isUser
-         ? <p> You must be logged in to see your photos. </p>
+         ? <p>You must be logged in to see your photos.</p>
          : loading
          ? <Loading/>
          : !photos.length
-         ? <p> You haven't added any photos yet. Get Going!</p>
+         ? <p>You haven't added any photos yet. Get Going!</p>
          : <PhotoGrid
               photos={photos}
               notes={notes}

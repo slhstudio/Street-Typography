@@ -13,7 +13,7 @@ const PhotoSolo = (props) => {
                 photo={props.photo}
               />
             </div>
-          : props.notes 
+          : <p>{props.notes}</p>
         }
     </div>
   )

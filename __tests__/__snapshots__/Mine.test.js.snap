@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Mine/> renders and displays properly if there IS a user 1`] = `
+<div>
+  <Loading
+    speed={300}
+    text="LOADING"
+  />
+</div>
+`;
+
+exports[`<Mine/> renders and displays properly if there IS a user and no photos yet 1`] = `
+<div>
+  <p>
+    You haven't added any photos yet. Get Going!
+  </p>
+</div>
+`;
+
+exports[`<Mine/> renders and displays properly if there IS a user and there are photos 1`] = `
+<div>
+  <PhotoGrid
+    notes={Array []}
+    photos={
+      Array [
+        "photo1",
+        "photo2",
+        "photo3",
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`<Mine/> renders and displays properly if there is no user 1`] = `
+<div>
+  <p>
+    You must be logged in to see your photos.
+  </p>
+</div>
+`;

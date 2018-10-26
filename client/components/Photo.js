@@ -36,8 +36,12 @@ class Photo extends Component {
     }))
     
   }
-
-  staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x200&key=${MAP_KEY}&markers=${lat},${lng}&scale=2`;
+ 
+  staticMap = ([lng, lat]) => {
+    //for testing purposes only: comment out
+    //const MAP_KEY = 'xyz'
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x200&key=${MAP_KEY}&markers=${lat},${lng}&scale=2`;
+  }
 
   findPhoto = async (photo, error) => {
     const result = await axios.get(`/findphoto/${photo}`)

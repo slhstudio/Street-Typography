@@ -56,13 +56,13 @@ class Edit extends Component {
           ? <Redirect to='/mine'/>
           : <div className='row'> 
               {!editing 
-                ? <div> 
+                ? <div className='row'> 
                     <p>{update}</p>
                     <button onClick={this.handleClick}>
                       EDIT
                     </button>
                   </div>
-                : <div >
+                : <div className='row'>
                     <input type='text' value={this.state.update} onChange={this.handleChange}/>
                     <button onClick={this.saveChanges}>
                       SAVE
