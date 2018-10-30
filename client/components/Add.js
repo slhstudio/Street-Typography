@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import Input from './Input';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { isSignedIn, submitPhotos } from '../utilities/api'
+import { isSignedIn, submitPhotos } from '../utilities/api';
+import PropTypes from 'prop-types';
 
 class Add extends Component {
+  static propTypes = {
+    isUser: PropTypes.bool.isRequired,
+    handleLogIn: PropTypes.func.isRequired
+  }
+  
   state = {
     photo : null,
     photoName:'',

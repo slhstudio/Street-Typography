@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 const multer = require('multer');
 const uuid = require('uuid');
 const jimp = require('jimp');
+const fs = require('fs');
 
 const handleError = (error) => {
   console.warn(error);
@@ -81,7 +82,10 @@ photoController.deletePhoto = async (req, res, error) => {
     .catch(error);
   const removeFromUserPromise = User
     .findByIdAndUpdate(req.user.id, { $pull: { photos: req.params.image }});
-  const result = await Promise.all([nixPromise, removeFromUserPromise]); 
+  const result = await Promise.all([nixPromise, removeFromUserPromise]);
+  fs.unlink(`./public/uploads/${req.params.image}`, () => {
+    console.log('file deleted!')
+  })
   res.send('success')
 };
 

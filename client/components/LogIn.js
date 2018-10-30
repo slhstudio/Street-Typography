@@ -1,8 +1,13 @@
 import React, { PureComponent } from 'react';
 import { isSignedIn } from '../utilities/api'
-
+import PropTypes from 'prop-types';
 
 class LogIn extends PureComponent {
+  static propTypes = {
+    isUser: PropTypes.bool.isRequired,
+    handleLogIn: PropTypes.func.isRequired
+  }
+  
   componentDidMount = async () => {
     if (!this.props.isUser) {
       //checks to see if user is logged in and returns username if user exists...

@@ -9,8 +9,14 @@ export async function isSignedIn (error) {
 export async function findAllPhotos (error) {
   const result = await axios.get('/findAllPhotos')
     .catch(error);
-    return result;
-  }
+  return result;
+}
+
+export async function findMine (error) {
+  const result = await axios.get('/findMine')
+    .catch(error);
+  return result;
+}
   
 export async function submitPhotos(data, error) {
   const add = await axios.post('/addPhoto', data)
@@ -19,8 +25,7 @@ export async function submitPhotos(data, error) {
   return add.data;
 }
 
-export async function uploadChanges (update, error) {
-  const { image } = this.state
+export async function uploadChanges (update, image, error) {
   const newNotes = await axios.post(`/uploadChange/${image}`, { 'notes' : update })
     .catch(error);
   return newNotes.data;

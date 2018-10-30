@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 const PhotoGrid = (props) => {
@@ -22,6 +23,11 @@ const PhotoGrid = (props) => {
       })}
     </ul> 
   )
+}
+
+PhotoGrid.propTypes = {
+  photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+  notes: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default PhotoGrid;

@@ -3,8 +3,14 @@ import axios from 'axios';
 import Loading from './Loading';
 import { findAllPhotos, isSignedIn } from '../utilities/api';
 import PhotoGrid from './PhotoGrid';
+import PropTypes from 'prop-types';
 
 class Home extends Component {
+  static propTypes = {
+    isUser: PropTypes.bool.isRequired,
+    handleLogIn: PropTypes.func.isRequired
+  }
+
   state = {
     loading : true,
     photos : [],
@@ -13,8 +19,6 @@ class Home extends Component {
   }
 
   componentDidMount = async () => {
-    //call api
-    
     const photos = await findAllPhotos();
     const notesArray = [], photoArray = [];
     photos.data.forEach(item => {

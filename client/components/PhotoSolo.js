@@ -1,5 +1,6 @@
 import React from 'react';
 import Edit from './Edit';
+import PropTypes from 'prop-types';
 
 const PhotoSolo = (props) => {
   return (
@@ -17,6 +18,14 @@ const PhotoSolo = (props) => {
         }
     </div>
   )
+}
+
+PhotoSolo.propTypes = {
+  name: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  map: PropTypes.string.isRequired,
+  notes: PropTypes.string,
+  photo: PropTypes.string.isRequired
 }
 
 export default PhotoSolo;

@@ -3,9 +3,14 @@ import axios from 'axios';
 import Loading from './Loading';
 import { isSignedIn } from '../utilities/api';
 import PhotoSolo from './PhotoSolo';
-
+import PropTypes from 'prop-types';
 
 class Photo extends Component {
+  static propTypes = {
+    isUser: PropTypes.bool.isRequired,
+    handleLogIn: PropTypes.func.isRequired
+  }
+
   state = {
     loading: true,
     image: '',

@@ -2,11 +2,17 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 //import Photo from './Photo';
-import { isSignedIn } from '../utilities/api';
+import { isSignedIn, findMine } from '../utilities/api';
 import PhotoGrid from './PhotoGrid';
+import PropTypes from 'prop-types';
 
 
 class Mine extends Component {
+  static propTypes = {
+    isUser: PropTypes.bool.isRequired,
+    handleLogIn: PropTypes.func.isRequired
+  }
+
   state = {
     loading : true,
     photos : [],
@@ -25,7 +31,7 @@ class Mine extends Component {
 
     if (this.props.isUser) {
       //call api
-      const photos = await this.findMine();
+      const photos = await findMine();
       const notesArray = [], photoArray = [];
         photos.data.forEach(item => {
           photoArray.push(item.photo);
@@ -38,12 +44,6 @@ class Mine extends Component {
         notes : this.state.notes.concat(notesArray)
       })) 
     }
-  }
-
-  findMine = async (error) => {
-    const result = await axios.get('/findMine')
-      .catch(error);
-    return result;
   }
 
   render () {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Nav = (props) => {
     return (
@@ -33,12 +34,16 @@ const Nav = (props) => {
                 {props.logged}
               </a>
             </div>
-            
           }
         </li>
       </ul>
     )
   }
 
+  Nav.propTypes = {
+    logged: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    isUser: PropTypes.bool.isRequired,
+  }
 
 export default Nav

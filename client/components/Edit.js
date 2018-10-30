@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { uploadChanges, deletePhoto } from '../utilities/api';
+import PropTypes from 'prop-types';
 
 
 class Edit extends Component {
+  static propTypes = {
+    info: PropTypes.string,
+    photo: PropTypes.string.isRequired
+  };
+
   state = {
     update : this.props.info,
     image: this.props.photo,
@@ -22,8 +28,8 @@ class Edit extends Component {
   }
 
   saveChanges = async () => {
-    const { update } = this.state;
-    const change = await uploadChanges(update);
+    const { update, image } = this.state;
+    const change = await uploadChanges(update, image);
     this.setState(() => ({ editing : false }));
   }
   
@@ -49,7 +55,7 @@ class Edit extends Component {
                     </button>
                   </div>
                 : <div className='row'>
-                    <input type='text' value={this.state.update} onChange={this.handleChange}/>
+                    <input type='text' value={this.state.update} placeholder='Add some notes' onChange={this.handleChange}/>
                     <button className='test2' onClick={this.saveChanges}>
                       SAVE
                     </button>
