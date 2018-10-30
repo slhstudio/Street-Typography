@@ -14,13 +14,14 @@ class Home extends Component {
 
   componentDidMount = async () => {
     //call api
+    
     const photos = await findAllPhotos();
     const notesArray = [], photoArray = [];
     photos.data.forEach(item => {
       photoArray.push(item.photo);
       notesArray.push(item.notes);
     });
-  
+
     this.setState(() => ({
           loading : false,
           photos : this.state.photos.concat(photoArray),
@@ -31,9 +32,9 @@ class Home extends Component {
     if (!this.props.isUser) {
     //checks to see if user is logged in and returns username if user exists...
       const user = await isSignedIn();
-      // if (user) {
-      //   this.props.handleLogIn(user);
-      // }
+      if (user) {
+        this.props.handleLogIn(user);
+      }
     }
   }
 

@@ -12,6 +12,7 @@ exports[`<Edit/> conditional render of edit vs. save works properly 1`] = `
         nice typeface
       </p>
       <button
+        className="test1"
         onClick={[Function]}
       >
         EDIT
@@ -19,6 +20,7 @@ exports[`<Edit/> conditional render of edit vs. save works properly 1`] = `
     </div>
     <div>
       <button
+        className="test3"
         onClick={[Function]}
       >
         DELETE
@@ -42,6 +44,7 @@ exports[`<Edit/> conditional render of edit vs. save works properly 2`] = `
         value="nice typeface"
       />
       <button
+        className="test2"
         onClick={[Function]}
       >
         SAVE
@@ -49,6 +52,7 @@ exports[`<Edit/> conditional render of edit vs. save works properly 2`] = `
     </div>
     <div>
       <button
+        className="test3"
         onClick={[Function]}
       >
         DELETE
@@ -79,6 +83,7 @@ exports[`<Edit/> conditional render of editing form vs. redirect works properly 
         nice typeface
       </p>
       <button
+        className="test1"
         onClick={[Function]}
       >
         EDIT
@@ -86,6 +91,7 @@ exports[`<Edit/> conditional render of editing form vs. redirect works properly 
     </div>
     <div>
       <button
+        className="test3"
         onClick={[Function]}
       >
         DELETE
@@ -107,6 +113,7 @@ exports[`<Edit/> matches the snapshot 1`] = `
         nice typeface
       </p>
       <button
+        className="test1"
         onClick={[Function]}
       >
         EDIT
@@ -114,6 +121,7 @@ exports[`<Edit/> matches the snapshot 1`] = `
     </div>
     <div>
       <button
+        className="test3"
         onClick={[Function]}
       >
         DELETE
@@ -137,6 +145,7 @@ exports[`<Edit/> shows controlled input value correctly 1`] = `
         value="weird lettering"
       />
       <button
+        className="test2"
         onClick={[Function]}
       >
         SAVE
@@ -144,6 +153,7 @@ exports[`<Edit/> shows controlled input value correctly 1`] = `
     </div>
     <div>
       <button
+        className="test3"
         onClick={[Function]}
       >
         DELETE

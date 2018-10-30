@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { uploadChanges, deletePhoto } from '../utilities/api';
 
 
 class Edit extends Component {
@@ -22,31 +23,16 @@ class Edit extends Component {
 
   saveChanges = async () => {
     const { update } = this.state;
-    const change = await this.uploadChanges(update);
+    const change = await uploadChanges(update);
     this.setState(() => ({ editing : false }));
   }
-
-  //factor out this api function
-  uploadChanges = async(update, error) => {
-    const { image } = this.state
-    const newNotes = await axios.post(`/uploadChange/${image}`, { 'notes' : update })
-      .catch(error);
-    return newNotes.data;
-  }
-
+  
   removePhoto = async (error) => {
     const { image } = this.state;
-    const remove = await this.deletePhoto(image);
+    const remove = await deletePhoto(image);
     this.setState(() => ({ deleted : true }));
   }
-
-  //factor out this api function
-  deletePhoto = async (image, error) => {
-    const trash = await axios.delete(`/delete/${image}`)
-      .catch(error);
-    return trash.data;
-  }
-
+  
   render () {
     const { update, editing, deleted } = this.state;
     
@@ -58,19 +44,19 @@ class Edit extends Component {
               {!editing 
                 ? <div className='row'> 
                     <p>{update}</p>
-                    <button onClick={this.handleClick}>
+                    <button className='test1' onClick={this.handleClick}>
                       EDIT
                     </button>
                   </div>
                 : <div className='row'>
                     <input type='text' value={this.state.update} onChange={this.handleChange}/>
-                    <button onClick={this.saveChanges}>
+                    <button className='test2' onClick={this.saveChanges}>
                       SAVE
                     </button>
                   </div>
               }
               <div>
-                <button onClick={this.removePhoto}>
+                <button className='test3' onClick={this.removePhoto}>
                   DELETE
                 </button> 
               </div>

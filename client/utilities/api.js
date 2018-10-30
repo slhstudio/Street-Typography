@@ -12,3 +12,15 @@ export async function findAllPhotos (error) {
   return result;
 }
 
+export async function uploadChanges (update, error) {
+  const { image } = this.state
+  const newNotes = await axios.post(`/uploadChange/${image}`, { 'notes' : update })
+    .catch(error);
+  return newNotes.data;
+}
+
+export async function deletePhoto(image, error) {
+  const trash = await axios.delete(`/delete/${image}`)
+    .catch(error);
+  return trash.data;
+}
