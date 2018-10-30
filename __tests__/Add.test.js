@@ -2,24 +2,15 @@ import React from 'react';
 import AddComponent from '../client/components/Add';
 import { shallow } from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import * as axios from 'axios';
-
-jest.mock('axios');
 
 describe('<Add/>', () => {
   it ('renders and displays properly if there is no user', () => {
     const wrapper = shallow(<AddComponent isUser={false}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
-    // expect(wrapper.find('p').exists()).toBe(true);
-    // expect(wrapper.find('p').text()).toBe('If you would like to add photos, please log in.');
   });
   it ('renders and displays properly if there IS a user', () => {
     const wrapper = shallow(<AddComponent isUser={true}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
-    // expect(wrapper.find('form').exists());
-    // expect(wrapper.find('Input')).toHaveLength(5);
-    // expect(wrapper.find('button').exists()).toBe(true);
-    // expect(wrapper.find('button').text()).toBe('UPLOAD');
   });
   it('shows controlled form values correctly', () => {
     const wrapper = shallow(<AddComponent isUser={true}/>);
@@ -32,35 +23,30 @@ describe('<Add/>', () => {
       }
     });
     expect(toJSON(wrapper)).toMatchSnapshot();
-    // const notesInput = wrapper.find('form').childAt(1);
-    // expect(notesInput.props().value).toBe('description goes here');
-    // const addressInput = wrapper.find('form').childAt(2);
-    // expect(addressInput.props().value).toBe('New York, NY USA');
-    // const lngInput = wrapper.find('form').childAt(3);
-    // expect(lngInput.props().value).toBe(-74.0059728);
-    // const latInput = wrapper.find('form').childAt(4);
-    // expect(latInput.props().value).toBe(40.7127753);
   })
   it('handles conditional rendering correctly', () => {
     const wrapper = shallow(<AddComponent isUser={true}/>);
     wrapper.setState({ photoName : '' });
     expect(toJSON(wrapper)).toMatchSnapshot();
-    //expect(wrapper.find('form').exists()).toBe(true);
     wrapper.setState({ photoName : 'xyz' });
     expect(toJSON(wrapper)).toMatchSnapshot();
-    //expect(wrapper.find('Redirect').exists()).toBe(true);
   })
-  it('handles axios promise correctly', async () => {
-    // const wrapper = shallow(<AddComponent isUser={true}/>);
-    // wrapper.setState({ 
-    //   notes : 'description goes here', 
-    //   location : {
-    //     address : 'New York, NY USA', 
-    //     longitude : -74.0059728, 
-    //     latitude : 40.7127753
-    //   }
-    // });
-    const result = await axios.post.mockImplementation(() => Promise.resolve({data: {photoname: 'xyz'}}));
-    expect(result.data.photoname).toBe('xyz');
+  it('calls method on click',  async () => {
+    const wrapper = shallow(<AddComponent isUser={true}/>);
+    const handleSubmit = await jest.fn();
+    wrapper.find('.test4').simulate('submit');
+    expect(handleSubmit).toHaveBeenCalled;
   })
 });
+
+//interesting comment: 
+// "1. shallow-render it, and assert on the presence of the two inputs and the button
+// 2. shallow-render it, and assert that the root is a <form> with an "onSubmit" prop that has a function
+// 3. pass in a spy for login, and then unit-test the function on the prop and assert that it calls your spy with the right arguments.
+
+// What further testing is needed? In no way should you be trying to write tests that test React's "onSubmit" functionality, or of browsers' submit behavior - that's the job of the React team, or the browser implementors, respectively."
+
+
+
+
+ 

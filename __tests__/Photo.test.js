@@ -9,9 +9,7 @@ describe('<Photo/>', () => {
   it ('conditional render of loading vs. loaded works properly', () => {
     // const wrapper = shallow(<PhotoComponent />);
     // expect(toJSON(wrapper)).toMatchSnapshot();
-    //       // expect(wrapper.find('Loading').exists()).toBe(true);
     // wrapper.setState({ loading : false});
     // expect(toJSON(wrapper)).toMatchSnapshot();
-         // expect(wrapper.find('PhotoSolo').exists()).toBe(true);
   });
 });

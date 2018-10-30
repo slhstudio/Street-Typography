@@ -44,6 +44,7 @@ exports[`<Add/> handles conditional rendering correctly 1`] = `
       value=""
     />
     <button
+      className="test4"
       type="submit"
     >
       UPLOAD
@@ -57,58 +58,6 @@ exports[`<Add/> handles conditional rendering correctly 2`] = `
   push={false}
   to="photo/xyz"
 />
-`;
-
-exports[`<Add/> handles place change correctly 1`] = `
-<div>
-  <form
-    onSubmit={[Function]}
-  >
-    <Input
-      accept="image/gif, image/png, image/jpeg"
-      handleChange={[Function]}
-      name="image"
-      required={true}
-      type="file"
-    />
-    <Input
-      handleChange={[Function]}
-      name="notes"
-      placeholder="Add some notes here"
-      type="text"
-      value=""
-    />
-    <Input
-      handleChange={[Function]}
-      name="address"
-      placeholder="Address (or closest guess)"
-      required={true}
-      type="text"
-      value=""
-    />
-    <Input
-      handleChange={[Function]}
-      name="longitude"
-      placeholder="Longitude"
-      required={true}
-      type="hidden"
-      value=""
-    />
-    <Input
-      handleChange={[Function]}
-      name="latitude"
-      placeholder="Latitude"
-      required={true}
-      type="hidden"
-      value=""
-    />
-    <button
-      type="submit"
-    >
-      UPLOAD
-    </button>
-  </form>
-</div>
 `;
 
 exports[`<Add/> renders and displays properly if there IS a user 1`] = `
@@ -155,6 +104,7 @@ exports[`<Add/> renders and displays properly if there IS a user 1`] = `
       value=""
     />
     <button
+      className="test4"
       type="submit"
     >
       UPLOAD
@@ -215,6 +165,7 @@ exports[`<Add/> shows controlled form values correctly 1`] = `
       value={40.7127753}
     />
     <button
+      className="test4"
       type="submit"
     >
       UPLOAD

@@ -23,12 +23,14 @@ class Add extends Component {
       if (user) {
         this.props.handleLogIn(user);
       }
-    } else {
+    } 
+    
+    if (this.props.isUser) {
         const addressInput = document.getElementById('address');
         const dropdown = new google.maps.places.Autocomplete(addressInput);
 
         //this fires when a place is selected in dropdown
-        dropdown.addListener('place_changed', () => {;
+        dropdown.addListener('place_changed', () => {
           const place = dropdown.getPlace();
         
           if (place) {
@@ -139,7 +141,7 @@ class Add extends Component {
                 handleChange={this.onChange}
                 required
               /> 
-              <button type='submit'>
+              <button className='test4' type='submit'>
                 UPLOAD
               </button>
             </form>

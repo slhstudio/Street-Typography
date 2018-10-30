@@ -21,15 +21,10 @@ describe('<Input/>', () => {
   it ('matches snapshot', () => {
     const wrapper = shallow(<Input {...fakeProps}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
-    //expect(wrapper.find('input').exists()).toBe(true);
   });
   it ('updates controlled input values correctly', () => {
     const wrapper = shallow(<Input {...fakeProps}/>);
     wrapper.setProps({...newProps});
     expect(toJSON(wrapper)).toMatchSnapshot();
-    // const inputProps = wrapper.find('input').props();
-    // expect (inputProps.name).toBe('notes');
-    // expect (inputProps.placeholder).toBe('Add some notes here');
-    // expect (inputProps.value).toBe('neon!');
   });
 });

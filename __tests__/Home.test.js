@@ -5,7 +5,6 @@ import { findAllPhotos as mockFindAllPhotos, isSignedIn as mockIsSignedIn} from 
 import toJSON from 'enzyme-to-json';
 
 
-
 jest.mock('../client/utilities/api', () => {
   const allPhotos = [{photo: 'photo1'}, {photo: 'photo2'}]
   const user = 'Sarah';
@@ -29,7 +28,6 @@ describe('<Home/>', () => {
     const data = await mockFindAllPhotos();
     expect(data).toEqual({data: [{photo: 'photo1'}, {photo: 'photo2'}]})
     expect(mockFindAllPhotos).toHaveBeenCalledTimes(2);
-    // expect(mockIsSignedIn).toHaveBeenCalledTimes(1);
   });
   it('gets user', async () => {
     expect.assertions(1);

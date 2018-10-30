@@ -24,3 +24,5 @@ export async function deletePhoto(image, error) {
     .catch(error);
   return trash.data;
 }
+
+
