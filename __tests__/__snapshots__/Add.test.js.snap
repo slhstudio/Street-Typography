@@ -44,7 +44,6 @@ exports[`<Add/> handles conditional rendering correctly 1`] = `
       value=""
     />
     <button
-      className="test4"
       type="submit"
     >
       UPLOAD
@@ -104,7 +103,6 @@ exports[`<Add/> renders and displays properly if there IS a user 1`] = `
       value=""
     />
     <button
-      className="test4"
       type="submit"
     >
       UPLOAD
@@ -165,7 +163,6 @@ exports[`<Add/> shows controlled form values correctly 1`] = `
       value={40.7127753}
     />
     <button
-      className="test4"
       type="submit"
     >
       UPLOAD

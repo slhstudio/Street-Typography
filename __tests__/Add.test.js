@@ -1,7 +1,18 @@
 import React from 'react';
 import AddComponent from '../client/components/Add';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import toJSON from 'enzyme-to-json';
+import { submitPhotos as mockSubmitPhotos} from '../client/utilities/api';
+
+
+const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
+
+jest.mock('../client/utilities/api', () => {
+  return {
+    submitPhotos: jest.fn(() => Promise.resolve('updated'))
+  }
+})
+
 
 describe('<Add/>', () => {
   it ('renders and displays properly if there is no user', () => {
@@ -31,12 +42,14 @@ describe('<Add/>', () => {
     wrapper.setState({ photoName : 'xyz' });
     expect(toJSON(wrapper)).toMatchSnapshot();
   })
-  it('calls method on click',  async () => {
-    const wrapper = shallow(<AddComponent isUser={true}/>);
-    const handleSubmit = await jest.fn();
-    wrapper.find('.test4').simulate('submit');
-    expect(handleSubmit).toHaveBeenCalled;
-  })
+  //to run this test, comment out code in componentDidMount (doesn't like Google stuff) and e.preventDefault in handleSubmit.
+  // it('calls api function and changes state ',  async () => {
+  //   const wrapper = shallow(<AddComponent isUser={true}/>);
+  //   wrapper.instance().handleSubmit();
+  //   await wait();
+  //   expect(mockSubmitPhotos).toHaveBeenCalledTimes(1);
+  //   expect(wrapper.state('photoName')).toBe('updated');
+  // })
 });
 
 //interesting comment: 

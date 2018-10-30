@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from './Input';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { isSignedIn } from '../utilities/api'
+import { isSignedIn, submitPhotos } from '../utilities/api'
 
 class Add extends Component {
   state = {
@@ -87,10 +87,10 @@ class Add extends Component {
     formData.append('location[coordinates][0]', longitude);
     formData.append('location[coordinates][1]', latitude);
 
-    const result = await axios.post('/addPhoto', formData)
+    const result = await submitPhotos(formData)
       .catch(error);
       
-    this.setState(() => ({ photoName: result.data }));
+    this.setState(() => ({ photoName: result }));
   }
    
   render () {
@@ -141,7 +141,7 @@ class Add extends Component {
                 handleChange={this.onChange}
                 required
               /> 
-              <button className='test4' type='submit'>
+              <button type='submit'>
                 UPLOAD
               </button>
             </form>

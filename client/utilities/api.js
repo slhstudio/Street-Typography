@@ -9,7 +9,14 @@ export async function isSignedIn (error) {
 export async function findAllPhotos (error) {
   const result = await axios.get('/findAllPhotos')
     .catch(error);
-  return result;
+    return result;
+  }
+  
+export async function submitPhotos(data, error) {
+  const add = await axios.post('/addPhoto', data)
+    .catch(error);
+    console.log(add.data);
+  return add.data;
 }
 
 export async function uploadChanges (update, error) {
@@ -24,5 +31,4 @@ export async function deletePhoto(image, error) {
     .catch(error);
   return trash.data;
 }
-
 
