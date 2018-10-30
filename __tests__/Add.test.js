@@ -2,6 +2,9 @@ import React from 'react';
 import AddComponent from '../client/components/Add';
 import { shallow } from 'enzyme';
 import toJSON from 'enzyme-to-json';
+import * as axios from 'axios';
+
+jest.mock('axios');
 
 describe('<Add/>', () => {
   it ('renders and displays properly if there is no user', () => {
@@ -46,5 +49,18 @@ describe('<Add/>', () => {
     wrapper.setState({ photoName : 'xyz' });
     expect(toJSON(wrapper)).toMatchSnapshot();
     //expect(wrapper.find('Redirect').exists()).toBe(true);
+  })
+  it('handles axios promise correctly', async () => {
+    // const wrapper = shallow(<AddComponent isUser={true}/>);
+    // wrapper.setState({ 
+    //   notes : 'description goes here', 
+    //   location : {
+    //     address : 'New York, NY USA', 
+    //     longitude : -74.0059728, 
+    //     latitude : 40.7127753
+    //   }
+    // });
+    const result = await axios.post.mockImplementation(() => Promise.resolve({data: {photoname: 'xyz'}}));
+    expect(result.data.photoname).toBe('xyz');
   })
 });

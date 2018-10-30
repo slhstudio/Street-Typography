@@ -27,10 +27,9 @@ class Add extends Component {
         const addressInput = document.getElementById('address');
         const dropdown = new google.maps.places.Autocomplete(addressInput);
 
-        //this fires when place is selected in dropdown
+        //this fires when a place is selected in dropdown
         dropdown.addListener('place_changed', () => {;
           const place = dropdown.getPlace();
-          console.log(place);
         
           if (place) {
             this.setState( prevState => {
