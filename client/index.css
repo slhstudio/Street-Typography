@@ -1,4 +1,4 @@
-* {
+/* * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -12,9 +12,9 @@ body {
   max-width: 1200px;
   height: 100vh;
   margin: 0 auto;
-}
+} */
 
-ul {
+/* ul {
   padding: 0px;
 }
 
@@ -25,9 +25,9 @@ li {
 a {
   text-decoration: none;
   color: rgba(10, 196, 50, 0.952);
-}
+} */
 
-.nav {
+/* .nav {
   display: flex;
 }
 
@@ -51,7 +51,7 @@ a {
 .nav li:last-child a{
   color:white;
   margin-left: 2em;
-}
+} */
 
 /*LogIn Component*/
 
