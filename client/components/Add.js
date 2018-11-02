@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import Input from './Input';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { isSignedIn, submitPhotos } from '../utilities/api';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const StyledForm = styled.form.attrs({
+  className: 'form'
+})` 
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+`;
+
+const StyledButton = styled.button`
+  font-size: 1.5rem; 
+  border: none;
+  padding: 1em;
+  margin: 1.5em 30% 1.5em 30%;
+  background: salmon;
+  border-radius: 5px;
+`;
 
 class Add extends Component {
   static propTypes = {
@@ -108,7 +125,7 @@ class Add extends Component {
       <div>
         { !this.props.isUser
           ? <p>If you would like to add photos, please log in.</p>
-          : <form onSubmit={this.handleSubmit}>
+          : <StyledForm onSubmit={this.handleSubmit}>
               <Input 
                 type={'file'}
                 name={'image'}
@@ -147,10 +164,10 @@ class Add extends Component {
                 handleChange={this.onChange}
                 required
               /> 
-              <button type='submit'>
+              <StyledButton type='submit'>
                 UPLOAD
-              </button>
-            </form>
+              </StyledButton>
+            </StyledForm>
         }
         </div>
     )

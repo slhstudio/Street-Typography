@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactRouter from 'react-router-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './Nav';
 import Home from './Home';
@@ -7,22 +6,31 @@ import Add from './Add';
 import Photo from './Photo';
 import Mine from './Mine';
 import LogIn from './Login';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 const theme = {
   black: '#393939',
   green:  'rgba(10, 196, 50, 0.952)',
-  maxWidth: '1200px'
+  maxWidthOuter: '1200px',
+  maxWidthInner: '1000px'
 };
 
-const StyledContainer = styled.div`
-max-width: 1200px;
-height: 100vh;
-margin: 0 auto;
-  background: lightblue;
+const StyledContainer = styled.div.attrs({
+  className: 'outer_container'
+})`
+  max-width: ${props => props.theme.maxWidthOuter};
   color: ${props => props.theme.black};
+  margin: 0 auto;
+  height: 100vh;
 `;
 
+const StyledInner = styled.div.attrs({
+  className: 'inner'
+})`
+  max-width: ${props => props.theme.maxWidthInner};
+  margin: 0 auto;
+  padding: 0 3em 0 3em;
+`;
 
 class App extends Component {
  state = {
@@ -52,32 +60,33 @@ class App extends Component {
                 name={username}
                 isUser={isAuthed}
               />
-              <Switch>
-                <Route 
-                  exact path='/' 
-                  render={(props) => <Home {...props} isUser={isAuthed} handleLogIn={this.setLogIn} />}
-                />
-                <Route 
-                  path ='/add' 
-                  render={() => <Add isUser={isAuthed} handleLogIn={this.setLogIn}/>}
-                />
-                <Route 
-                  path = '/mine' 
-                  render={() => <Mine isUser={isAuthed} handleLogIn={this.setLogIn}/>}
-                />
-                <Route 
-                  path='/photo/:photo' 
-                  render={(props) => <Photo {...props} isUser={isAuthed} name={username} handleLogIn={this.setLogIn}/>}
-                />
-                <Route 
-                  path='/logIn' 
-                  render={() => <LogIn isUser={isAuthed} handleLogIn={this.setLogIn}/>}
-                />
-              </Switch>
+              <StyledInner>
+                <Switch>
+                  <Route 
+                    exact path='/' 
+                    render={(props) => <Home {...props} isUser={isAuthed} handleLogIn={this.setLogIn} />}
+                  />
+                  <Route 
+                    path ='/add' 
+                    render={() => <Add isUser={isAuthed} handleLogIn={this.setLogIn}/>}
+                  />
+                  <Route 
+                    path = '/mine' 
+                    render={() => <Mine isUser={isAuthed} handleLogIn={this.setLogIn}/>}
+                  />
+                  <Route 
+                    path='/photo/:photo' 
+                    render={(props) => <Photo {...props} isUser={isAuthed} name={username} handleLogIn={this.setLogIn}/>}
+                  />
+                  <Route 
+                    path='/logIn' 
+                    render={() => <LogIn isUser={isAuthed} handleLogIn={this.setLogIn}/>}
+                  />
+                </Switch>
+              </StyledInner>
             </StyledContainer>
           </Router>
         </ThemeProvider>
-      
     )
   }
 }

@@ -3,28 +3,37 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const NavList = styled.ul`
+const NavList = styled.ul.attrs({
+  className: 'navlist'
+})`
   display: flex;
+  padding-top: 1em;
+  margin: 0 3em 0 3em;
+  
   .active {
     font-weight: bold;
   }
   li {
-    margin-right: 1em;
-    margin-left: 1em;
+    margin: 0 1em 0 1em;
+  }
+  a {
+    color: forestgreen;
   }
   li:last-child {
     margin-left: auto
+    a {
+      color: white;
+      margin-left: 2em;
+    }
   }
-  .greeting {
-    color: darkcyan;
-    display: flex;
-    flex-direction: row;
-  }
-  /*nest this one with sass*/
-  .nav li:last-child a{
-    color:white;
-    margin-left: 2em;
-  }
+`;
+
+const Greeting = styled.div.attrs({
+  className: 'greeting'
+})`
+  color: darkcyan;
+  display: flex;
+  flex-direction: row;
 `;
 
 const Nav = (props) => {
@@ -53,12 +62,12 @@ const Nav = (props) => {
           ? <NavLink activeClassName='active' to='/logIn'>
               {props.logged}
             </NavLink>
-          : <div className='greeting'>
+          : <Greeting {...props}>
               Hi, {props.name}!
               <a href='/auth/logout'>
                 {props.logged}
               </a>
-            </div>
+            </Greeting>
           }
         </li>
       </NavList>

@@ -1,21 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
+const StyledInput = styled.input`
+  border: .2em solid black;
+  padding: 2em;
+  margin: 1em 20% 1em 20%;
+`;
 
 const Input = (props) => {
-    return (
-      <div>
-        <input
-          id={props.name}
-          type={props.type}
-          name={props.name}
-          accept={props.accept}
-          placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.handleChange}
-        />
-      </div>
-    )
+  return (
+    <StyledInput
+      id={props.name}
+      type={props.type}
+      name={props.name}
+      accept={props.accept}
+      placeholder={props.placeholder}
+      value={props.value}
+      onChange={props.handleChange}
+    />
+  )
 }
 
 Input.propTypes = {

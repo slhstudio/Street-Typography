@@ -1,6 +1,6 @@
 import React from 'react';
 import App from './App';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -11,13 +11,16 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
+    background: lightblue;
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
+    line-height: 2;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
   }
   ul {
-    padding: 0px;
+    padding: 0;
+    margin: 0;
   }
   li {
     list-style-type: none;
