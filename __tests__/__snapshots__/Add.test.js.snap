@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Add/> handles conditional rendering correctly 1`] = `
+exports[`<Add /> handles conditional rendering correctly 1`] = `
 <div>
-  <form
+  <AddForm
     onSubmit={[Function]}
   >
     <Input
@@ -43,25 +43,25 @@ exports[`<Add/> handles conditional rendering correctly 1`] = `
       type="hidden"
       value=""
     />
-    <button
+    <styled.button
       type="submit"
     >
       UPLOAD
-    </button>
-  </form>
+    </styled.button>
+  </AddForm>
 </div>
 `;
 
-exports[`<Add/> handles conditional rendering correctly 2`] = `
+exports[`<Add /> handles conditional rendering correctly 2`] = `
 <Redirect
   push={false}
   to="photo/xyz"
 />
 `;
 
-exports[`<Add/> renders and displays properly if there IS a user 1`] = `
+exports[`<Add /> renders and displays properly if there IS a user 1`] = `
 <div>
-  <form
+  <AddForm
     onSubmit={[Function]}
   >
     <Input
@@ -102,16 +102,16 @@ exports[`<Add/> renders and displays properly if there IS a user 1`] = `
       type="hidden"
       value=""
     />
-    <button
+    <styled.button
       type="submit"
     >
       UPLOAD
-    </button>
-  </form>
+    </styled.button>
+  </AddForm>
 </div>
 `;
 
-exports[`<Add/> renders and displays properly if there is no user 1`] = `
+exports[`<Add /> renders and displays properly if there is no user 1`] = `
 <div>
   <p>
     If you would like to add photos, please log in.
@@ -119,9 +119,9 @@ exports[`<Add/> renders and displays properly if there is no user 1`] = `
 </div>
 `;
 
-exports[`<Add/> shows controlled form values correctly 1`] = `
+exports[`<Add /> shows controlled form values correctly 1`] = `
 <div>
-  <form
+  <AddForm
     onSubmit={[Function]}
   >
     <Input
@@ -162,11 +162,11 @@ exports[`<Add/> shows controlled form values correctly 1`] = `
       type="hidden"
       value={40.7127753}
     />
-    <button
+    <styled.button
       type="submit"
     >
       UPLOAD
-    </button>
-  </form>
+    </styled.button>
+  </AddForm>
 </div>
 `;

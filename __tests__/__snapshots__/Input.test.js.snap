@@ -1,25 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Input/> matches snapshot 1`] = `
-<div>
-  <input
-    id="notes"
-    name="notes"
-    placeholder="Add some notes here"
-    type="text"
-    value="neon!"
-  />
-</div>
+<styled.input
+  id="notes"
+  name="notes"
+  onChange={[MockFunction]}
+  placeholder="Add some notes here"
+  type="text"
+  value="neon!"
+/>
 `;
 
 exports[`<Input/> updates controlled input values correctly 1`] = `
-<div>
-  <input
-    id="address"
-    name="address"
-    placeholder="Add address"
-    type="text"
-    value="Portland, Maine"
-  />
-</div>
+<styled.input
+  id="address"
+  name="address"
+  onChange={[MockFunction]}
+  placeholder="Add address"
+  type="text"
+  value="Portland, Maine"
+/>
 `;

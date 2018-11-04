@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
+import AddForm from './AddForm';
 import Input from './Input';
 import { Redirect } from 'react-router-dom';
 import { isSignedIn, submitPhotos } from '../utilities/api';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledForm = styled.form.attrs({
-  className: 'form'
-})` 
-  display: flex;
-  flex-direction: column;
-  margin: 5%;
-`;
+
 
 const StyledButton = styled.button`
   font-size: 1.5rem; 
@@ -125,7 +120,7 @@ class Add extends Component {
       <div>
         { !this.props.isUser
           ? <p>If you would like to add photos, please log in.</p>
-          : <StyledForm onSubmit={this.handleSubmit}>
+          : <AddForm onSubmit={this.handleSubmit}>
               <Input 
                 type={'file'}
                 name={'image'}
@@ -167,7 +162,7 @@ class Add extends Component {
               <StyledButton type='submit'>
                 UPLOAD
               </StyledButton>
-            </StyledForm>
+            </AddForm>
         }
         </div>
     )

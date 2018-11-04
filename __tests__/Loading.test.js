@@ -6,7 +6,7 @@ const defaultProps = {
   text : 'loading'
 }
 
-describe('<Loading/>', () => {
+describe('<Loading {...props}/>', () => {
   it ('renders and displays properly', () => {
     const wrapper = shallow(<LoadingComponent text={defaultProps.text}/>);
     expect(wrapper.find('p').exists()).toBe(true);

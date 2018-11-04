@@ -59,8 +59,8 @@ describe('<Edit/>', () => {
     wrapper.find('.test2').simulate('click');
     await wait();
     expect(mockUploadChanges).toHaveBeenCalledTimes(1);
-    expect(mockUploadChanges).toHaveBeenCalledWith(wrapper.props().info); //need mount to get these props
-    expect(mockUploadChanges).toHaveBeenCalledWith(wrapper.state('update'));
+    expect(mockUploadChanges).toHaveBeenCalledWith(wrapper.props().info, wrapper.props().photo); //need mount to get these props
+    expect(mockUploadChanges).toHaveBeenCalledWith(wrapper.state('update'), wrapper.state('image'));
     expect(wrapper.state('editing')).toBe(false);
   });
   it ('changes state on delete button click and calls delete function', async () => {

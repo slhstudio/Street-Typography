@@ -40,6 +40,7 @@ exports[`<Edit/> conditional render of edit vs. save works properly 2`] = `
     >
       <input
         onChange={[Function]}
+        placeholder="Add some notes"
         type="text"
         value="nice typeface"
       />
@@ -141,6 +142,7 @@ exports[`<Edit/> shows controlled input value correctly 1`] = `
     >
       <input
         onChange={[Function]}
+        placeholder="Add some notes"
         type="text"
         value="weird lettering"
       />

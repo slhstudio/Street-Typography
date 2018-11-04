@@ -8,13 +8,15 @@ const fakeProps = {
   name : 'notes',
   placeholder : 'Add some notes here',
   value : 'neon!',
+  handleChange : jest.fn()
 }
 
 const newProps = {
   type : 'text',
   name : 'address',
   placeholder : 'Add address',
-  value : 'Portland, Maine'
+  value : 'Portland, Maine',
+  handleChange : jest.fn()
 }
 
 describe('<Input/>', () => {

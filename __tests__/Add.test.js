@@ -7,24 +7,27 @@ import { submitPhotos as mockSubmitPhotos} from '../client/utilities/api';
 
 const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
+const fakeProps = {
+  handleLogIn: jest.fn()
+}
+
 jest.mock('../client/utilities/api', () => {
   return {
     submitPhotos: jest.fn(() => Promise.resolve('updated'))
   }
 })
 
-
-describe('<Add/>', () => {
+describe('<Add />', () => {
   it ('renders and displays properly if there is no user', () => {
-    const wrapper = shallow(<AddComponent isUser={false}/>);
+    const wrapper = shallow(<AddComponent isUser={false}{...fakeProps}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
   });
   it ('renders and displays properly if there IS a user', () => {
-    const wrapper = shallow(<AddComponent isUser={true}/>);
+    const wrapper = shallow(<AddComponent isUser={true}{...fakeProps}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
   });
   it('shows controlled form values correctly', () => {
-    const wrapper = shallow(<AddComponent isUser={true}/>);
+    const wrapper = shallow(<AddComponent isUser={true}{...fakeProps}/>);
     wrapper.setState({ 
       notes : 'description goes here', 
       location : {
@@ -36,7 +39,7 @@ describe('<Add/>', () => {
     expect(toJSON(wrapper)).toMatchSnapshot();
   })
   it('handles conditional rendering correctly', () => {
-    const wrapper = shallow(<AddComponent isUser={true}/>);
+    const wrapper = shallow(<AddComponent isUser={true}{...fakeProps}/>);
     wrapper.setState({ photoName : '' });
     expect(toJSON(wrapper)).toMatchSnapshot();
     wrapper.setState({ photoName : 'xyz' });
@@ -44,7 +47,7 @@ describe('<Add/>', () => {
   })
   //to run this test, comment out code in componentDidMount (doesn't like Google stuff) and e.preventDefault in handleSubmit.
   // it('calls api function and changes state ',  async () => {
-  //   const wrapper = shallow(<AddComponent isUser={true}/>);
+  //   const wrapper = shallow(<AddComponent isUser={true}{...fakeProps}/>);
   //   wrapper.instance().handleSubmit();
   //   await wait();
   //   expect(mockSubmitPhotos).toHaveBeenCalledTimes(1);

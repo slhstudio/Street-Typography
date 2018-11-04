@@ -17,6 +17,12 @@ export async function findMine (error) {
     .catch(error);
   return result;
 }
+
+export async function findThisPhoto(photo, error) {
+  const result = await axios.get(`/findphoto/${photo}`)
+    .catch(error);
+  return result.data;
+}
   
 export async function submitPhotos(data, error) {
   const add = await axios.post('/addPhoto', data)

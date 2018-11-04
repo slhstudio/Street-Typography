@@ -22,7 +22,7 @@ const PhotoSolo = (props) => {
 
 PhotoSolo.propTypes = {
   name: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   map: PropTypes.string.isRequired,
   notes: PropTypes.string,
   photo: PropTypes.string.isRequired

@@ -6,10 +6,11 @@ exports[`<PhotoSolo/> else only the notes render 1`] = `
 >
   <img
     className="photoSolo"
-    src="/uploads/undefined"
+    src="/uploads/photo1"
   />
   <img
     className="map"
+    src="Paris, Texas"
   />
   <p>
     xyz
@@ -23,25 +24,6 @@ exports[`<PhotoSolo/> if author is same as user, edit form renders 1`] = `
 >
   <img
     className="photoSolo"
-    src="/uploads/undefined"
-  />
-  <img
-    className="map"
-  />
-  <div>
-    <Edit
-      info="xyz"
-    />
-  </div>
-</div>
-`;
-
-exports[`<PhotoSolo/> renders and displays properly 1`] = `
-<div
-  className="photoSoloBox"
->
-  <img
-    className="photoSolo"
     src="/uploads/photo1"
   />
   <img
@@ -50,6 +32,7 @@ exports[`<PhotoSolo/> renders and displays properly 1`] = `
   />
   <div>
     <Edit
+      info="xyz"
       photo="photo1"
     />
   </div>

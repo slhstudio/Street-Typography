@@ -8,8 +8,8 @@ const logged2 = 'Log Out';
 const name = 'Sarah';
 
 describe('<Nav/>', () => {
-  it ('renders and displays properly if there is no a user', () => {
-    const wrapper = shallow(<Nav isUser={false} logged={logged1}/>);
+  it ('renders and displays properly if there is not a user', () => {
+    const wrapper = shallow(<Nav isUser={false} logged={logged1} name={name}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
    });
    it ('renders and displays properly if there IS a user', () => {

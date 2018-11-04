@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Nav/> renders and displays properly if there IS a user 1`] = `
-<ul
-  className="nav"
->
+<styled.ul>
   <li>
     <NavLink
       activeClassName="active"
@@ -33,8 +31,10 @@ exports[`<Nav/> renders and displays properly if there IS a user 1`] = `
     </NavLink>
   </li>
   <li>
-    <div
-      className="row greeting"
+    <styled.div
+      isUser={true}
+      logged="Log Out"
+      name="Sarah"
     >
       Hi, 
       Sarah
@@ -44,15 +44,13 @@ exports[`<Nav/> renders and displays properly if there IS a user 1`] = `
       >
         Log Out
       </a>
-    </div>
+    </styled.div>
   </li>
-</ul>
+</styled.ul>
 `;
 
-exports[`<Nav/> renders and displays properly if there is no a user 1`] = `
-<ul
-  className="nav"
->
+exports[`<Nav/> renders and displays properly if there is not a user 1`] = `
+<styled.ul>
   <li>
     <NavLink
       activeClassName="active"
@@ -90,5 +88,5 @@ exports[`<Nav/> renders and displays properly if there is no a user 1`] = `
       Log In
     </NavLink>
   </li>
-</ul>
+</styled.ul>
 `;

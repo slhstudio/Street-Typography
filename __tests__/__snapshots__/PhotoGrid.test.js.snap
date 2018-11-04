@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<PhotoGrid/> renders and displays properly 1`] = `
-<ul
-  className="photoGrid"
->
+<styled.ul>
   <li
     key="0"
   >
@@ -11,9 +9,8 @@ exports[`<PhotoGrid/> renders and displays properly 1`] = `
       replace={false}
       to="/photo/photo1.png"
     >
-      <img
+      <styled.img
         alt="street typography image: notes1"
-        className="photoItem"
         src="/uploads/photo1.png"
       />
     </Link>
@@ -25,9 +22,8 @@ exports[`<PhotoGrid/> renders and displays properly 1`] = `
       replace={false}
       to="/photo/photo2.png"
     >
-      <img
+      <styled.img
         alt="street typography image: notes2"
-        className="photoItem"
         src="/uploads/photo2.png"
       />
     </Link>
@@ -39,12 +35,11 @@ exports[`<PhotoGrid/> renders and displays properly 1`] = `
       replace={false}
       to="/photo/photo3.png"
     >
-      <img
+      <styled.img
         alt="street typography image: notes3"
-        className="photoItem"
         src="/uploads/photo3.png"
       />
     </Link>
   </li>
-</ul>
+</styled.ul>
 `;

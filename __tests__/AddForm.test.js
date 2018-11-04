@@ -1,16 +1,16 @@
 import React from 'react';
-import LogInComponent from '../client/components/Login';
+import AddForm from '../client/components/AddForm';
 import { shallow } from 'enzyme';
 import toJSON from 'enzyme-to-json';
 
 const fakeProps = {
-  isUser: false,
-  handleLogIn: jest.fn()
+  onSubmit: jest.fn(),
+  children: ['child1', 'child2', 'child3']
 }
 
-describe('<LogIn/>', () => {
+describe('<AddForm/>', () => {
   it ('renders and displays properly', () => {
-    const wrapper = shallow(<LogInComponent {...fakeProps}/>);
+    const wrapper = shallow(<AddForm {...fakeProps}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

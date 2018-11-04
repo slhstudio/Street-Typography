@@ -4,6 +4,10 @@ import { shallow, mount } from 'enzyme';
 import { findAllPhotos as mockFindAllPhotos, isSignedIn as mockIsSignedIn} from '../client/utilities/api'
 import toJSON from 'enzyme-to-json';
 
+const fakeProps = {
+  isUser: false,
+  handleLogIn: jest.fn()
+}
 
 jest.mock('../client/utilities/api', () => {
   const allPhotos = [{photo: 'photo1'}, {photo: 'photo2'}]
@@ -18,7 +22,7 @@ const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount))
 
 describe('<Home/>', () => {
   it ('renders and displays properly', () => {
-    const wrapper = shallow(<HomeComponent isUser={true}/>);
+    const wrapper = shallow(<HomeComponent {...fakeProps}/>);
     expect(toJSON(wrapper)).toMatchSnapshot();
     wrapper.setState({ loading : false});
     expect(toJSON(wrapper)).toMatchSnapshot();
@@ -35,15 +39,11 @@ describe('<Home/>', () => {
     expect(user).toBe('Sarah');
   });
   it('should call function passed in as prop with correct argument', async () => {
-    const mockProps = {
-      isUser: false,
-      handleLogIn : jest.fn()
-    }
-    const wrapper = shallow(<HomeComponent {...mockProps} />);
+    const wrapper = shallow(<HomeComponent {...fakeProps} />);
     wrapper.instance().componentDidMount();
     await wait();
-    expect(mockProps.handleLogIn).toHaveBeenCalledTimes(2);
-    expect(mockProps.handleLogIn).toHaveBeenCalledWith('Sarah');
+    expect(fakeProps.handleLogIn).toHaveBeenCalled();
+    expect(fakeProps.handleLogIn).toHaveBeenCalledWith('Sarah');
   })
 });
 
