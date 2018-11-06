@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { uploadChanges, deletePhoto } from '../utilities/api';
 import PropTypes from 'prop-types';
+import Input from './Input';
+import Button from './Button';
 
 
 class Edit extends Component {
@@ -50,21 +51,34 @@ class Edit extends Component {
               {!editing 
                 ? <div className='row'> 
                     <p>{update}</p>
-                    <button className='test1' onClick={this.handleClick}>
-                      EDIT
-                    </button>
+                    <Button 
+                      data-test='test1' 
+                      onClick={this.handleClick}
+                      text='EDIT'
+                    />
                   </div>
                 : <div className='row'>
-                    <input type='text' value={this.state.update} placeholder='Add some notes' onChange={this.handleChange}/>
-                    <button className='test2' onClick={this.saveChanges}>
-                      SAVE
-                    </button>
+                    <Input 
+                      type='text'
+                      name='notes' 
+                      value={this.state.update} 
+                      placeholder='Add some notes' 
+                      onChange={this.handleChange} 
+                      purpose={'editForm'}
+                    />
+                    <Button 
+                      data-test='test2' 
+                      onClick={this.saveChanges}
+                      text='SAVE'
+                    />
                   </div>
               }
-              <div>
-                <button className='test3' onClick={this.removePhoto}>
-                  DELETE
-                </button> 
+              <div className='row'>
+                <Button 
+                  data-test='test3' 
+                  onClick={this.removePhoto}
+                  text='DELETE'
+                /> 
               </div>
             </div>
         }

@@ -12,7 +12,7 @@ const theme = {
   black: '#393939',
   green:  'rgba(10, 196, 50, 0.952)',
   maxWidthOuter: '1200px',
-  maxWidthInner: '1000px'
+  maxWidthInner: '1000px',
 };
 
 const StyledContainer = styled.div.attrs({

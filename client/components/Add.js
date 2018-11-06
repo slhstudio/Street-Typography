@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import AddForm from './AddForm';
+import Form from './Form';
 import Input from './Input';
 import { Redirect } from 'react-router-dom';
 import { isSignedIn, submitPhotos } from '../utilities/api';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import Button from './Button';
 
-
-
-const StyledButton = styled.button`
-  font-size: 1.5rem; 
-  border: none;
-  padding: 1em;
-  margin: 1.5em 30% 1.5em 30%;
-  background: salmon;
-  border-radius: 5px;
-`;
 
 class Add extends Component {
   static propTypes = {
@@ -120,12 +110,13 @@ class Add extends Component {
       <div>
         { !this.props.isUser
           ? <p>If you would like to add photos, please log in.</p>
-          : <AddForm onSubmit={this.handleSubmit}>
+          : <Form onSubmit={this.handleSubmit}>
               <Input 
                 type={'file'}
                 name={'image'}
                 accept={'image/gif, image/png, image/jpeg'}
-                handleChange={this.onChange}
+                onChange={this.onChange}
+                purpose={'addForm'}
                 required
               />
               <Input
@@ -133,14 +124,16 @@ class Add extends Component {
                 name={'notes'}
                 placeholder={'Add some notes here'}
                 value={this.state.notes}
-                handleChange={this.onChange}
+                onChange={this.onChange}
+                purpose={'addForm'}
               />
               <Input 
                 type={'text'}
                 name={'address'}
                 placeholder={'Address (or closest guess)'}
                 value={this.state.location.address}
-                handleChange={this.onChange}
+                onChange={this.onChange}
+                purpose={'addForm'}
                 required
               />
               <Input 
@@ -148,21 +141,22 @@ class Add extends Component {
                 name={'longitude'}
                 placeholder={'Longitude'}
                 value={this.state.location.longitude}
-                handleChange={this.onChange}
+                onChange={this.onChange}
                 required
-              />
+              /> 
               <Input 
                 type={'hidden'}
                 name={'latitude'}
                 placeholder={'Latitude'}
                 value={this.state.location.latitude}
-                handleChange={this.onChange}
+                onChange={this.onChange}
                 required
               /> 
-              <StyledButton type='submit'>
-                UPLOAD
-              </StyledButton>
-            </AddForm>
+              <Button 
+                type='submit'
+                text='UPLOAD'
+              />
+            </Form>
         }
         </div>
     )
@@ -170,5 +164,3 @@ class Add extends Component {
 }
 
 export default Add;
-
-

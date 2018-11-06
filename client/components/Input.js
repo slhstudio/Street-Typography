@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const StyledInput = styled.input`
-  border: .2em solid black;
-  padding: 2em;
-  margin: 1em 20% 1em 20%;
+  font-size: inherit;
+  border: .2rem solid black;
+  padding: 2rem;
+  ${props => props.purpose ==='addForm' && css`
+    margin: 1em 20% 1em 20%;
+  `}
+  ${props => props.purpose ==='editForm' && css`
+    margin: 1em 1em 1em 0;
+  `}
 `;
 
 const Input = (props) => {
@@ -17,7 +23,8 @@ const Input = (props) => {
       accept={props.accept}
       placeholder={props.placeholder}
       value={props.value}
-      onChange={props.handleChange}
+      onChange={props.onChange}
+      purpose={props.purpose}
       required={props.required}
     />
   )
@@ -29,10 +36,10 @@ Input.propTypes = {
   accept: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  handleChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  purpose: PropTypes.string,
+
 }
-
-
 
 export default Input;
 

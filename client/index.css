@@ -141,6 +141,8 @@ button {
   margin-left: 10px;
 } */
 
+
+
 /*Photo Component*/
 /*put in sass variable to apply always to images:*/
 
@@ -165,4 +167,6 @@ button {
   display: flex;
   flex-direction: row;
 }
+
+
 
