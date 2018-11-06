@@ -45,18 +45,18 @@ describe('<Edit/>', () => {
   it ('handles change on form and updates state', () => {
     const wrapper = shallow(<EditComponent photo={image} info={note}/>);
     wrapper.setState({ editing : true });
-    wrapper.find('input').simulate('change', {target: {value: 'This is edited'}});
+    wrapper.find('Input').simulate('change', {target: {value: 'This is edited'}});
     expect(wrapper.state('update')).toBe('This is edited');
   });
   it ('changes state on edit button click', () => {
     const wrapper = shallow(<EditComponent photo={image} info={note}/>);
-    wrapper.find('.test1').simulate('click');
+    wrapper.find('[data-test="test1"]').simulate('click');
     expect(wrapper.state('editing')).toBe(true);
   });
   it ('changes state on save button click and calls upload function', async () => {
     const wrapper = mount(<EditComponent photo={image} info={note}/>); //don't need context here b/c not rendering router element
     wrapper.setState({ editing : true });
-    wrapper.find('.test2').simulate('click');
+    wrapper.find('[data-test="test2"]').simulate('click');
     await wait();
     expect(mockUploadChanges).toHaveBeenCalledTimes(1);
     expect(mockUploadChanges).toHaveBeenCalledWith(wrapper.props().info, wrapper.props().photo); //need mount to get these props
@@ -66,7 +66,7 @@ describe('<Edit/>', () => {
   it ('changes state on delete button click and calls delete function', async () => {
     const options = new ReactRouterEnzymeContext();
     const wrapper = mount(<EditComponent photo={image} info={note}/>, options.get());
-    wrapper.find('.test3').simulate('click');
+    wrapper.find('[data-test="test3"]').simulate('click');
     await wait();
     expect(mockDeletePhoto).toHaveBeenCalledTimes(1);
     expect(mockDeletePhoto).toHaveBeenCalledWith(wrapper.props().photo); 

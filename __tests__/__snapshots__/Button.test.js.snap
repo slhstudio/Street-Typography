@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button/> renders and displays properly 1`] = `
+<styled.button
+  onClick={[MockFunction]}
+  type="submit"
+>
+  UPLOAD
+</styled.button>
+`;
+
+exports[`<Button/> renders and displays properly 2`] = `
+<styled.button
+  onClick={[MockFunction]}
+  type="submit"
+>
+  SAVE
+</styled.button>
+`;

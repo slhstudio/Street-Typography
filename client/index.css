@@ -55,10 +55,14 @@ a {
 
 /*LogIn Component*/
 
-.loginbox {
+/* .loginbox {
   display: flex;
   align-items: center;
   justify-content: center;
+} */
+.svg {
+  width: 3em;
+  height: 3em
 }
 .button {
   max-width: 20em;
@@ -145,12 +149,12 @@ button {
 
 /*Photo Component*/
 /*put in sass variable to apply always to images:*/
-
+/* 
 .photoSoloBox {
   max-width: 800px;
   margin: 2rem auto;
-}
-.photoSolo {
+} */
+/* .photoSolo {
   max-width: 100%;
   -webkit-box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
@@ -160,7 +164,7 @@ button {
   max-width: 100%;
   -webkit-box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
-}
+} */
 
 /*Edit Component*/
 .row {

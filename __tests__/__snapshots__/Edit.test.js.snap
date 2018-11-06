@@ -11,20 +11,20 @@ exports[`<Edit/> conditional render of edit vs. save works properly 1`] = `
       <p>
         nice typeface
       </p>
-      <button
-        className="test1"
+      <Button
+        data-test="test1"
         onClick={[Function]}
-      >
-        EDIT
-      </button>
+        text="EDIT"
+      />
     </div>
-    <div>
-      <button
-        className="test3"
+    <div
+      className="row"
+    >
+      <Button
+        data-test="test3"
         onClick={[Function]}
-      >
-        DELETE
-      </button>
+        text="DELETE"
+      />
     </div>
   </div>
 </div>
@@ -38,26 +38,28 @@ exports[`<Edit/> conditional render of edit vs. save works properly 2`] = `
     <div
       className="row"
     >
-      <input
+      <Input
+        name="notes"
         onChange={[Function]}
         placeholder="Add some notes"
+        purpose="editForm"
         type="text"
         value="nice typeface"
       />
-      <button
-        className="test2"
+      <Button
+        data-test="test2"
         onClick={[Function]}
-      >
-        SAVE
-      </button>
+        text="SAVE"
+      />
     </div>
-    <div>
-      <button
-        className="test3"
+    <div
+      className="row"
+    >
+      <Button
+        data-test="test3"
         onClick={[Function]}
-      >
-        DELETE
-      </button>
+        text="DELETE"
+      />
     </div>
   </div>
 </div>
@@ -83,20 +85,20 @@ exports[`<Edit/> conditional render of editing form vs. redirect works properly 
       <p>
         nice typeface
       </p>
-      <button
-        className="test1"
+      <Button
+        data-test="test1"
         onClick={[Function]}
-      >
-        EDIT
-      </button>
+        text="EDIT"
+      />
     </div>
-    <div>
-      <button
-        className="test3"
+    <div
+      className="row"
+    >
+      <Button
+        data-test="test3"
         onClick={[Function]}
-      >
-        DELETE
-      </button>
+        text="DELETE"
+      />
     </div>
   </div>
 </div>
@@ -113,20 +115,20 @@ exports[`<Edit/> matches the snapshot 1`] = `
       <p>
         nice typeface
       </p>
-      <button
-        className="test1"
+      <Button
+        data-test="test1"
         onClick={[Function]}
-      >
-        EDIT
-      </button>
+        text="EDIT"
+      />
     </div>
-    <div>
-      <button
-        className="test3"
+    <div
+      className="row"
+    >
+      <Button
+        data-test="test3"
         onClick={[Function]}
-      >
-        DELETE
-      </button>
+        text="DELETE"
+      />
     </div>
   </div>
 </div>
@@ -140,26 +142,28 @@ exports[`<Edit/> shows controlled input value correctly 1`] = `
     <div
       className="row"
     >
-      <input
+      <Input
+        name="notes"
         onChange={[Function]}
         placeholder="Add some notes"
+        purpose="editForm"
         type="text"
         value="weird lettering"
       />
-      <button
-        className="test2"
+      <Button
+        data-test="test2"
         onClick={[Function]}
-      >
-        SAVE
-      </button>
+        text="SAVE"
+      />
     </div>
-    <div>
-      <button
-        className="test3"
+    <div
+      className="row"
+    >
+      <Button
+        data-test="test3"
         onClick={[Function]}
-      >
-        DELETE
-      </button>
+        text="DELETE"
+      />
     </div>
   </div>
 </div>

@@ -12,8 +12,15 @@ const StyledButton = styled.button`
   margin: 1em .5em 1em .5em;
   border: .2rem solid black;
  
-  ${props => props.children === 'UPLOAD' && css`
+  ${props => props.text === 'UPLOAD' && css`
       background: salmon;
+      margin: 1.5em 30% 1.5em 30%;
+      border: none;
+      border-radius: .5em;
+  `}
+
+  ${props => props.text === 'Google' && css`
+      background: none;
       margin: 1.5em 30% 1.5em 30%;
       border: none;
       border-radius: .5em;
@@ -25,7 +32,7 @@ const Button = (props) => {
     <StyledButton 
       type={props.type}
       onClick={props.onClick}
-      isAddForm={props.isAddForm}
+      text={props.text}
     >
       {props.text}
     </StyledButton>
@@ -39,3 +46,9 @@ Button.propTypes = {
 }
 
 export default Button;
+
+{/* <span class="label">Sign in with:</span>
+    <div id="customBtn" class="customGPlusSignIn">
+      <span class="icon"></span>
+      <span class="buttonText">Google</span>
+    </div> */}

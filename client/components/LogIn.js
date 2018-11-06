@@ -1,6 +1,16 @@
 import React, { PureComponent } from 'react';
 import { isSignedIn } from '../utilities/api'
 import PropTypes from 'prop-types';
+import Button from './Button';
+import styled from 'styled-components';
+//import Icon from '../assets/google_icon.svg'; 
+
+
+const StyledLogInBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 class LogIn extends PureComponent {
   static propTypes = {
@@ -20,10 +30,13 @@ class LogIn extends PureComponent {
   
   render () {
     return (
-      <div className='loginbox'>
-        <p> Log in or Sign in with</p>
-        <a href='/auth/google'><button>Google</button></a>
-      </div>
+      <StyledLogInBox>
+        <p> Log in or Sign in with</p>//
+        <a href='/auth/google'>
+         
+          <Button text='Google'/>
+        </a>
+      </StyledLogInBox>
     )
   }
 }
