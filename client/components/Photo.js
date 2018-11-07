@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Loading from './Loading';
 import { isSignedIn, findThisPhoto } from '../utilities/api';
 import PhotoSolo from './PhotoSolo';
 import PropTypes from 'prop-types';
+import secret from '../../config';
 
 class Photo extends Component {
   static propTypes = {
@@ -45,7 +45,7 @@ class Photo extends Component {
   staticMap = ([lng, lat]) => {
     //for testing purposes only: comment out
     //const MAP_KEY = 'xyz'
-    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x200&key=${MAP_KEY}&markers=${lat},${lng}&scale=2`;
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x200&key=${secret.MAP_KEY}&markers=${lat},${lng}&scale=2`;
   }
 
   

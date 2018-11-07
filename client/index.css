@@ -1,4 +1,6 @@
-/* * {
+/* refactored all css into styled components!
+
+* {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -60,11 +62,8 @@ a {
   align-items: center;
   justify-content: center;
 } */
-.svg {
-  width: 3em;
-  height: 3em
-}
-.button {
+
+/* .button {
   max-width: 20em;
   font-size: 1rem;
   background: none;
@@ -72,7 +71,7 @@ a {
   padding: 20px;
   margin-top: 50px;
   text-align: center;
-}
+} */
 
 /* Home Component: photo grid */
 
@@ -167,10 +166,10 @@ button {
 } */
 
 /*Edit Component*/
-.row {
+/* .row {
   display: flex;
   flex-direction: row;
-}
+} */
 
 
-
+/*refactored all css into styled components!*/

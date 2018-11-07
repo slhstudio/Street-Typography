@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 
 const StyledButton = styled.button`
   display: flex;
-  flex-direction: row;
   font-size: inherit;
   justify-content: center;
   padding: 2rem;
@@ -16,14 +15,17 @@ const StyledButton = styled.button`
       background: salmon;
       margin: 1.5em 30% 1.5em 30%;
       border: none;
-      border-radius: .5em;
   `}
 
-  ${props => props.text === 'Google' && css`
-      background: none;
-      margin: 1.5em 30% 1.5em 30%;
+  ${props => props.text === 'Sign in with Google' && css`
+      align-items: center;
+      background: white;
+      margin: 7em 1em 1em 1em;
+      padding: 0 2em 0 1em;
       border: none;
-      border-radius: .5em;
+      &:hover {
+        border: .2rem solid #4285F4;
+      }
   `}
 `;
 
@@ -34,6 +36,7 @@ const Button = (props) => {
       onClick={props.onClick}
       text={props.text}
     >
+      {props.children}
       {props.text}
     </StyledButton>
   )
@@ -46,9 +49,3 @@ Button.propTypes = {
 }
 
 export default Button;
-
-{/* <span class="label">Sign in with:</span>
-    <div id="customBtn" class="customGPlusSignIn">
-      <span class="icon"></span>
-      <span class="buttonText">Google</span>
-    </div> */}

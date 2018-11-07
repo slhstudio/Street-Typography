@@ -4,6 +4,14 @@ import { uploadChanges, deletePhoto } from '../utilities/api';
 import PropTypes from 'prop-types';
 import Input from './Input';
 import Button from './Button';
+import styled, { css } from 'styled-components';
+
+const StyledRow = styled.div.attrs({
+  className: 'row'
+})`
+  display: flex;
+  flex-direction: row;
+`;
 
 
 class Edit extends Component {
@@ -47,17 +55,17 @@ class Edit extends Component {
       <div>
         { deleted
           ? <Redirect to='/mine'/>
-          : <div className='row'> 
+          : <StyledRow> 
               {!editing 
-                ? <div className='row'> 
+                ? <StyledRow> 
                     <p>{update}</p>
                     <Button 
                       data-test='test1' 
                       onClick={this.handleClick}
                       text='EDIT'
                     />
-                  </div>
-                : <div className='row'>
+                  </StyledRow>
+                : <StyledRow>
                     <Input 
                       type='text'
                       name='notes' 
@@ -71,16 +79,16 @@ class Edit extends Component {
                       onClick={this.saveChanges}
                       text='SAVE'
                     />
-                  </div>
+                  </StyledRow>
               }
-              <div className='row'>
+              <div>
                 <Button 
                   data-test='test3' 
                   onClick={this.removePhoto}
                   text='DELETE'
                 /> 
               </div>
-            </div>
+            </StyledRow>
         }
       </div>
     )

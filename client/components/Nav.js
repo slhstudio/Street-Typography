@@ -17,7 +17,7 @@ const NavList = styled.ul.attrs({
     margin: 0 1em 0 1em;
   }
   a {
-    color: forestgreen;
+    color: darkcyan;
   }
   li:last-child {
     margin-left: auto

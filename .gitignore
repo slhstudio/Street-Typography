@@ -2,3 +2,4 @@ node_modules
 public/dist
 variables.env
 public/uploads
+config.js

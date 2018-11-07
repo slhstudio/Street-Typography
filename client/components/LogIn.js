@@ -3,13 +3,20 @@ import { isSignedIn } from '../utilities/api'
 import PropTypes from 'prop-types';
 import Button from './Button';
 import styled from 'styled-components';
-//import Icon from '../assets/google_icon.svg'; 
+import Icon from '../assets/google_icon.png'; 
 
 
-const StyledLogInBox = styled.div`
+const StyledLogInBox = styled.div.attrs({
+  className: 'log in box'
+})`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const StyledLogo = styled.img`
+  width: 3.5em;
+  height: 3.5em;
 `;
 
 class LogIn extends PureComponent {
@@ -31,10 +38,10 @@ class LogIn extends PureComponent {
   render () {
     return (
       <StyledLogInBox>
-        <p> Log in or Sign in with</p>//
         <a href='/auth/google'>
-         
-          <Button text='Google'/>
+          <Button text='Sign in with Google'>
+            <StyledLogo src={Icon}/>
+          </Button>
         </a>
       </StyledLogInBox>
     )

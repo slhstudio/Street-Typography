@@ -3,8 +3,6 @@ require('dotenv').config({ path: 'variables.env' });
 const MAP_KEY = process.env.MAP_KEY;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-//this didn't work:
-//const Dotenv = require('dotenv-webpack');
 
 const config = {
   mode: 'development',
@@ -16,10 +14,22 @@ const config = {
   },
   module: {
     rules: [
-      { test: /\.svg$/, use: 'svg-inline-loader?classPrefix'},
+      //{ test: /\.svg$/, use: 'svg-inline-loader?classPrefix'},
       { test: /\.(js)$/, use: 'babel-loader' },
       { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]},
       { test: /\.(env)$/, use: 'dotenv'},
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
+      }
     ]
   },
   devServer: {
@@ -29,16 +39,8 @@ const config = {
     new HtmlWebpackPlugin({
       inject: true,
       template: 'client/index.html', 
-      apiUrl: `https://maps.googleapis.com/maps/api/js?key=${MAP_KEY}&libraries=places`,
-      mapKey: JSON.stringify(`${MAP_KEY}`)
+      apiUrl: `https://maps.googleapis.com/maps/api/js?key=${MAP_KEY}&libraries=places`
     }),
-    // new webpack.DefinePlugin({
-    //         'process.env': {
-    //           'MAP_KEY': JSON.stringify(`${MAP_KEY}`)
-    //         }
-    //       })
-   //webpack.DefinePlugin doesn't work, nor does this.
-   // new Dotenv({path: 'variables.env', systemvars: true})
   ]
 };
 
