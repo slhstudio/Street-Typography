@@ -78,7 +78,7 @@ photoController.update = async (req, res) => {
 }
 
 photoController.deletePhoto = async (req, res, error) => {
-  const nixPromise = await Photo.findOneAndDelete({photo: req.params.image})
+  const nixPromise = Photo.findOneAndDelete({photo: req.params.image})
     .catch(error);
   const removeFromUserPromise = User
     .findByIdAndUpdate(req.user.id, { $pull: { photos: req.params.image }});
