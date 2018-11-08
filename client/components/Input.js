@@ -8,6 +8,20 @@ const StyledInput = styled.input`
   padding: 2rem;
   ${props => props.purpose ==='addForm' && css`
     margin: 1em 20% 1em 20%;
+    background: none;
+    border: none;
+    border-bottom: .1rem solid black;
+    padding: 2em 2em 1em .5em;
+    ::placeholder {
+      color: #393939;
+    }
+    &:focus {
+      outline: 0;
+      border-bottom: .1rem solid white;
+      ::placeholder {
+        color: white;
+      }
+    }
   `}
   ${props => props.purpose ==='editForm' && css`
     margin: 1em 1em 1em 0;

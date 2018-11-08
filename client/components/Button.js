@@ -9,12 +9,20 @@ const StyledButton = styled.button`
   justify-content: center;
   padding: 2rem;
   margin: 1em .5em 1em .5em;
-  border: .2rem solid black;
- 
+  border: .15rem solid #393939;
   ${props => props.text === 'UPLOAD' && css`
-      background: salmon;
+      background: none;
       margin: 1.5em 30% 1.5em 30%;
-      border: none;
+      &:hover {
+        background: #393939;
+        color: white;
+        border: none;
+      }
+      &:focus {
+        outline: 0;
+        background: #EDC016;
+        border: none;
+      }
   `}
 
   ${props => props.text === 'Sign in with Google' && css`
