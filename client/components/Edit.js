@@ -11,6 +11,9 @@ const StyledRow = styled.div.attrs({
 })`
   display: flex;
   flex-direction: row;
+  p {
+    margin: 2em 2em 0 0;
+  }
 `;
 
 
@@ -58,7 +61,7 @@ class Edit extends Component {
           : <StyledRow> 
               {!editing 
                 ? <StyledRow> 
-                    <p>{update}</p>
+                    <p>Notes: {update}</p>
                     <Button 
                       data-test='test1' 
                       onClick={this.handleClick}

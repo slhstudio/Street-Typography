@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   padding: 2rem;
   margin: 1em .5em 1em .5em;
   border: .15rem solid #393939;
+  background: none;
   ${props => props.text === 'UPLOAD' && css`
       background: none;
       margin: 1.5em 30% 1.5em 30%;
@@ -27,7 +28,6 @@ const StyledButton = styled.button`
 
   ${props => props.text === 'Sign in with Google' && css`
       align-items: center;
-      background: white;
       margin: 7em 1em 1em 1em;
       padding: 0 2em 0 1em;
       border: none;
