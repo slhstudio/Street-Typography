@@ -6,6 +6,7 @@ import Add from './Add';
 import Photo from './Photo';
 import Mine from './Mine';
 import LogIn from './Login';
+import Locator from './Locator';
 import styled, { ThemeProvider } from 'styled-components';
 
 const theme = {
@@ -81,6 +82,10 @@ class App extends Component {
                   <Route 
                     path='/logIn' 
                     render={() => <LogIn isUser={isAuthed} handleLogIn={this.setLogIn}/>}
+                  />
+                  <Route 
+                    path='/locator' 
+                    render={() => <Locator isUser={isAuthed} handleLogIn={this.setLogIn}/>}
                   />
                 </Switch>
               </StyledInner>

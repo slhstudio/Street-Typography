@@ -56,6 +56,12 @@ const Nav = (props) => {
             My Photos
           </NavLink>
         </li>
+
+        <li>
+          <NavLink activeClassName='active' to='/locator'>
+            Locator
+          </NavLink>
+        </li>
        
         <li>
           { !props.isUser
