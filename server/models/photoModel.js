@@ -1,13 +1,16 @@
-const mongoose = require ('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-require('dotenv').config({ path: 'variables.env' });
+require("dotenv").config({ path: "variables.env" });
 
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
+mongoose.connect(
+  process.env.DATABASE,
+  { useNewUrlParser: true }
+);
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 
-mongoose.connection.once('open', () => {
-  console.log('Yup, connected to database: type I like');
-})
+mongoose.connection.once("open", () => {
+  console.log("Yup, connected to database: type I like");
+});
 
 const photoSchema = new Schema({
   photo: String,
@@ -19,19 +22,22 @@ const photoSchema = new Schema({
   location: {
     type: {
       type: String,
-      default: 'Point'
+      default: "Point"
     },
-    coordinates: [{
-      type: Number,
-      required: 'Wait, I need coordinates!'
-    }],
+    coordinates: [
+      {
+        type: Number,
+        required: "Wait, I need coordinates!"
+      }
+    ],
     address: {
       type: String,
-      required: 'Please supply an address.'
+      required: "Please supply an address."
     }
   },
   author: String
 });
 
+photoSchema.index({ location: "2dsphere" });
 
-module.exports = mongoose.model('Photo', photoSchema);
+module.exports = mongoose.model("Photo", photoSchema);
