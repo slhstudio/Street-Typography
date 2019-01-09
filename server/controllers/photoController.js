@@ -93,7 +93,7 @@ photoController.deletePhoto = async (req, res, error) => {
 };
 
 photoController.mapPhotos = async (req, res, error) => {
-  const coordinates = [+req.query.lng, +req.query.lat];
+  const coordinates = [req.query.lng, req.query.lat];
   const q = {
     location: {
       $near: {
@@ -106,7 +106,7 @@ photoController.mapPhotos = async (req, res, error) => {
     }
   };
   const photos = await Photo.find(q)
-    .select('photo location.address')
+    .select('photo location notes')
     .limit(10);
   res.json(photos);
 };

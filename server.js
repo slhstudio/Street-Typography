@@ -53,7 +53,7 @@ app.post('/uploadChange/:photo', photoController.update);
 app.delete('/delete/:image', photoController.deletePhoto);
 
 //locate
-app.get('/locate', photoController.mapPhotos);
+app.get('/locate/near', photoController.mapPhotos);
 
 //sign in
 app.get('/user', userController.isSignedIn);
