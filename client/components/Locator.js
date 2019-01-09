@@ -4,6 +4,7 @@ import Input from './Input';
 import { findPlaces } from '../utilities/api';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import mapStyles from '../../client/mapStyles';
 
 const StyledMain = styled.div.attrs({
   className: 'location'
@@ -33,7 +34,8 @@ class Locator extends Component {
     const { lat, lng } = this.state.location;
     const map = new google.maps.Map(mapDiv, {
       center: { lat, lng },
-      zoom: 10
+      zoom: 10,
+      styles: mapStyles
     });
     this.getPlaces(map, lat, lng);
     const geoInput = document.getElementById('geolocate');
@@ -72,7 +74,12 @@ class Locator extends Component {
       const [placeLng, placeLat] = place.location.coordinates;
       const position = { lat: placeLat, lng: placeLng };
       bounds.extend(position);
-      const marker = new google.maps.Marker({ map, position });
+      const marker = new google.maps.Marker({
+        map,
+        position,
+        //'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+        ColorType: '#21B1BB'
+      });
       marker.place = place;
       return marker;
     });
