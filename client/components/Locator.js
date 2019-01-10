@@ -77,8 +77,7 @@ class Locator extends Component {
       const marker = new google.maps.Marker({
         map,
         position,
-        //'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-        ColorType: '#21B1BB'
+        icon: 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png'
       });
       marker.place = place;
       return marker;
