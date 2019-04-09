@@ -1,11 +1,6 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
 import Loading from './Loading';
-import {
-  findAllPhotos,
-  isSignedIn
-} from '../utilities/api';
+import { findAllPhotos, isSignedIn } from '../utilities/api';
 import PhotoGrid from './PhotoGrid';
 import PropTypes from 'prop-types';
 
@@ -13,14 +8,14 @@ class Home extends Component {
   static propTypes = {
     isUser: PropTypes.bool.isRequired,
     handleLogIn: PropTypes.func.isRequired
-  }
+  };
 
   state = {
     loading: true,
     photos: [],
     notes: [],
     page: 0
-  }
+  };
 
   componentDidMount = async () => {
     const photos = await findAllPhotos();
@@ -35,7 +30,7 @@ class Home extends Component {
       loading: false,
       photos: this.state.photos.concat(photoArray),
       notes: this.state.notes.concat(notesArray)
-    }))
+    }));
 
     // if parent does not indicate user is authorized...(i.e if route is entered directly, this prop will not be set)
     if (!this.props.isUser) {
@@ -45,32 +40,17 @@ class Home extends Component {
         this.props.handleLogIn(user);
       }
     }
-  }
+  };
 
   render() {
-    const {
-      loading,
-      photos,
-      notes
-    } = this.state;
+    const { loading, photos, notes } = this.state;
 
-    return ( <
-      div > {
-        loading ?
-        < Loading / >
-        :
-          < PhotoGrid
-        photos = {
-          photos
-        }
-        notes = {
-          notes
-        }
-        />
-      } <
-      /div>
-    )
+    return (
+      <div>
+        {loading ? <Loading /> : <PhotoGrid photos={photos} notes={notes} />}
+      </div>
+    );
   }
 }
 
-export default Home
+export default Home;

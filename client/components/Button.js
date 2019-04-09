@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, {
+  css
+} from 'styled-components';
 
 
 const StyledButton = styled.button`
@@ -28,6 +30,7 @@ const StyledButton = styled.button`
 
   ${props => props.text === 'Sign in with Google' && css`
       align-items: center;
+      background-color: white;
       margin: 7em 1em 1em 1em;
       padding: 0 2em 0 1em;
       border: none;
@@ -39,7 +42,7 @@ const StyledButton = styled.button`
 
 const Button = (props) => {
   return (
-    <StyledButton 
+    <StyledButton
       type={props.type}
       onClick={props.onClick}
       text={props.text}
